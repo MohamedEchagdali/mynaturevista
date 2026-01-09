@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>myNaturevista</title>
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="en">
+  <link rel="stylesheet" href="/widget/src/styles/widget.css?v=1252">
+  <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
+  <!--Temporal para el cache del navegador
+  <link rel="stylesheet" href="stylemodulo1.css?v=90">
+  <script src="appmodulo1.js?v=456"></script>-->
+  <meta name="theme-color" content="#ff5016">
+ 
+    <!--<meta name="msapplication-navbutton-color" content="#FF8C00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  Temporal para el cache del navegador-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <!-- MarkerCluster CSS y JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+</head>
+<body>
+  <!-- Donde se inyectará el gadget de Google (se crea al pulsar el botón) -->
+  <div id="google_translate_element"></div>
+  <header id="headerTop">
+    <div class="logo" translate="no">
+      <span id="customName">{{CUSTOM_NAME}} &nbsp;</span><!--  <span class="span1">my</span><span class="span2">Naturevista</span>-->
+    </div>
+    <button class= "mapBtn">
+      <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/map-icon_bysonnycandraa.webp" alt="mapIcon">
+    </button>
+  </header>
+    <div id="map"></div>
+  <!-- Slider -->
+  <div class="slider" id="continents"><img src="" alt="">
+    <!-- Continents List-->
+    <div class="continentsList">
+      <div class="itemContinents active itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/1-indexImg/africaHero" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button alt="" data-target="#allSliderAf" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">A</span>fr<span class="span3">i</span>ca</h2>
+          <p>Embark on a journey through Africa's wild savannas, towering mountains, and natural wonders.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/1-indexImg/europHero" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderEu" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">E</span>uro<span class="span3">p</span>e</h2>
+          <p>Explore Europe's breathtaking mountains, serene lakes, and picturesque natural landscapes.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/1-indexImg/asiaHero" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderAs" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">A</span>s<span class="span3">i</span>a</h2>
+          <p>Experience Asia's diverse landscapes, from tranquil beaches to towering peaks and vibrant rainforests.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Brasil/iguacu_Falls/iguacu_Falls2" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderSa" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">S</span>outh<span class="span3">A</span>merica</h2>
+          <p>Wander through South America's vibrant rainforests, towering Andes, and unique natural marvels.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Canada/jasper/jasper2" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderNCa" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">N</span>orth<span class="span3">A</span>merica</h2>
+          <p>Marvel at North and Central America's majestic mountains, lush forests, and iconic natural landmarks.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Australia/GreatBarrierReef/mynaturevista_GreatBarrierReef" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderAu" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">O</span>cea<span class="span3">n</span>ia</h2>
+          <p>Unearth Oceania's hidden gems, from coral reefs to vast deserts and untouched islands.</p>
+        </div>
+      </div>
+      <div class="itemContinents itemContinentsHero">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Antartica/penguins-429136_1280" alt="" loading="lazy" data-pin-nopin="true">
+        <div class="content">
+          <button data-target="#allSliderAn" class="continentButton">Explore</button>
+          <h2 translate="no"><span class="span3">A</span>ntarc<span class="span3">t</span>ica</h2>
+          <p>Venture into Antarctica's icy wilderness, home to pristine landscapes and extraordinary wildlife.</p>
+        </div>
+      </div>
+    </div>
+    <!-- Btn Arrows-->
+    <div class="arrows1" translate="no">
+      <button id="prev1"><</button>
+      <button id="toggleBtnContinent">
+        <svg class="pauseBtn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6H8a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1Zm7 0h-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1Z"/>
+        </svg>
+        <svg class="playBtn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 18V6l8 6-8 6Z"/>
+        </svg>      
+      </button>
+      <button id="next1">></button>
+    </div>
+    <!-- thumbnail -->
+    <div class="thumbnail1">
+      <div class="itemContinents active">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Botsuana/nxaiPanNationalPark/mynaturevista_nxaiPan" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          Africa
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/africa-by-amoghdesigna" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Austria/Krimml-Waterfalls/Krimml-Waterfalls4" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          Europe
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/europ-by-amoghdesigna" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Japon/Monte-fuji/Monte-fuji5" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          Asia
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/asia-by-amoghdesigna" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Brasil/iguacu_Falls/iguacu_Falls" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          South America
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/sudamerica-by-amoghdesigna.png.png" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/EEUU/Yellowstone-National-Park/Yellowstone-National-Park1" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          North America
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/v1762632032/Home/assets/icons/north_and_center_americ-by-amoghdesigna.png.png" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/images/Australia/GreatBarrierReef/mynaturevista_GreatBarrierReef1" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          Oceania
+        </div>
+        <div class="continentMap">
+          <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/oceania-by-amoghdesigna" alt="">
+        </div>
+      </div>
+      <div class="itemContinents">
+        <img src="./assets/images/Antartica/antarctica-79827_1280.jpg" alt="" loading="lazy" draggable="false" data-pin-nopin="true">
+        <div class="content nameContinentThumb">
+          Antarctica
+      </div>
+      <div class="continentMap">
+        <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/antartida-by-amoghdesigna" alt="" ></div>
+      </div>
+    </div>
+  </div>
+  <!---------------------- Continent Sections (Dinamique load)-------------------------------->
+  <div id="allSections"></div>
+<a href="#continents" class="earth-button" title="Explore Continents">
+  <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/planet-earth_3594282" alt="Planet Earth" class="earth-icon" />
+</a>
+  <!-- DOMPurify for XSS protection -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <!-- Sanitizer functions -->
+  <script src="/js/sanitizer.js"></script>
+
+<script type="module" src="/widget/src/index.js?v=1234"></script>
+<script src="/widget/src/clientPreferences.js?v=1234"></script>
+<script src="/widget/src/anti-scroll.js"></script>
+<script>
+  document.querySelector('.closeBtn')?.addEventListener('click', () => {
+    parent.postMessage('nature-widget-close', '*');
+  });
+
+  // En la función preventWheelScroll
+function preventWheelScroll(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Feedback visual (opcional)
+    document.body.classList.add('scroll-blocked');
+    setTimeout(() => {
+        document.body.classList.remove('scroll-blocked');
+    }, 300);
+    
+    return false;
+}
+</script>
+
+<!-- Reemplaza el script completo de Google Translate por este actualizado -->
+<script>
+(function () {
+  let googleScriptLoaded = false;
+  let googleInitialized = false;
+  const pageLang = 'en';
+
+  // Crea el contenedor del traductor (inicialmente oculto)
+  const GT_DIV = document.createElement('div');
+  GT_DIV.id = 'google_translate_element';
+  GT_DIV.style.position = 'fixed';
+  GT_DIV.style.top = '12px';
+  GT_DIV.style.right = '20px';
+  GT_DIV.style.zIndex = '99999';
+  GT_DIV.style.display = 'none';
+  document.body.appendChild(GT_DIV);
+
+  // Inserta estilos globales para ocultar el header de Google Translate
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Ocultar banner superior de Google Translate */
+    .goog-te-banner-frame.skiptranslate,
+    #goog-gt-tt,
+    .goog-te-balloon-frame,
+    .goog-logo-link,
+    .goog-te-banner-frame {
+      display:none !important;
+      visibility:hidden !important;
+      height:0!important;
+      width:0!important;
+      overflow:hidden!important;
+    }
+
+    /* Ocultar el iframe banner que aparece en la parte superior (NO el menú) */
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    iframe.VIpgJd-ZVi9od-ORHb-OEVmcd,
+    iframe#\\:1\\.container {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+      z-index: -999999 !important;
+      pointer-events: none !important;
+    }
+
+    /* Permitir el iframe del menú de idiomas */
+    iframe.goog-te-menu-frame.skiptranslate {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+      width: auto !important;
+      position: absolute !important;
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    /* Estilizar el gadget de Google Translate */
+    .goog-te-gadget {
+      font-family: Inter, sans-serif !important;
+      font-size: 13px !important;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    
+    .goog-te-combo {
+      border:none!important;
+      background:transparent!important;
+      cursor:pointer;
+      outline:none!important;
+      position: relative;
+      z-index: 999999 !important;
+    }
+
+    /* Asegurar que el contenedor y el dropdown estén por encima de todo */
+    #google_translate_element {
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    #google_translate_element * {
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    #google_translate_element select,
+    .goog-te-combo {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      -webkit-appearance: menulist !important;
+      appearance: menulist !important;
+      min-width: 100px;
+      padding: 5px;
+    }
+
+    /* El menú desplegable del selector */
+    .goog-te-menu-frame {
+      z-index: 999999 !important;
+      position: fixed !important;
+      pointer-events: auto !important;
+    }
+
+    /* Contenedor del menú */
+    .goog-te-menu2 {
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Forzar que el iframe del menú sea visible */
+    iframe.goog-te-menu-frame {
+      z-index: 999999 !important;
+      visibility: visible !important;
+      display: block !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Inicializador que Google llamará
+  window.googleTranslateElementInit = function() {
+    new google.translate.TranslateElement({
+      pageLanguage: pageLang,
+      includedLanguages: 'en,es,fr,de,it,ar,pt,ru,zh-CN,ja,ko,hi',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      autoDisplay: false
+    }, 'google_translate_element');
+
+    googleInitialized = true;
+    GT_DIV.style.display = 'block';
+    console.log('✅ Google Translate cargado');
+
+    // Aplicar idioma guardado si existe
+    const saved = localStorage.getItem('preferredLanguage');
+    if (saved && saved !== pageLang) {
+      setTimeout(() => applyTranslation(saved), 500);
+    }
+  };
+
+  // Cargar script de Google
+  function loadGoogleTranslate() {
+    if (googleScriptLoaded) return;
+    const s = document.createElement('script');
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+    googleScriptLoaded = true;
+    console.log('🌐 Script de Google Translate insertado');
+  }
+
+  // Aplicar idioma automáticamente
+  function applyTranslation(langCode) {
+    const tryApply = () => {
+      const combo = document.querySelector('.goog-te-combo');
+      if (combo) {
+        combo.value = langCode;
+        combo.dispatchEvent(new Event('change'));
+        localStorage.setItem('preferredLanguage', langCode);
+        console.log('✅ Traducción aplicada a', langCode);
+        return true;
+      }
+      return false;
+    };
+    let tries = 0;
+    const interval = setInterval(() => {
+      if (tryApply() || tries++ > 10) clearInterval(interval);
+    }, 400);
+  }
+
+  // Escuchar mensajes del widget padre
+  window.addEventListener('message', (e) => {
+    if (!e.data || e.data.type !== 'toggle-translate') return;
+
+    console.log('🌍 toggle-translate recibido en iframe');
+
+    if (!googleInitialized) {
+      loadGoogleTranslate();
+    } else {
+      // Alternar visibilidad del selector
+      GT_DIV.style.display = GT_DIV.style.display === 'none' ? 'block' : 'none';
+    }
+  });
+
+  // Seguridad: eliminar banners y iframes si aparecen
+  const observer = new MutationObserver(() => {
+    // Eliminar banners
+    document.querySelectorAll('.goog-te-banner-frame,#goog-gt-tt').forEach(el => el.remove());
+
+    // Eliminar iframes molestos
+    document.querySelectorAll('iframe.VIpgJd-ZVi9od-ORHb-OEVmcd, iframe.skiptranslate').forEach(iframe => {
+      iframe.style.cssText = 'display:none!important;height:0!important;visibility:hidden!important;position:absolute!important;top:-9999px!important;';
+    });
+
+    // Forzar top 0 siempre (no cambiar position porque el CSS lo necesita fixed)
+    if (document.body.style.top !== '0px' && document.body.style.top !== '0' && document.body.style.top !== '') {
+      document.body.style.top = '0';
+    }
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

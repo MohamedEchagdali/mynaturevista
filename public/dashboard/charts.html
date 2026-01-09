@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Estadísticas de uso - myNaturevista" />
+    <meta name="author" content="" />
+    <title>Analytics - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+  --primary-gradient: linear-gradient(135deg, #00b894, #6cffdf);
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+  color: var(--sidebar-text);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.main-content {
+  margin-left: 0;
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+/* ========================================
+   CHARTS PAGE STYLES
+======================================== */
+.stat-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+
+#overviewCards .card {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: none;
+  border-radius: 12px;
+}
+
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+}
+
+.card-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: 600;
+  border: none;
+  position: relative;
+  padding: 1rem 1.5rem;
+}
+
+.chart-container {
+  position: relative;
+  min-height: 400px;
+  height: 400px;
+  padding: 20px;
+}
+
+#myAreaChart {
+  height: 400px !important;
+}
+
+#myBarChart {
+  height: 350px !important;
+}
+
+#myPieChart {
+  height: 350px !important;
+}
+
+.empty-chart-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  color: #6c757d;
+}
+
+.empty-chart-message i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 3rem;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #f0f8ff 0%, #e8f4f8 100%);
+  border: none;
+  border-left: 4px solid #00b894;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-top: 30px;
+}
+
+.btn-export {
+  background: white;
+  color: #00b894;
+  border: 2px solid #00b894;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.btn-export:hover {
+  background: #00b894;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.15;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  color: #212529;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.stat-change {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.stat-change.positive {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.stat-change.negative {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+}
+
+.breadcrumb-item a {
+  color: #00b894;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: #ff6b6b;
+}
+
+.table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background: #f8f9fa;
+  font-weight: 600;
+  border: none;
+  padding: 1rem;
+  color: #495057;
+}
+
+.table-hover tbody tr {
+  transition: background 0.2s ease;
+}
+
+.table-hover tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.tips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tips-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tips-list li:last-child {
+  border-bottom: none;
+}
+
+.tips-list li i {
+  color: #00b894;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.tips-list li strong {
+  color: #212529;
+}
+
+.card-body {
+  padding: 1.5rem;
+  background-color: white;
+  color: #812f2f;
+  font-weight: bold;
+}
+
+.card-footer {
+  background: #1ac4a2;
+  border-top: 1px solid #e9ecef;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.page-header {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #212529;
+  font-weight: 600;
+}
+
+.page-header p {
+  margin: 0.5rem 0 0 0;
+  color: #6c757d;
+}
+/*Select refresh*/
+.form-select-sm{
+  border-radius: 10px;
+}
+.btn-outline-primary{
+  border-radius: 10px;
+}
+footer {
+  margin-top: 40px;
+  padding: 24px 0;
+  background: white;
+  border-top: 2px solid var(--border-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+@media (max-width: 768px) {
+  #overviewCards .col-xl-3 {
+    margin-bottom: 15px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .btn-export {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+  }
+}
+/* ===== STAT CARDS MEJORADAS (ESTILO DASHBOARD) ===== */
+.stat-card {
+  border-radius: 16px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:nth-child(1) {
+  border-color: #00b894;
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf9 100%);
+}
+
+.stat-card:nth-child(1)::before {
+  background: linear-gradient(135deg, #00b894 0%, #059669 100%);
+}
+
+.stat-card:nth-child(1) .stat-icon {
+  color: #00b894;
+}
+
+.stat-card:nth-child(2) {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+}
+
+.stat-card:nth-child(2)::before {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card:nth-child(2) .stat-icon {
+  color: #667eea;
+}
+
+.stat-card:nth-child(3) {
+  border-color: #f59e0b;
+  background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+}
+
+.stat-card:nth-child(3)::before {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+}
+
+.stat-card:nth-child(3) .stat-icon {
+  color: #f59e0b;
+}
+
+.stat-card:nth-child(4) {
+  border-color: #ff6b6b;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 100%);
+}
+
+.stat-card:nth-child(4)::before {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+}
+
+.stat-card:nth-child(4) .stat-icon {
+  color: #ff6b6b;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-color: currentColor;
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-card .card-body {
+  padding: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.stat-number {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+.stat-icon {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  font-size: 2.5rem;
+  opacity: 0.12;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+  opacity: 0.18;
+  transform: scale(1.1);
+}
+
+.progress-custom {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar-custom {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+/* Mejorar espaciado en stat cards */
+.stat-card .card-body > div:not(.stat-label):not(.stat-number):not(.progress-custom) {
+  min-height: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-card .card-body small.text-muted {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+    </style>
+</head>
+<body data-page="charts">
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link active" data-tooltip="Estadísticas">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Guía de Integración">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Lugares Personalizados">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Configuración de Cuenta">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Cambiar Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Historial de Facturación">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Panel Admin">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">Usuario</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan Free</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">Analytics</h1>
+        
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<div class="main-content">
+    <div class="container-fluid px-4">
+        <div class="page-header mt-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1><i class="fas fa-chart-line me-2" style="color: #00b894;"></i>Usage Statistics</h1>
+                    <p>Detailed analysis of your widget performance</p>
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn btn-export btn-sm" onclick="chartsPageInstance.exportData('widget')">
+                        <i class="fas fa-download me-1"></i> Export Widgets
+                    </button>
+                    <!--<button class="btn btn-export btn-sm" onclick="chartsPageInstance.exportData('api')">
+                        <i class="fas fa-download me-1"></i> Export API
+                    </button>-->
+                </div>
+            </div>
+            
+
+        <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Real-time data:</strong> Statistics update automatically. Select a period to view historical data.
+        </div>
+        </div>
+
+<!-- Overview Cards - NUEVO ESTILO -->
+<div id="overviewCards" class="row mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card bg-white">
+            <div class="card-body">
+                <div class="stat-label">Openings this month</div>
+                <div class="stat-number" id="stat-openings">
+                    <div class="loading-skeleton" style="height: 2rem; width: 80px;"></div>
+                </div>
+                <div id="stat-openings-limit" style="font-size: 0.875rem; color: #6c757d; line-height: 1.4;">
+                    Loading...
+                </div>
+                <div class="progress-custom mt-2">
+                    <div class="progress-bar-custom" id="progress-openings" style="width: 0%; background: linear-gradient(90deg, #00b894, #00a884);"></div>
+                </div>
+                <i class="fas fa-eye stat-icon"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card bg-white">
+            <div class="card-body">
+                <div class="stat-label">Internal Navigation</div>
+                <div class="stat-number" id="stat-internal-nav">
+                    <div class="loading-skeleton" style="height: 2rem; width: 80px;"></div>
+                </div>
+                <div style="font-size: 0.875rem; color: #6c757d; line-height: 1.4;">
+                    Clicks within widget
+                </div>
+                <i class="fas fa-mouse-pointer stat-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card bg-white">
+            <div class="card-body">
+                <div class="stat-label">Average Response Time</div>
+                <div class="stat-number" id="stat-response-time">
+                    <div class="loading-skeleton" style="height: 2rem; width: 80px;"></div>
+                </div>
+                <div style="font-size: 0.875rem; color: #6c757d; line-height: 1.4;">
+                    Milliseconds
+                </div>
+                <i class="fas fa-clock stat-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card stat-card bg-white">
+            <div class="card-body">
+                <div class="stat-label">Active Days</div>
+                <div class="stat-number" id="stat-active-days">
+                    <div class="loading-skeleton" style="height: 2rem; width: 60px;"></div>
+                </div>
+                <div id="stat-active-days-limit" style="font-size: 0.875rem; color: #6c757d; line-height: 1.4;">
+                    Loading...
+                </div>
+                <i class="fas fa-calendar-check stat-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area me-2"></i>
+                Usage Evolution - Last 30 Days
+            </div>
+            <div class="card-body">
+                <canvas id="myAreaChart" width="100%" height="40"></canvas>
+            </div>
+            <div class="card-footer small text-muted">
+                <i class="fas fa-sync-alt me-1"></i> Updated in real-time
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Usage by Widget Type
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myBarChart" width="100%" height="50"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">
+                        Compare the performance of each widget type
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie me-2"></i>
+                        Usage Distribution
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myPieChart" width="100%" height="50"></canvas>
+                    </div>
+                    <div class="card-footer small text-muted">
+                        Percentage of usage by widget type
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="performanceTable"></div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-lightbulb me-2"></i>
+                Tips to Optimize Your Usage
+            </div>
+            <div class="card-body">
+                <ul class="tips-list">
+                    <li>
+                        <i class="fas fa-tachometer-alt"></i>
+                        <div>
+                            <strong>Response time:</strong> If it's greater than 300ms, consider optimizing your widget implementation or contact our support team to review your configuration.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <strong>Active days:</strong> Keep your widgets active consistently to maximize the value of your subscription and provide better experience to your visitors.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>API errors:</strong> If you detect a high number of errors, verify your API keys configuration and check the logs in your browser console.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <strong>Popular widgets:</strong> Focus on the widgets that generate the most interaction with your visitors to optimize your natural content strategy.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <strong>Continuous monitoring:</strong> Review these statistics regularly to identify trends and improvement opportunities in your implementation.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                    <div>
+                        <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                        &middot;
+                        <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                        &middot;
+                        <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    
+
+    <script type="module">
+        import { ChartsPage } from './js/pages/ChartsPage.js';
+        
+        window.chartsPageInstance = new ChartsPage();
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            window.chartsPageInstance.init();
+        });
+    </script>
+    
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

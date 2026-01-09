@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Plan - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff3d5d;
+            --secondary-color: #00a085;
+            --starter-color: #10b981;
+            --business-color: #f59e0b;
+            --enterprise-color: #3b82f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #00b894 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-container {
+            margin-top: 100px;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .card-header-custom h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .card-header-custom .subtitle {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .card-body-custom {
+            padding: 2.5rem;
+        }
+
+        .plan-option {
+            margin-bottom: 1.5rem;
+        }
+
+        .plan-card {
+            border: 3px solid transparent;
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .plan-card.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(255, 61, 93, 0.1), rgba(241, 104, 58, 0.1));
+            box-shadow: 0 8px 30px rgba(255, 61, 93, 0.3);
+        }
+
+        .plan-card.starter { border-color: rgba(16, 185, 129, 0.3); }
+        .plan-card.business { border-color: rgba(245, 158, 11, 0.3); }
+        .plan-card.enterprise { border-color: rgba(59, 130, 246, 0.3); }
+
+        .plan-card.starter.selected { border-color: var(--starter-color); }
+        .plan-card.business.selected { border-color: var(--business-color); }
+        .plan-card.enterprise.selected { border-color: var(--enterprise-color); }
+
+        .plan-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .badge-starter { background: var(--starter-color); }
+        .badge-business { background: var(--business-color); }
+        .badge-enterprise { background: var(--enterprise-color); }
+        .badge-popular { background: #ef4444; }
+
+        .plan-name {
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1f2937;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .plan-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .plan-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        .plan-features li i {
+            color: var(--secondary-color);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .feature-highlight {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .renewal-info {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .renewal-info p {
+            margin: 0;
+            color: #1e40af;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .renewal-info strong {
+            color: #1e3a8a;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 61, 93, 0.3);
+        }
+
+        .btn-custom:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .security-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .guarantee-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .plan-name { font-size: 1.2rem; }
+            .plan-price { font-size: 1.6rem; }
+            .card-body-custom { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌿 myNaturevista</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dashboard/loginSignup.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-11">
+                    <div class="payment-card">
+                        <div class="card-header-custom">
+                            <h2><i class="fas fa-star"></i> Choose Your Plan</h2>
+                            <p class="subtitle">Unlock the beauty of nature with myNaturevista</p>
+                        </div>
+
+                                                <div class="card-body-custom">
+                            
+                            
+                            <div class="renewal-info">
+                                <p>
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Plan changes:</strong> Upgrades are applied immediately. Downgrades will be applied on your next billing date.
+                                </p>
+                            </div>
+
+                            <form id="planForm">
+                                <!-- STARTER PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card starter" id="plan-card-starter" onclick="selectPlan('starter', 19, 'monthly')">
+                                        <span class="plan-badge badge-starter">🟢 STARTER</span>
+                                        <input type="radio" name="plan" value="starter-monthly" id="plan-starter" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-seedling"></i> Starter
+                                            <span class="upgrade-badge" id="badge-starter" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €19 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For personal projects or small websites
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 authorized domain/subdomain</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 3,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> Full natural places catalog access</li>
+                                            <li><i class="fas fa-check-circle"></i> Dashboard with real-time statistics</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Email support</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- BUSINESS PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card business" id="plan-card-business" onclick="selectPlan('business', 49, 'monthly')">
+                                        <span class="plan-badge badge-popular">⭐ POPULAR</span>
+                                        <span class="plan-badge badge-business" style="right: 130px;">🟡 BUSINESS</span>
+                                        <input type="radio" name="plan" value="business-monthly" id="plan-business" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-briefcase"></i> Business
+                                            <span class="upgrade-badge" id="badge-business" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €49 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For agencies or brands with medium traffic
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 domain/subdomain + €10 per additional</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 20,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">Up to 100 custom locations</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Advanced analytics dashboard</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Priority support (<24h)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- ENTERPRISE PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card enterprise" id="plan-card-enterprise" onclick="selectPlan('enterprise', 149, 'monthly')">
+                                        <span class="plan-badge badge-enterprise">🔵 ENTERPRISE</span>
+                                        <input type="radio" name="plan" value="enterprise-monthly" id="plan-enterprise" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-crown"></i> Enterprise
+                                            <span class="upgrade-badge" id="badge-enterprise" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €149 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For large platforms and tourism destinations
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 domain/subdomain + €15 per additional</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 150,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">Unlimited custom locations</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Advanced analytics & custom reports</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Premium support with dedicated account manager</li>
+                                            <li><i class="fas fa-check-circle"></i>SEO data integration option</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-custom" id="submitBtn" disabled>
+                                    <i class="fas fa-lock"></i> Select a plan to continue
+                                </button>
+                                
+                                <div class="security-indicator">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Secure payment with Stripe
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe = Stripe('pk_test_51Rd69MC00sMmjhy0ELz9ZATySMAuRoDzY4xtNblIN66aDsSmI3CIYV1QZDcXRFOtkQuKr5j0ncPxEds6yr0EG9tJ00vY8eFryw');
+        
+        let selectedPlan = null;
+        let currentUser = null;
+
+        // Obtener usuario del token JWT
+        async function getCurrentUser() {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            
+            if (!token) {
+                return null;
+            }
+
+            try {
+                const tokenParts = token.split('.');
+                if (tokenParts.length !== 3) {
+                    return null;
+                }
+
+                const payload = JSON.parse(atob(tokenParts[1]));
+
+                if (payload.exp && payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('token');
+                    return null;
+                }
+
+                return {
+                    id: payload.id,
+                    email: payload.email,
+                    is_subscribed: payload.is_subscribed
+                };
+
+            } catch (error) {
+                console.error('Error al obtener usuario:', error);
+                return null;
+            }
+        }
+
+        // Seleccionar plan
+        function selectPlan(type, price, billing) {
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            const radio = event.currentTarget.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+            }
+            
+            const planNames = {
+                'starter': 'Starter',
+                'business': 'Business',
+                'enterprise': 'Enterprise'
+            };
+            
+            selectedPlan = {
+                type: type,
+                price: parseFloat(price),
+                billing: billing,
+                name: planNames[type] || type,
+                id: radio ? radio.value : `${type}-${billing}`
+            };
+            
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-arrow-right"></i> Continuar con ${selectedPlan.name} - €${price}/mes`;
+            }
+        }
+
+        // Enviar formulario
+        document.getElementById('planForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!selectedPlan) {
+                alert('Por favor selecciona un plan para continuar.');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            
+            if (!currentUser) {
+                currentUser = await getCurrentUser();
+            }
+            
+            const requestData = {
+                plan: selectedPlan,
+                user_email: currentUser?.email
+            };
+            
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
+            try {
+                const response = await fetch('/api/stripe/create-checkout-session', {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Error ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.id) {
+                    const result = await stripe.redirectToCheckout({ sessionId: data.id });
+                    if (result.error) {
+                        throw new Error(result.error.message);
+                    }
+                } else {
+                    throw new Error('No se recibió ID de sesión');
+                }
+            } catch (err) {
+                console.error('Error en el proceso de pago:', err);
+                alert('Error al procesar el pago: ' + err.message);
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Continuar con el pago';
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            }
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', async function() {
+            currentUser = await getCurrentUser();
+            
+            if (currentUser) {
+            }
+        });
+        
+    </script>
+</body>
+</html>

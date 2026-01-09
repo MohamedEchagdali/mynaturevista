@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Privacy Policy for myNaturevista - Learn how we collect, use, and protect your personal information." />
+    <meta name="author" content="myNaturevista" />
+    <title>Privacy Policy - myNaturevista</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff3d5d;
+            --primary-dark: #00a884;
+            --secondary: #667eea;
+            --accent: #f59e0b;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #00b894 0%, #ff3d5d 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 2rem 4rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-1) 1;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 100px 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="landing/landingPage.html" class="logo">🌿 myNaturevista</a>
+            <ul class="nav-links">
+                <li><a href="landing/landingPage.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard/loginSignup.html" class="nav-link">Dashboard</a></li>
+                <li><a href="terms-of-service.html" class="nav-link">Terms</a></li>
+                <li><a href="cookie-policy.html" class="nav-link">Cookies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: January 5, 2026</p>
+        </div>
+
+        <div class="content">
+            <h2>1. Introduction</h2>
+            <p>Welcome to myNaturevista. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our SaaS platform and embeddable widgets for natural places and tourism content.</p>
+            <p>This policy applies to our website, dashboard, API services, and all related services (collectively, the "Service").</p>
+            <p>By using our Service, you agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree with our policies and practices, please do not use our Service.</p>
+
+            <h2>2. Information We Collect</h2>
+
+            <h3>2.1 Personal Information You Provide</h3>
+            <p>When you register for an account or use our Service, we may collect:</p>
+            <ul>
+                <li><strong>Account Information</strong>: Full name, email address, password (encrypted), phone number</li>
+                <li><strong>Business Information</strong>: Company domain, physical addresses (optional)</li>
+                <li><strong>Billing Information</strong>: Processed through Stripe (we do not store credit card details)</li>
+                <li><strong>Communication Data</strong>: Messages sent through our contact forms, support tickets, and email correspondence</li>
+                <li><strong>Custom Content</strong>: Natural places and tourism locations you add to the platform</li>
+            </ul>
+
+            <h3>2.2 Automatically Collected Information</h3>
+            <p>When you use our Service, we automatically collect:</p>
+            <ul>
+                <li><strong>Usage Data</strong>: Widget loads, API calls, feature usage, interaction patterns</li>
+                <li><strong>Technical Data</strong>: IP address, browser type, device information, user agent, operating system</li>
+                <li><strong>Analytics Data</strong>: Page views, referrer URLs, geographic location (country/region level), response times, HTTP status codes</li>
+                <li><strong>Cookies and Tracking Technologies</strong>: Authentication tokens, session data, and preference settings</li>
+            </ul>
+
+            <h3>2.3 Widget Visitor Data</h3>
+            <p>When your website visitors interact with our embeddable widgets, we collect:</p>
+            <ul>
+                <li>Widget interaction events (views, clicks, openings)</li>
+                <li>Visitor IP addresses</li>
+                <li>Browser and device information</li>
+                <li>Referrer URLs and domain information</li>
+                <li>Geographic data (country and place viewed)</li>
+                <li>Timestamps of interactions</li>
+            </ul>
+
+            <h2>3. How We Use Your Information</h2>
+
+            <h3>3.1 Service Delivery</h3>
+            <ul>
+                <li>Provide, operate, and maintain our Service</li>
+                <li>Process your subscription and manage your account</li>
+                <li>Generate and manage API keys for widget integration</li>
+                <li>Track usage against your subscription plan limits</li>
+                <li>Deliver customer support and respond to inquiries</li>
+            </ul>
+
+            <h3>3.2 Service Improvement</h3>
+            <ul>
+                <li>Analyze usage patterns to improve our Service</li>
+                <li>Develop new features and functionality</li>
+                <li>Monitor and analyze trends and performance</li>
+                <li>Optimize widget performance and user experience</li>
+            </ul>
+
+            <h3>3.3 Communication</h3>
+            <ul>
+                <li>Send transactional emails (account verification, password resets, billing notifications)</li>
+                <li>Provide subscription renewal reminders</li>
+                <li>Respond to your comments, questions, and requests</li>
+                <li>Send technical notices and security alerts</li>
+            </ul>
+
+            <h3>3.4 Security and Compliance</h3>
+            <ul>
+                <li>Detect, prevent, and address fraud, security issues, and technical problems</li>
+                <li>Enforce our Terms of Service</li>
+                <li>Comply with legal obligations and protect our legal rights</li>
+                <li>Prevent abuse and violations of our usage policies</li>
+            </ul>
+
+            <h2>4. Legal Basis for Processing (GDPR)</h2>
+            <p>For users in the European Economic Area (EEA), we process personal data based on:</p>
+            <ul>
+                <li><strong>Contract Performance</strong>: Processing necessary to provide our Service under our Terms of Service</li>
+                <li><strong>Legitimate Interests</strong>: Improving our Service, security, fraud prevention, and analytics</li>
+                <li><strong>Legal Compliance</strong>: Meeting legal and regulatory obligations</li>
+                <li><strong>Consent</strong>: Where you have explicitly consented to specific processing activities</li>
+            </ul>
+
+            <h2>5. Data Sharing and Disclosure</h2>
+            <p><strong>We do not sell your personal information.</strong> We may share your information with:</p>
+
+            <h3>5.1 Service Providers</h3>
+            <p>We work with third-party service providers who assist in operating our Service:</p>
+            <ul>
+                <li><strong>Stripe</strong>: Payment processing and subscription management</li>
+                <li><strong>Google reCAPTCHA</strong>: Bot prevention and security (subject to <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a>)</li>
+                <li><strong>Cloudinary</strong>: Image and media hosting</li>
+                <li><strong>Email Service Providers</strong>: Transactional and notification emails</li>
+                <li><strong>Firebase</strong>: Real-time data synchronization and authentication</li>
+            </ul>
+            <p>These providers have access to your information only to perform tasks on our behalf and are obligated to protect your data.</p>
+
+            <h3>5.2 Legal Requirements</h3>
+            <p>We may disclose your information if required by law or in response to:</p>
+            <ul>
+                <li>Legal processes (subpoenas, court orders)</li>
+                <li>Government or regulatory requests</li>
+                <li>Protection of our rights, privacy, safety, or property</li>
+                <li>Investigation of fraud, security, or technical issues</li>
+            </ul>
+
+            <h2>6. Data Retention</h2>
+            <p>We retain your personal information for as long as necessary to maintain your active account and provide the Service, comply with legal obligations, resolve disputes, and enforce our agreements.</p>
+
+            <div class="highlight-box">
+                <strong>Specific Retention Periods:</strong>
+                <ul style="margin-top: 0.5rem;">
+                    <li><strong>Account Data</strong>: Retained while your account is active and for 30 days after deletion request</li>
+                    <li><strong>Usage Analytics</strong>: Aggregated data retained for 24 months</li>
+                    <li><strong>Contact Messages</strong>: Retained for 3 years for support purposes</li>
+                    <li><strong>Billing Records</strong>: Retained for 7 years to comply with tax regulations</li>
+                    <li><strong>Backup Data</strong>: Automatically deleted after 90 days from backup systems</li>
+                </ul>
+            </div>
+
+            <h2>7. Your Privacy Rights</h2>
+
+            <h3>7.1 All Users</h3>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access and update your account information</li>
+                <li>Request deletion of your account and personal data</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Disable cookies (may affect functionality)</li>
+            </ul>
+
+            <h3>7.2 GDPR Rights (EEA Users)</h3>
+            <p>Under the General Data Protection Regulation, you have additional rights:</p>
+            <ul>
+                <li><strong>Right to Access</strong>: Request a copy of your personal data</li>
+                <li><strong>Right to Rectification</strong>: Correct inaccurate or incomplete data</li>
+                <li><strong>Right to Erasure</strong>: Request deletion of your personal data ("right to be forgotten")</li>
+                <li><strong>Right to Restrict Processing</strong>: Limit how we use your data</li>
+                <li><strong>Right to Data Portability</strong>: Receive your data in a structured, machine-readable format</li>
+                <li><strong>Right to Object</strong>: Object to processing based on legitimate interests</li>
+                <li><strong>Right to Withdraw Consent</strong>: Withdraw consent for consent-based processing</li>
+            </ul>
+            <p>To exercise these rights, use the GDPR request feature in your dashboard or contact us at info@mynaturevista.com. We will respond within 30 days.</p>
+
+            <h3>7.3 California Privacy Rights (CCPA)</h3>
+            <p>California residents have additional rights under the California Consumer Privacy Act:</p>
+            <ul>
+                <li>Right to know what personal information is collected</li>
+                <li>Right to know if personal information is sold or disclosed</li>
+                <li>Right to opt-out of the sale of personal information (we do not sell personal data)</li>
+                <li>Right to deletion of personal information</li>
+                <li>Right to non-discrimination for exercising privacy rights</li>
+            </ul>
+
+            <h2>8. Data Security</h2>
+            <p>We implement appropriate technical and organizational measures to protect your personal information:</p>
+            <ul>
+                <li><strong>Encryption</strong>: Passwords hashed with bcrypt; data transmitted via HTTPS/TLS</li>
+                <li><strong>Authentication</strong>: JWT token-based authentication with 1-hour expiration</li>
+                <li><strong>Access Controls</strong>: Role-based access and API key authentication</li>
+                <li><strong>Security Monitoring</strong>: Rate limiting, bot prevention (reCAPTCHA), and abuse detection</li>
+                <li><strong>Database Security</strong>: PostgreSQL with secure connection pooling</li>
+                <li><strong>Regular Updates</strong>: Security patches and dependency updates</li>
+            </ul>
+            <p>Despite our efforts, no security system is impenetrable. We cannot guarantee absolute security of your data transmitted to our Service.</p>
+
+            <h2>9. Children's Privacy</h2>
+            <p>Our Service is not intended for children under 13 years of age (or 16 in the EEA). We do not knowingly collect personal information from children. Our platform is designed for business use and sharing tourism/natural places content suitable for all ages.</p>
+            <p>If we discover that we have collected personal information from a child without parental consent, we will delete that information immediately. If you believe we have collected information from a child, please contact us immediately.</p>
+
+            <h2>10. Content Standards</h2>
+            <p>Our platform is dedicated to natural places and tourism content. We prohibit:</p>
+            <ul>
+                <li>Sexually explicit or obscene content</li>
+                <li>Violent, graphic, or disturbing imagery</li>
+                <li>Hate speech, discriminatory, or denigrating content</li>
+                <li>Content inappropriate for minors</li>
+                <li>Misleading or fraudulent information</li>
+            </ul>
+            <p>Users found violating these standards may have their accounts suspended or terminated.</p>
+
+            <h2>11. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy periodically to reflect changes to our practices, legal or regulatory requirements, or new features.</p>
+            <p>We will notify you of material changes by:</p>
+            <ul>
+                <li>Posting the new Privacy Policy on this page</li>
+                <li>Updating the "Last Updated" date</li>
+                <li>Sending an email notification (for significant changes)</li>
+            </ul>
+            <p>Your continued use of the Service after changes constitutes acceptance of the updated Privacy Policy.</p>
+
+            <h2>12. Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:</p>
+
+            <!--<div class="highlight-box">
+                <strong>myNaturevista Privacy Team</strong><br>
+                Email: <a href="mailto:privacy@mynaturevista.com">info@mynaturevista.com</a><br>
+                Support Portal: Contact Form in Dashboard<br>
+                Address: [Your Physical Address]
+            </div>-->
+
+            <p><strong>Data Protection Officer (EEA users):</strong><br>
+            Email: <a href="mailto:info@mynaturevista.com">info@mynaturevista.com</a></p>
+
+            <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e0e0e0;">
+
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 2rem;">
+                <strong>Acknowledgment:</strong> By using myNaturevista, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 myNaturevista. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy.html" style="margin: 0 1rem;">Privacy Policy</a> |
+            <a href="terms-of-service.html" style="margin: 0 1rem;">Terms of Service</a> |
+            <a href="cookie-policy.html" style="margin: 0 1rem;">Cookie Policy</a>
+        </p>
+    </footer>
+</body>
+</html>

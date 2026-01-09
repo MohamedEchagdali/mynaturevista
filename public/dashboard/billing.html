@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Billing - myNaturevista" />
+    <title>Billing - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   SIDEBAR CONTAINER
+======================================== */
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+/* ========================================
+   LOGO SECTION
+======================================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+  color: var(--sidebar-text);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   USER DROPDOWN MENU
+======================================== */
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* ========================================
+   MODERN HEADER
+======================================== */
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #4a5568;
+}
+
+.header-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+.main-content {
+  margin-left: 0;
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+/* ========================================
+   OVERLAY Y MOBILE
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+/* ========================================
+   BILLING SPECIFIC STYLES - RESPONSIVE
+======================================== */
+.billing-summary-card {
+  background: linear-gradient(135deg, #00b894 0%, #059669 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.billing-summary-card h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.summary-item {
+  text-align: center;
+  padding: 1rem;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.summary-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.summary-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  color: #718096;
+  font-size: 0.875rem;
+}
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+  .summary-value {
+    font-size: 1.75rem;
+  }
+  
+  .summary-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .billing-summary-card {
+    padding: 1.5rem;
+  }
+  
+  .summary-item {
+    min-height: 100px;
+    padding: 0.75rem;
+  }
+  
+  .summary-value {
+    font-size: 1.5rem;
+  }
+
+  .billing-summary-card .col-md-3 {
+    width: 100% !important;
+  }
+}
+
+/* Tablet and smaller */
+@media (max-width: 991px) {
+  .billing-summary-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* 2 columns on tablets */
+  .billing-summary-card .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .billing-summary-card .col-md-3 {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .summary-item {
+    min-height: 90px;
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .summary-value {
+    font-size: 1.4rem;
+  }
+  
+  .summary-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .billing-summary-card {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .billing-summary-card h3 {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  /* 2 columns on mobile */
+  .billing-summary-card .row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .summary-item {
+    min-height: 85px;
+    padding: 0.6rem 0.4rem;
+  }
+  
+  .summary-value {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .summary-label {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 576px) {
+  .billing-summary-card {
+    padding: 1rem;
+  }
+  
+  .billing-summary-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Single column on very small screens */
+  .billing-summary-card .row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .summary-item {
+    min-height: 70px;
+    padding: 0.5rem;
+  }
+  
+  .summary-value {
+    font-size: 1.2rem;
+  }
+  
+  .summary-label {
+    font-size: 0.65rem;
+  }
+}
+
+/* Special handling when sidebar is open on small screens */
+@media (max-width: 1200px) and (min-width: 769px) {
+  /* When sidebar is open, use 2 columns instead of 4 */
+  .modern-sidebar:not(.collapsed) ~ .main-content .billing-summary-card .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .modern-sidebar:not(.collapsed) ~ .main-content .summary-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* Next Payment Alert - Responsive */
+.next-payment-alert {
+  background: linear-gradient(135deg, #e8f5f3 0%, #d4edda 100%);
+  border-left: 4px solid #00b894;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .next-payment-alert {
+    padding: 1rem;
+  }
+  
+  .next-payment-alert .d-flex {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .next-payment-alert h6 {
+    font-size: 0.9rem;
+  }
+  
+  .next-payment-alert p {
+    font-size: 0.85rem;
+  }
+  
+  .next-payment-alert .btn {
+    width: 100%;
+  }
+}
+
+/* Filter Container - Responsive */
+.filter-container {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    padding: 1rem;
+  }
+  
+  .filter-container .row {
+    row-gap: 0.75rem;
+  }
+  
+  .filter-container .col-md-4 {
+    width: 100%;
+  }
+  
+  .filter-container label {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* Invoice Table - Responsive */
+.invoice-table {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .invoice-table {
+    font-size: 0.85rem;
+  }
+  
+  .invoice-table thead th {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  
+  .invoice-table tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .btn-download {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .payment-status {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+/* Hide less important columns on mobile */
+@media (max-width: 576px) {
+  .invoice-table thead th:nth-child(4),
+  .invoice-table tbody td:nth-child(4) {
+    display: none; /* Hide "Type" column */
+  }
+  
+  .invoice-table {
+    font-size: 0.8rem;
+  }
+  
+  .invoice-table thead th {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.65rem;
+  }
+  
+  .invoice-table tbody td {
+    padding: 0.5rem 0.3rem;
+  }
+  
+  .btn-download {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .btn-download .fas {
+    display: none; /* Hide icon on very small screens */
+  }
+}
+    </style>
+</head>
+<body data-page="billing">
+    <!-- SIDEBAR -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="dashboard.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Widget Admin</div>
+                <a href="widgetSettings.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link active">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- HEADER -->
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">Billing</h1>
+        
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="container-fluid px-4">
+            
+            <!-- Billing Summary -->
+            <div class="billing-summary-card" id="billingSummary" style="display: none;">
+                <h3 class="mb-4"><i class="fas fa-chart-pie me-2"></i> Billing Summary</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="summary-item">
+                            <span class="summary-value" id="totalPaid">€0.00</span>
+                            <span class="summary-label">Total Paid</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-item">
+                            <span class="summary-value" id="successfulPayments">0</span>
+                            <span class="summary-label">Successful Payments</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-item">
+                            <span class="summary-value" id="currentPlan">-</span>
+                            <span class="summary-label">Current Plan</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-item">
+                            <span class="summary-value" id="extraDomains">0</span>
+                            <span class="summary-label">Extra Domains</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Payment -->
+            <div class="next-payment-alert" id="nextPaymentAlert" style="display: none;">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h6 class="mb-1"><i class="fas fa-calendar-alt me-2"></i> Next Payment</h6>
+                        <p class="mb-0" id="nextPaymentInfo">-</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-success" onclick="window.location.href='updatePlan.html'">
+                            <i class="fas fa-crown me-1"></i> Manage Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-container">
+                <div class="row align-items-end">
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-filter me-1"></i> Filter by Status</label>
+                        <select class="form-select" id="statusFilter">
+                            <option value="">All statuses</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="fas fa-search me-1"></i> Search N°</label>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search by invoice number...">
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary w-100" onclick="loadPaymentHistory()">
+                            <i class="fas fa-sync-alt me-1"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading payment history...</p>
+            </div>
+
+            <!-- History Table -->
+            <div class="card" id="historyCard" style="display: none;">
+                <div class="card-header">
+                    <i class="fas fa-history me-2"></i>
+                    Payment History
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="invoice-table table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Number</th>
+                                    <th>Date</th>
+                                    <th>Plan</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTableBody">
+                                <!-- Will be filled dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-inbox"></i>
+                        <h5>No payments registered</h5>
+                        <p>When you make payments, they will appear here.</p>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-container" id="paginationContainer" style="display: none;">
+                        <button class="pagination-btn" id="prevBtn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="pagination-info" id="paginationInfo">Page 1</span>
+                        <button class="pagination-btn" id="nextBtn" onclick="nextPage()">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+                    </div>
+                </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+    
+    <script>
+        // Global variables
+        let currentPage = 0;
+        const pageSize = 20;
+        let totalPayments = 0;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBillingSummary();
+            loadPaymentHistory();
+        });
+
+        // ============================================
+        // LOAD BILLING SUMMARY
+        // ============================================
+        async function loadBillingSummary() {
+            try {
+                const token = localStorage.getItem('token');
+                
+                if (!token) {
+                    window.location.href = 'loginSignup.html';
+                    return;
+                }
+
+                const response = await fetch('/api/billing/summary', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('Error loading summary');
+
+                const data = await response.json();
+                const summary = data.summary;
+
+                // Update summary
+                document.getElementById('totalPaid').textContent = `€${summary.statistics.total_paid}`;
+                document.getElementById('successfulPayments').textContent = summary.statistics.successful_payments;
+                document.getElementById('currentPlan').textContent = summary.current_plan ? summary.current_plan.name : '-';
+                document.getElementById('extraDomains').textContent = summary.extra_domains.count;
+
+                document.getElementById('billingSummary').style.display = 'block';
+
+                // Show next payment if exists
+                if (summary.next_payment) {
+                    const nextDate = new Date(summary.next_payment.date).toLocaleDateString('en-US');
+                    document.getElementById('nextPaymentInfo').textContent = 
+                        `${summary.next_payment.plan} - €${summary.next_payment.amount} on ${nextDate}`;
+                    document.getElementById('nextPaymentAlert').style.display = 'block';
+                }
+
+            } catch (error) {
+                console.error('Error loading summary:', error);
+            }
+        }
+
+        // ============================================
+        // LOAD PAYMENT HISTORY
+        // ============================================
+        async function loadPaymentHistory() {
+            try {
+                const token = localStorage.getItem('token');
+                
+                if (!token) {
+                    window.location.href = 'loginSignup.html';
+                    return;
+                }
+
+                document.getElementById('loadingSpinner').style.display = 'block';
+                document.getElementById('historyCard').style.display = 'none';
+
+                const statusFilter = document.getElementById('statusFilter').value;
+                const searchQuery = document.getElementById('searchInput').value;
+
+                let url = `/api/billing/history?limit=${pageSize}&offset=${currentPage * pageSize}`;
+                
+                if (statusFilter) {
+                    url += `&status=${statusFilter}`;
+                }
+
+                const response = await fetch(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('Error loading history');
+
+                const data = await response.json();
+                const payments = data.payments;
+                totalPayments = data.pagination.total;
+
+                displayPayments(payments, searchQuery);
+
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('historyCard').style.display = 'block';
+
+                // Update pagination
+                updatePagination(data.pagination);
+
+            } catch (error) {
+                console.error('Error loading history:', error);
+                document.getElementById('loadingSpinner').style.display = 'none';
+                alert('Error loading payment history');
+            }
+        }
+
+        // ============================================
+        // DISPLAY PAYMENTS IN TABLE
+        // ============================================
+        function displayPayments(payments, searchQuery = '') {
+            const tbody = document.getElementById('paymentsTableBody');
+            tbody.innerHTML = '';
+
+            // Filter by search if exists
+            let filteredPayments = payments;
+            if (searchQuery) {
+                filteredPayments = payments.filter(p => 
+                    p.invoice_number.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+
+            if (filteredPayments.length === 0) {
+                document.getElementById('emptyState').style.display = 'block';
+                document.getElementById('paginationContainer').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('emptyState').style.display = 'none';
+
+            filteredPayments.forEach(payment => {
+                const row = document.createElement('tr');
+                
+                const statusClass = `status-${payment.status}`;
+                const statusText = {
+                    'completed': 'Completed',
+                    'pending': 'Pending',
+                    'failed': 'Failed'
+                }[payment.status] || payment.status;
+
+                const date = new Date(payment.date).toLocaleDateString('en-US');
+
+                row.innerHTML = `
+                    <td><strong>${payment.invoice_number}</strong></td>
+                    <td>${date}</td>
+                    <td>${payment.plan_name}</td>
+                    <td><small class="text-muted">${payment.payment_type}</small></td>
+                    <td><strong>€${payment.amount}</strong></td>
+                    <td><span class="payment-status ${statusClass}">${statusText}</span></td>
+                    <td>
+                        <button 
+                            class="btn btn-download btn-sm" 
+                            onclick="downloadInvoice(${payment.id})"
+                            ${!payment.can_download ? 'disabled' : ''}>
+                            <i class="fas fa-download me-1"></i>
+                            PDF
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        // ============================================
+        // DOWNLOAD INVOICE PDF
+        // ============================================
+        async function downloadInvoice(paymentId) {
+            try {
+                const token = localStorage.getItem('token');
+                
+                const response = await fetch(`/api/billing/invoice/${paymentId}/pdf`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) throw new Error('Error generating invoice');
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `invoice-${paymentId}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+            } catch (error) {
+                console.error('Error downloading invoice:', error);
+                alert('Error downloading invoice');
+            }
+        }
+
+        // ============================================
+        // PAGINATION
+        // ============================================
+        function updatePagination(pagination) {
+            const container = document.getElementById('paginationContainer');
+            const info = document.getElementById('paginationInfo');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (pagination.total > pageSize) {
+                container.style.display = 'flex';
+                
+                const currentPageNum = currentPage + 1;
+                const totalPages = Math.ceil(pagination.total / pageSize);
+                
+                info.textContent = `Page ${currentPageNum} of ${totalPages} (${pagination.total} payments)`;
+                
+                prevBtn.disabled = currentPage === 0;
+                nextBtn.disabled = !pagination.has_more;
+            } else {
+                container.style.display = 'none';
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                loadPaymentHistory();
+            }
+        }
+
+        function nextPage() {
+            currentPage++;
+            loadPaymentHistory();
+        }
+
+        // Event listeners for filters
+        document.getElementById('statusFilter').addEventListener('change', function() {
+            currentPage = 0;
+            loadPaymentHistory();
+        });
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            loadPaymentHistory();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cookie Policy for myNaturevista - Learn about our use of cookies and tracking technologies." />
+    <meta name="author" content="myNaturevista" />
+    <title>Cookie Policy - myNaturevista</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff3d5d;
+            --primary-dark: #00a884;
+            --secondary: #667eea;
+            --accent: #f59e0b;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #00b894 0%, #ff3d5d 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 2rem 4rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-1) 1;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .info-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 100px 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="landing/landingPage.html" class="logo">🌿 myNaturevista</a>
+            <ul class="nav-links">
+                <li><a href="landing/landingPage.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard/loginSignup.html" class="nav-link">Dashboard</a></li>
+                <li><a href="privacy-policy.html" class="nav-link">Privacy</a></li>
+                <li><a href="terms-of-service.html" class="nav-link">Terms</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Cookie Policy</h1>
+            <p class="last-updated">Last Updated: January 6, 2026</p>
+        </div>
+
+        <div class="content">
+            <h2>1. Introduction</h2>
+            <p>This Cookie Policy explains how myNaturevista uses cookies and similar tracking technologies on our website, dashboard, and embeddable widgets (collectively, the "Service").</p>
+            <p>This policy should be read in conjunction with our <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-of-service.html">Terms of Service</a>.</p>
+            <div class="highlight-box">
+                <strong>By using our Service, you consent to the use of cookies as described in this policy.</strong> You can manage your cookie preferences through your browser settings or our cookie management tools.
+            </div>
+
+            <h2>2. What Are Cookies?</h2>
+            <p>Cookies are small text files stored on your device (computer, smartphone, tablet) when you visit a website. They allow the website to recognize your device and remember information about your visit.</p>
+
+            <h3>2.1 Types of Cookies</h3>
+            <p><strong>By Duration:</strong></p>
+            <ul>
+                <li><strong>Session Cookies</strong>: Temporary cookies that expire when you close your browser</li>
+                <li><strong>Persistent Cookies</strong>: Remain on your device for a set period or until manually deleted</li>
+            </ul>
+
+            <p><strong>By Source:</strong></p>
+            <ul>
+                <li><strong>First-Party Cookies</strong>: Set directly by myNaturevista</li>
+                <li><strong>Third-Party Cookies</strong>: Set by external services we use (e.g., Stripe, Google reCAPTCHA)</li>
+            </ul>
+
+            <h2>3. Similar Tracking Technologies</h2>
+            <p>In addition to cookies, we may use:</p>
+            <ul>
+                <li><strong>Web Beacons</strong>: Small graphic images (also called "pixels" or "clear GIFs") embedded in web pages</li>
+                <li><strong>Local Storage</strong>: HTML5 local storage for storing data in your browser</li>
+                <li><strong>Session Storage</strong>: Temporary browser storage that clears when you close your browser</li>
+                <li><strong>JWT Tokens</strong>: JSON Web Tokens stored in browser memory or storage for authentication</li>
+                <li><strong>API Keys</strong>: Unique identifiers used for API authentication and tracking</li>
+            </ul>
+
+            <h2>4. How We Use Cookies</h2>
+
+            <h3>4.1 Essential Cookies (Strictly Necessary)</h3>
+            <p>These cookies are required for the Service to function properly. Without them, you cannot use key features.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>auth_token / JWT</td>
+                        <td>User authentication and session management</td>
+                        <td>1 hour</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td>session_id</td>
+                        <td>Maintain user session state</td>
+                        <td>Session</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td>XSRF-TOKEN</td>
+                        <td>Cross-site request forgery protection</td>
+                        <td>Session</td>
+                        <td>Security</td>
+                    </tr>
+                    <tr>
+                        <td>cookie_consent</td>
+                        <td>Remember your cookie preferences</td>
+                        <td>1 year</td>
+                        <td>Persistent</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Legal Basis</strong>: These cookies are necessary for contract performance and legitimate interests in security.</p>
+
+            <h3>4.2 Functional Cookies</h3>
+            <p>These cookies enable enhanced functionality and personalization.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>user_preferences</td>
+                        <td>Remember dashboard settings and preferences</td>
+                        <td>90 days</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>language</td>
+                        <td>Remember your language preference</td>
+                        <td>1 year</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>timezone</td>
+                        <td>Store your timezone for accurate timestamps</td>
+                        <td>1 year</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>theme</td>
+                        <td>Remember dark/light mode preferences</td>
+                        <td>1 year</td>
+                        <td>Persistent</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>4.3 Analytics and Performance Cookies</h3>
+            <p>These cookies help us understand how visitors use our Service, allowing us to improve performance and user experience.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>_analytics_id</td>
+                        <td>Track unique visitors and usage patterns</td>
+                        <td>2 years</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>_page_views</td>
+                        <td>Count page views and navigation paths</td>
+                        <td>30 days</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>_widget_stats</td>
+                        <td>Track widget performance and interactions</td>
+                        <td>90 days</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>_performance</td>
+                        <td>Measure page load times and performance</td>
+                        <td>7 days</td>
+                        <td>Persistent</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-card">
+                <h4>Data Collected:</h4>
+                <ul style="margin-bottom: 0;">
+                    <li>Page views and navigation paths</li>
+                    <li>Time spent on pages</li>
+                    <li>Browser and device information</li>
+                    <li>Geographic location (country/region level)</li>
+                    <li>Referrer URLs</li>
+                    <li>Click patterns and interactions</li>
+                </ul>
+            </div>
+
+            <h3>4.4 Security and Fraud Prevention Cookies</h3>
+            <p>These cookies help us protect your account and prevent abuse.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>_rate_limit</td>
+                        <td>Prevent abuse through rate limiting</td>
+                        <td>15 minutes</td>
+                        <td>Session</td>
+                    </tr>
+                    <tr>
+                        <td>_device_id</td>
+                        <td>Recognize your device for security</td>
+                        <td>6 months</td>
+                        <td>Persistent</td>
+                    </tr>
+                    <tr>
+                        <td>_security_check</td>
+                        <td>Bot detection and fraud prevention</td>
+                        <td>Session</td>
+                        <td>Security</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5. Third-Party Cookies</h2>
+            <p>We use trusted third-party services that may set their own cookies:</p>
+
+            <h3>5.1 Stripe (Payment Processing)</h3>
+            <div class="info-card">
+                <strong>Purpose:</strong> Securely process payments and manage subscriptions<br>
+                <strong>Privacy Policy:</strong> <a href="https://stripe.com/privacy" target="_blank">https://stripe.com/privacy</a><br>
+                <strong>Duration:</strong> Varies (session to 2 years)
+            </div>
+
+            <h3>5.2 Google reCAPTCHA</h3>
+            <div class="info-card">
+                <strong>Purpose:</strong> Prevent spam and bot abuse<br>
+                <strong>Cookies:</strong> NID, CONSENT, 1P_JAR, ANID (Google)<br>
+                <strong>Privacy Policy:</strong> <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a><br>
+                <strong>Versions Used:</strong> reCAPTCHA v3 (invisible) and v2 (checkbox)<br>
+                <strong>Duration:</strong> Varies (session to 24 months)
+            </div>
+
+            <h3>5.3 Cloudinary (Media Hosting)</h3>
+            <div class="info-card">
+                <strong>Purpose:</strong> Deliver images and media content<br>
+                <strong>Privacy Policy:</strong> <a href="https://cloudinary.com/privacy" target="_blank">https://cloudinary.com/privacy</a>
+            </div>
+
+            <h3>5.4 Firebase (Real-time Database)</h3>
+            <div class="info-card">
+                <strong>Purpose:</strong> Real-time data synchronization<br>
+                <strong>Privacy Policy:</strong> <a href="https://firebase.google.com/support/privacy" target="_blank">https://firebase.google.com/support/privacy</a>
+            </div>
+
+            <p><strong>Note:</strong> We do not control third-party cookies. Please review their respective privacy policies for more information.</p>
+
+            <h2>6. Cookies in Embeddable Widgets</h2>
+
+            <h3>6.1 Widget Cookies</h3>
+            <p>When you embed our widgets on your website, they may use cookies to:</p>
+            <ul>
+                <li>Track widget performance and interactions</li>
+                <li>Remember visitor preferences within the widget</li>
+                <li>Prevent duplicate counting of widget views</li>
+                <li>Enable widget functionality</li>
+            </ul>
+
+            <h3>6.2 Your Responsibilities</h3>
+            <div class="highlight-box">
+                <p><strong>If you embed our widgets on your website, you are responsible for:</strong></p>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Disclosing cookie usage in your own cookie policy</li>
+                    <li>Obtaining appropriate consent from your website visitors</li>
+                    <li>Complying with applicable privacy laws (GDPR, CCPA, ePrivacy Directive)</li>
+                    <li>Providing clear information about third-party cookies</li>
+                </ul>
+            </div>
+
+            <h2>7. Cookie Management and Your Choices</h2>
+
+            <h3>7.1 Cookie Consent Management</h3>
+            <p>When you first visit our Service, you will see a cookie consent banner. You can:</p>
+            <ul>
+                <li><strong>Accept All</strong>: Consent to all cookies, including analytics and marketing</li>
+                <li><strong>Reject Non-Essential</strong>: Only allow strictly necessary cookies</li>
+                <li><strong>Customize</strong>: Choose which categories of cookies to allow</li>
+                <li><strong>Manage Preferences</strong>: Update your choices at any time in settings</li>
+            </ul>
+
+            <h3>7.2 Browser Controls</h3>
+            <p>You can control and delete cookies through your browser settings:</p>
+
+            <div class="info-card">
+                <h4>Chrome:</h4>
+                <ol style="margin-bottom: 0;">
+                    <li>Settings → Privacy and security → Cookies and other site data</li>
+                    <li>Choose your cookie preferences</li>
+                </ol>
+            </div>
+
+            <div class="info-card">
+                <h4>Firefox:</h4>
+                <ol style="margin-bottom: 0;">
+                    <li>Settings → Privacy & Security → Cookies and Site Data</li>
+                    <li>Manage your preferences</li>
+                </ol>
+            </div>
+
+            <div class="info-card">
+                <h4>Safari:</h4>
+                <ol style="margin-bottom: 0;">
+                    <li>Preferences → Privacy → Manage Website Data</li>
+                    <li>Block or allow cookies</li>
+                </ol>
+            </div>
+
+            <div class="info-card">
+                <h4>Edge:</h4>
+                <ol style="margin-bottom: 0;">
+                    <li>Settings → Cookies and site permissions → Cookies and site data</li>
+                    <li>Configure cookie settings</li>
+                </ol>
+            </div>
+
+            <p><strong>Note:</strong> Blocking cookies may limit Service functionality.</p>
+
+            <h3>7.3 Opt-Out of Third-Party Cookies</h3>
+            <ul>
+                <li><strong>Google:</strong> <a href="https://adssettings.google.com" target="_blank">https://adssettings.google.com</a></li>
+                <li><strong>Your Online Choices (EU):</strong> <a href="https://www.youronlinechoices.com" target="_blank">https://www.youronlinechoices.com</a></li>
+                <li><strong>Network Advertising Initiative (US):</strong> <a href="https://optout.networkadvertising.org" target="_blank">https://optout.networkadvertising.org</a></li>
+            </ul>
+
+            <h2>8. Data Retention</h2>
+            <p>Cookie data is retained according to the following schedule:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cookie Category</th>
+                        <th>Retention Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Session or 1 hour</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Preferences</strong></td>
+                        <td>1-2 years or until deleted</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics</strong></td>
+                        <td>24 months (aggregated)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Security</strong></td>
+                        <td>15 minutes to 6 months</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Third-Party</strong></td>
+                        <td>Per third-party retention policies</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>You can delete cookies at any time through your browser settings.</p>
+
+            <h2>9. Legal Basis for Cookie Processing</h2>
+
+            <h3>9.1 GDPR Compliance (EU Users)</h3>
+            <p>For users in the European Economic Area:</p>
+            <ul>
+                <li><strong>Strictly Necessary Cookies</strong>: Legitimate interest in providing the Service</li>
+                <li><strong>Functional Cookies</strong>: Your consent or legitimate interest</li>
+                <li><strong>Analytics Cookies</strong>: Your explicit consent</li>
+                <li><strong>Marketing Cookies</strong>: Your explicit consent (if applicable)</li>
+            </ul>
+            <p>You have the right to withdraw consent at any time without affecting the lawfulness of processing based on consent before withdrawal.</p>
+
+            <h3>9.2 ePrivacy Directive</h3>
+            <p>We comply with the EU ePrivacy Directive (Cookie Law) by:</p>
+            <ul>
+                <li>Obtaining consent before setting non-essential cookies</li>
+                <li>Providing clear information about cookie usage</li>
+                <li>Offering easy-to-use consent management tools</li>
+                <li>Respecting your cookie preferences</li>
+            </ul>
+
+            <h3>9.3 CCPA Compliance (California Users)</h3>
+            <p>Under the California Consumer Privacy Act:</p>
+            <ul>
+                <li>Cookies may constitute "personal information"</li>
+                <li>We do not "sell" personal information collected via cookies</li>
+                <li>You can opt-out of cookie tracking through browser settings</li>
+            </ul>
+
+            <h2>10. Updates to This Cookie Policy</h2>
+            <p>We may update this Cookie Policy to reflect changes in cookie usage, technologies, or legal requirements.</p>
+            <p>We will notify you of material changes by updating the "Last Updated" date, posting a notice on our website, or requesting renewed consent if required by law.</p>
+
+            <h2>11. Contact Us</h2>
+            <p>If you have questions or concerns about our use of cookies:</p>
+
+            <div class="highlight-box">
+                <strong>myNaturevista Cookie Management</strong><br>
+                Email: <a href="mailto:info@mynaturevista.com">info@mynaturevista.com</a><br>
+                Support: Contact Form in Dashboard<br>
+                Data Protection Officer: <a href="mailto:mynaturevista@gmail.com">mynaturevista@gmail.com</a>
+            </div>
+
+            <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e0e0e0;">
+
+            <div class="highlight-box" style="text-align: center;">
+                <p style="margin-bottom: 0.5rem;"><strong>Cookie Consent Statement</strong></p>
+                <p style="font-size: 0.95rem;">By clicking "Accept" or continuing to use our Service, you consent to the use of cookies as described in this Cookie Policy.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">You can withdraw your consent or modify your cookie preferences at any time through your browser settings or dashboard.</p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;">
+                <strong>Thank you for trusting myNaturevista with your data. We are committed to transparency and protecting your privacy.</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 myNaturevista. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy.html" style="margin: 0 1rem;">Privacy Policy</a> |
+            <a href="terms-of-service.html" style="margin: 0 1rem;">Terms of Service</a> |
+            <a href="cookie-policy.html" style="margin: 0 1rem;">Cookie Policy</a>
+        </p>
+    </footer>
+</body>
+</html>

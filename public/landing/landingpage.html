@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Transform your website with 400+ stunning natural places. Easy integration, beautiful UI, engaging user experience." />
+    <meta name="author" content="myNaturevista" />
+    
+    <title>myNaturevista - Transform Your Website with Natural Beauty</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+<link rel="stylesheet" href="/landing/css/landingStyles.css">
+<link rel="stylesheet" href="/landing/css/cookie-banner.css">
+</head>
+<body id="top">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#top" class="logo" id="logoLink">
+                🌿 myNaturevista
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a  href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/dashboard/loginSignup.html" class="nav-cta">Login / Sign Up</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-gradient hero-gradient-1"></div>
+        <div class="hero-gradient hero-gradient-2"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    Continuously evolving to bring you more
+                    <!-- Trusted by 1000+ websites -->
+                </div>
+                
+                <h1 class="hero-title">
+                    Transform Your Website with <span class="gradient-text">Natural Beauty</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Bring the world’s natural beauty to your website in minutes. Engage your visitors with thousands of stunning images, interactive maps, and effortless integration.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="placesCount">0</span>
+                        <span class="stat-label">Natural Places</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">Min Setup</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Responsive</span>
+                    </div>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="/dashboard/loginSignup.html" class="btn btn-primary">
+                        Login / Sign Up
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <button class="btn btn-secondary" onclick="openNatureWidget()">
+                        <i class="fas fa-play"></i>
+                        Test the widget
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+    <video autoplay muted loop playsinline disablepictureinpicture preload="auto"
+       poster="https://res.cloudinary.com/drprd4k9o/image/upload/v1762634093/Home/assets/videos/screenshotVideoBackground.jpg">
+    <source src="https://res.cloudinary.com/drprd4k9o/video/upload/v1763800662/backgroundVideo_jnx1km.webm" type="video/webm">
+    Your browser does not support HTML5 video.
+</video>
+
+</div>
+
+                <div class="floating-card card-1">
+                    <i class="fas fa-globe"></i>
+                    <p>Worldwide Places</p>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-bolt"></i>
+                    <p>Quick Integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="social-proof-container">
+            <p class="social-proof-text">Built for modern platforms</p>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield"></i>
+                    <span>Secure & Reliable</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-clock"></i>
+                    <span>99.9% Uptime</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Built for growth</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="features-container">
+        <div class="section-header">
+            <span class="section-badge">Features</span>
+            <h2 class="section-title">Everything you need to succeed</h2>
+            <p class="section-subtitle">
+                Powerful features designed to enhance your website and engage your visitors
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card" onclick="openFeatureModal('Interactive World Map', 'Explore destinations with our intuitive, fully interactive world map. Features include zoom and pan controls, location markers, and seamless navigation between continents, countries, and specific natural places. The map provides a visual and engaging way for your visitors to discover beautiful locations around the world.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767125268/landingWidgetMap_tz6mp5.mp4')">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3 class="feature-title">Interactive World Map</h3>
+                <p class="feature-description">
+                    Explore destinations with an intuitive, fully interactive world map with zoom and navigation controls.
+                </p>
+            </div>
+
+            <div class="feature-card" onclick="openFeatureModal('High-Quality Images', 'Access our carefully curated collection of thousands of professionally captured, high-resolution images. Each photo showcases stunning natural places from around the world, optimized for web performance without compromising quality. All images are properly licensed and ready to enhance your website\'s visual appeal.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767195068/landingWidgetImgQ_ybqll3.mp4')">
+                <div class="feature-icon">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3 class="feature-title">High-Quality Images</h3>
+                <p class="feature-description">
+                    Access thousands of professionally curated, high-resolution images of stunning natural places worldwide.
+                </p>
+            </div>
+
+            <!--<div class="feature-card" onclick="openFeatureModal('Easy Integration', 'Get started in under 10 minutes with our simple integration method. Use a lightweight iframe embed to add natural places to your website instantly. Our clear documentation and ready-to-use code snippets make setup effortless for everyone.','https://res.cloudinary.com/drprd4k9o/video/upload/v1763800662/backgroundVideo_jnx1km.webm')">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="feature-title">Easy Integration</h3>
+                <p class="feature-description">
+                    Simple iframe embed. Get started in under 10 minutes with our ready-to-use code.
+                </p>
+            </div>-->
+
+            <div class="feature-card" onclick="openFeatureModal('Fully Responsive', 'Our widget automatically adapts to any screen size, providing a perfect experience on desktop, tablet, and mobile devices. The responsive design ensures your visitors enjoy smooth navigation and beautiful imagery regardless of how they access your website. Every element is optimized for touch and click interactions.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767192554/landingWidgetresponsive_v1mox3.mp4')">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="feature-title">Fully Responsive</h3>
+                <p class="feature-description">
+                    Perfect experience on all devices. Automatically adapts to desktop, tablet, and mobile screens.
+                </p>
+            </div>
+
+            <div class="feature-card" onclick="openFeatureModal('Dynamic Sliders', 'Browse through destinations using our beautiful, smooth-scrolling sliders. Navigate through continents, countries, and specific natural places with fluid animations and intuitive controls. The sliders are optimized for performance and provide an engaging way to showcase multiple locations without overwhelming your visitors.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767125276/landingWidgetSliders_e30lco.mp4')">
+                <div class="feature-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 class="feature-title">Dynamic Sliders</h3>
+                <p class="feature-description">
+                    Beautiful, smooth-scrolling sliders to browse continents, countries, and specific destinations.
+                </p>
+            </div>
+
+            <div class="feature-card" onclick="openFeatureModal('Comprehensive Dashboard', 'Access your powerful control center with real-time analytics showing widget usage, page views, user interactions, and engagement metrics. Manage API keys and whitelist domains for security. Add custom places with images and prices. Use ready-made buttons or create your own with our visual editor. View billing history, download invoices, and manage your subscription all from one intuitive dashboard designed for ease of use.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767639190/DashboardShow_klx7id.mp4')">
+    <div class="feature-icon">
+        <i class="fas fa-tachometer-alt"></i>
+    </div>
+    <h3 class="feature-title">Comprehensive Dashboard</h3>
+    <p class="feature-description">
+        Complete control center with analytics, API management, custom places, button editor, billing, and more in one place.
+    </p>
+</div>
+
+            <div class="feature-card" onclick="openFeatureModal('Rich Information', 'Each location comes with comprehensive details including geographical information, recommended activities, historical context, and visitor tips. The rich content helps your visitors make informed decisions and enhances their browsing experience with valuable, well-researched information about each natural place.', 'https://res.cloudinary.com/drprd4k9o/video/upload/v1767195062/landingWidgetInfo_sjgxaq.mp4')">
+                <div class="feature-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h3 class="feature-title">Rich Information</h3>
+                <p class="feature-description">
+                    Comprehensive details about each location including geography, activities, and historical context...
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Feature Modal -->
+<div class="feature-modal" id="featureModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">Feature Title</h3>
+            <button class="modal-close" onclick="closeFeatureModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-video-container" id="videoContainer">
+                <video class="modal-video" id="modalVideo" playsinline muted>
+                    <source src="" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                
+                <!-- Play Overlay Central -->
+                <div class="video-play-overlay" id="playOverlay">
+                    <i class="fas fa-play"></i>
+                </div>
+                
+                <!-- Loading Spinner -->
+                <div class="video-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                
+                <!-- Controles personalizados -->
+                <div class="video-controls" id="videoControls">
+                    <div class="progress-bar-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="controls-bottom">
+                        <div class="controls-left">
+                            <button class="control-btn play-pause" id="playPauseBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <span class="video-time" id="videoTime">0:00 / 0:00</span>
+                        </div>
+                        <div class="controls-right">
+                            <div class="volume-container">
+                                <button class="control-btn" id="muteBtn">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100">
+                            </div>
+                            <button class="control-btn" id="fullscreenBtn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="modal-text" id="modalDescription">Feature description goes here.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- How It Works - MEJORADO -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="steps-container">
+            <div class="section-header">
+                <span class="section-badge">Simple Process</span>
+                <h2 class="section-title">Get started in 3 easy steps</h2>
+                <p class="section-subtitle">
+                    No technical expertise required. Start enhancing your website in minutes.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="step-title">Create Account & Choose Plan</h3>
+                    <p class="step-description">
+                        Sign up in seconds and select the perfect plan for your needs. All plans include instant access to our full catalog.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> Create your account in seconds</li>
+    <li><i class="fas fa-check-circle"></i> Access your personal dashboard instantly</li>
+                    </ul>
+                    <span class="step-badge">30 seconds</span>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="step-title">Get Your Integration Code</h3>
+                    <p class="step-description">
+                        Access your dashboard and generate your unique API key. Copy the simple embed code - it's ready to use immediately.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> One-click API key generation</li>
+                        <li><i class="fas fa-check-circle"></i> Customize widget appearance</li>
+                        <li><i class="fas fa-check-circle"></i> Multiple integration options</li>
+                    </ul>
+                    <span class="step-badge">2 minutes</span>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="step-title">Launch & Monitor</h3>
+                    <p class="step-description">
+                        Paste the code into your website and you're live! Track performance with real-time analytics from your dashboard.
+                    </p>
+                    <ul class="step-list">
+                        <li><i class="fas fa-check-circle"></i> Instant widget activation</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time usage statistics</li>
+                        <li><i class="fas fa-check-circle"></i> Continuous support & updates</li>
+                    </ul>
+                    <span class="step-badge">Done!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Pricing Section -->
+<section class="pricing" id="pricing">
+  <div class="pricing-container">
+    <div class="section-header">
+      <span class="section-badge">Pricing</span>
+      <h2 class="section-title">Choose your perfect plan</h2>
+      <p class="section-subtitle">
+        Transparent pricing with no hidden fees. Cancel anytime.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="plan-name">
+            <i class="fas fa-seedling"></i> Starter
+          </h3>
+          <div class="plan-price">€19</div>
+          <p class="plan-billing">per month</p>
+        </div>
+        <p class="plan-description">For personal projects or small websites</p>
+        <ul class="plan-features">
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">1 authorized domain/subdomain</span></span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Up to 3,000 widget openings/month</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Full natural places catalog access</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Dashboard with real-time statistics</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Full GDPR compliance</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Email support</span></li>
+        </ul>
+        <a href="/dashboard/loginSignup.html" class="btn btn-secondary" style="width: 100%; justify-content: center; text-decoration: none;">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Business Plan -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-header">
+          <h3 class="plan-name">
+            <i class="fas fa-briefcase"></i> Business
+          </h3>
+          <div class="plan-price">€49</div>
+          <p class="plan-billing">per month</p>
+        </div>
+        <p class="plan-description">For agencies or brands with medium traffic</p>
+        <ul class="plan-features">
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">1 domain/subdomain + €10 per additional</span></span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Up to 20,000 widget openings/month</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">Up to 100 custom locations</span></span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Advanced analytics dashboard</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Full GDPR compliance</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Priority support (&lt;24h)</span></li>
+        </ul>
+        <a href="/dashboard/loginSignup.html" class="btn btn-primary" style="width: 100%; justify-content: center; text-decoration: none;">
+          Choose Business
+        </a>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3 class="plan-name">
+            <i class="fas fa-crown"></i> Enterprise
+          </h3>
+          <div class="plan-price">€149</div>
+          <p class="plan-billing">per month</p>
+        </div>
+        <p class="plan-description">For large platforms and tourism destinations</p>
+        <ul class="plan-features">
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">1 domain/subdomain + €15 per additional</span></span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Up to 150,000 widget openings/month</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">Unlimited custom locations</span></span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Advanced analytics & custom reports</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Full GDPR compliance</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span>Premium support with dedicated account manager</span></li>
+          <li><i class="fas fa-check-circle green-check"></i><span><span class="feature-highlight">SEO data integration option</span></span></li>
+        </ul>
+        <a href="/dashboard/loginSignup.html" class="btn btn-secondary" style="width: 100%; justify-content: center; text-decoration: none;">
+          Get Enterprise
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact for custom plans -->
+  <div class="custom-plan-note">
+    <p>
+      Need higher limits? 
+      <a href="#contact" class="contact-link">Contact us</a> for a personalized plan.
+    </p>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="section-header">
+                <span class="section-badge">Contact</span>
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">
+                    Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                </p>
+            </div>
+
+            <div id="formMessage" class="form-message"></div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" class="form-control" required placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" class="form-control" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" class="form-control" required placeholder="What is this about?">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" class="form-control" required placeholder="Your message here..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to transform your website?</h2>
+            <!-- <p class="cta-subtitle">
+                Join 1000+ websites already using myNaturevista to engage their visitors
+            </p> -->
+            
+            <div class="cta-buttons">
+                <a href="/dashboard/loginSignup.html" class="btn btn-white">
+                    Login / Sign Up
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <button class="btn btn-outline" onclick="openNatureWidget()">
+                    <i class="fas fa-play"></i>
+                    Test the widget
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">🌿 myNaturevista</div>
+                    <p class="footer-description">
+                        Bringing the beauty of nature to your digital world. Transform your website with stunning natural places.
+                    </p>
+                    <div class="social-links">
+ <a href="https://x.com/MynatureVista" target="_blank" class="social-link" aria-label="X (Twitter)">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" width="18" height="18" fill="currentColor">
+    <path d="M714.163 519.284 1160.89 0h-105.8L667.137 450.887 389.56 0H0l464.245 729.782L0 1226.89h105.8l414.47-476.865 297.64 476.865h389.56L714.163 519.284ZM580.525 685.932l-48.046-76.03L144.03 80h167.622l309.27 489.532 48.046 76.03 406.253 642.132H907.6L580.525 685.932Z"/>
+  </svg>
+</a>
+  <a href="https://www.facebook.com/p/My-Nature-Vista-61565910467855/" target="_blank" class="social-link" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.instagram.com/mynaturevista/" target="_blank" class="social-link" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <!--<a href="https://www.linkedin.com/in/mynaturevista-widget-888383398/?skipRedirect=true" target="_blank"class="social-link" aria-label="LinkedIn">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+  <a href="https://www.reddit.com/user/My-Nature-Vista/" target="_blank"class="social-link" aria-label="Reddit">
+    <i class="fab fa-reddit-alien"></i>
+  </a>-->
+</div>
+
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <!-- <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li> -->
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">About</a></li>
+                        <!-- <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li> -->
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="../privacy-policy.html" target="_blank">Privacy Policy</a></li>
+                        <li><a href="../terms-of-service.html" target="_blank">Terms of Service</a></li>
+                        <li><a href="../cookie-policy.html" target="_blank">Cookie Policy</a></li>
+                        <li><a href="../privacy-policy.html" target="_blank">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 myNaturevista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-consent-banner" id="cookieConsentBanner">
+        <div class="cookie-banner-content">
+            <div class="cookie-info">
+                <div class="cookie-icon">
+                    🍪
+                </div>
+                <div class="cookie-text">
+                    <h3 class="cookie-title">
+                        <i class="fas fa-shield-alt"></i>
+                        We value your privacy
+                    </h3>
+                    <p class="cookie-description">
+                        We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. 
+                        By clicking "Accept All", you consent to our use of cookies.
+                    </p>
+                    <div class="cookie-links">
+                        <a href="../privacy-policy.html" class="cookie-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Privacy Policy
+                        </a>
+                        <a href="../cookie-policy.html" class="cookie-link" target="_blank">
+                            <i class="fas fa-cookie-bite"></i> Cookie Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-accept" id="acceptAllCookies">
+                    <i class="fas fa-check"></i> Accept All
+                </button>
+                <button class="cookie-btn cookie-btn-reject" id="rejectAllCookies">
+                    <i class="fas fa-times"></i> Reject All
+                </button>
+                <button class="cookie-btn cookie-btn-customize" id="customizeCookies">
+                    <i class="fas fa-sliders-h"></i> Customize
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Settings Modal -->
+    <div class="cookie-settings-modal" id="cookieSettingsModal">
+        <div class="cookie-modal-content">
+            <div class="cookie-modal-header">
+                <h2 class="cookie-modal-title">
+                    <i class="fas fa-cookie-bite"></i>
+                    Cookie Preferences
+                </h2>
+                <button class="cookie-modal-close" id="closeCookieModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cookie-modal-body">
+                <!-- Necessary Cookies -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4 class="cookie-category-title">
+                                <i class="fas fa-shield-check"></i>
+                                Strictly Necessary Cookies
+                            </h4>
+                            <span class="cookie-category-required">Always Active</span>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-necessary" checked disabled>
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description">
+                        These cookies are essential for the website to function properly. They enable basic functions like page navigation, 
+                        access to secure areas, and remember your cookie preferences.
+                    </p>
+                    <p class="cookie-category-examples">
+                        Examples: Authentication tokens, security cookies, session management
+                    </p>
+                </div>
+
+                <!-- Analytics Cookies -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4 class="cookie-category-title">
+                                <i class="fas fa-chart-line"></i>
+                                Analytics Cookies
+                            </h4>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-analytics">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description">
+                        These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. 
+                        This helps us improve our website and your experience.
+                    </p>
+                    <p class="cookie-category-examples">
+                        Examples: Google Analytics, page views, session duration, bounce rate
+                    </p>
+                </div>
+
+                <!-- Marketing Cookies -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4 class="cookie-category-title">
+                                <i class="fas fa-bullhorn"></i>
+                                Marketing Cookies
+                            </h4>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-marketing">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description">
+                        These cookies are used to deliver advertisements more relevant to you and your interests. They also limit the number of times 
+                        you see an advertisement and help measure the effectiveness of advertising campaigns.
+                    </p>
+                    <p class="cookie-category-examples">
+                        Examples: Facebook Pixel, advertising networks, retargeting pixels
+                    </p>
+                </div>
+
+                <!-- Preference Cookies -->
+                <div class="cookie-category">
+                    <div class="cookie-category-header">
+                        <div>
+                            <h4 class="cookie-category-title">
+                                <i class="fas fa-cog"></i>
+                                Preference Cookies
+                            </h4>
+                        </div>
+                        <label class="cookie-toggle">
+                            <input type="checkbox" id="cookie-preferences">
+                            <span class="cookie-toggle-slider"></span>
+                        </label>
+                    </div>
+                    <p class="cookie-category-description">
+                        These cookies enable the website to remember choices you make (such as your language preference or region) 
+                        and provide enhanced, more personalized features.
+                    </p>
+                    <p class="cookie-category-examples">
+                        Examples: Language settings, region preferences, display preferences
+                    </p>
+                </div>
+            </div>
+            
+            <div class="cookie-modal-footer">
+                <button class="cookie-btn cookie-btn-accept" id="savePreferences">
+                    <i class="fas fa-save"></i> Save Preferences
+                </button>
+                <button class="cookie-btn cookie-btn-reject" id="closeCookieModal">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+        <!-- Widget Script -->
+    <script
+        src="../widget/widget.js"
+        data-api-key="0fc7010d78bfebeacb5f3e5db58d9cf64dbbbd7fead09deed0d766db19c131e2"
+        data-name="myNaturevista"
+        data-primary-color="#00a884"
+        data-secondary-color="#ff3d5d"
+        data-font-family="'Inter'"
+    ></script>
+    <!-- Cookie Consent Scripts -->
+    <script src="/landing/js/cookie-consent.js"></script>
+    <script src="/landing/js/landing.js"></script>
+</body>
+</html>

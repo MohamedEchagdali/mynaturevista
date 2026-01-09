@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Dashboard - myNaturevista" />
+    <meta name="author" content="" />
+    <title>Dashboard - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-page="dashboard">
+    <!-- ========================================
+         MODERN SIDEBAR
+    ======================================== -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <!-- Logo - Ahora funciona como toggle -->
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <!-- Principal -->
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link active" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Estadísticas">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <!-- Gestión del Widget -->
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Guía de Integración">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Lugares Personalizados">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <!-- Cuenta y Facturación -->
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Configuración de Cuenta">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Cambiar Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Historial de Facturación">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <!-- Admin (solo visible para administradores) -->
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Panel Admin">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                    <span class="nav-badge">Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Footer con perfil de usuario -->
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">Usuario</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <!-- Dropdown Menu -->
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+         MODERN HEADER
+    ======================================== -->
+    <header class="modern-header">
+        <!-- Botón hamburguesa para móvil -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">Dashboard</h1>
+        
+        <div class="header-actions">
+            <!-- Search 
+            <button class="header-btn" title="Buscar">
+                <i class="fas fa-search"></i>
+            </button>-->
+            
+            <!-- Notifications 
+            <button class="header-btn" title="Notificaciones">
+                <i class="fas fa-bell"></i>
+                <span class="badge-dot"></span>
+            </button>-->
+            
+            <!-- Settings 
+            <button class="header-btn" title="Configuración" onclick="window.location.href='accountSettings.html'">
+                <i class="fas fa-cog"></i>
+            </button>-->
+            
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================
+         MAIN CONTENT
+    ======================================== -->
+<div class="main-content">
+    <div class="container-fluid px-4">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+            <div>
+                <h1 class="mb-0">Welcome, <span id="userNameDisplay"></span> 👋</h1>
+                <p class="text-muted mb-0">Here's your account summary</p>
+                
+                <div>
+                <span class="plan-badge" id="userPlanBadge">Loading...</span>
+            </div>
+                <!-- Domain Selector -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card" style="background: linear-gradient(135deg, #0bcaa4 0%, #00886d 100%); border: none; margin-top: 15px;">
+            <div class="card-body py-3">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="fas fa-globe" style="font-size: 1.5rem; color: white;"></i>
+                        <div>
+                            <label for="domainSelector" class="mb-0" style="color: rgba(255,255,255,0.9); font-size: 0.875rem; font-weight: 500;">
+                                Selected Domain
+                            </label>
+                            <select id="domainSelector" class="form-select form-select-sm" style="
+                                background: white;
+                                border: 2px solid rgba(255,255,255,0.3);
+                                border-radius: 8px;
+                                padding: 0.5rem 2.5rem 0.5rem 1rem;
+                                font-weight: 600;
+                                color: #374151;
+                                cursor: pointer;
+                                min-width: 250px;
+                                margin-left: 10px;
+                            ">
+                                <option value="">Loading domains...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-white" style="font-size: 0.875rem; margin-top: 55px;">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <span>Statistics are shown per domain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+            
+        </div>
+
+        <!-- Alerts -->
+        <div id="alertsContainer" style="margin-bottom: 35px;"></div>
+
+        <!-- Main Metrics -->
+        <div class="row mb-4" id="mainStatsContainer">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card bg-white">
+                    <div class="card-body">
+                        <div class="stat-label">Openings this month</div>
+                        <div class="stat-number" id="stat-openings">
+                            <div class="loading-skeleton" style="height: 2rem; width: 80px;"></div>
+                        </div>
+                        <div id="stat-openings-limit" style="font-size: 0.875rem; color: #6c757d;"></div>
+                        <div class="progress-custom mt-2">
+                            <div class="progress-bar-custom" id="progress-openings" style="width: 0%; background: linear-gradient(90deg, #00b894, #00a884);"></div>
+                        </div>
+                        <i class="fas fa-eye stat-icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card stat-card bg-white">
+        <div class="card-body">
+            <div class="stat-label">Internal Navigation</div>
+            <div class="stat-number" id="stat-internal-nav">
+                <div class="loading-skeleton" style="height: 2rem; width: 80px;"></div>
+            </div>
+            <div style="font-size: 0.875rem; color: #6c757d;">Clicks within widget</div>
+            <i class="fas fa-mouse-pointer stat-icon"></i>
+        </div>
+    </div>
+</div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card bg-white">
+                    <div class="card-body">
+                        <div class="stat-label">Active Domains</div>
+                        <div class="stat-number" id="stat-domains">
+                            <div class="loading-skeleton" style="height: 2rem; width: 60px;"></div>
+                        </div>
+                        <div id="stat-domains-limit" style="font-size: 0.875rem; color: #6c757d;"></div>
+                        <i class="fas fa-globe stat-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card bg-white">
+                    <div class="card-body">
+                        <div class="stat-label">Custom Places</div>
+                        <div class="stat-number" id="stat-places">
+                            <div class="loading-skeleton" style="height: 2rem; width: 60px;"></div>
+                        </div>
+                        <div id="stat-places-limit" style="font-size: 0.875rem; color: #6c757d;"></div>
+                        <div class="progress-custom mt-2">
+                            <div class="progress-bar-custom" id="progress-places" style="width: 0%; background: linear-gradient(90deg, #f59e0b, #ef4444);"></div>
+                        </div>
+                        <i class="fas fa-map-marked-alt stat-icon"></i>
+                    </div>
+                </div>
+            </div>
+
+         <!--     <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card stat-card bg-white">
+                    <div class="card-body">
+                        <div class="stat-label">Days until renewal</div>
+                        <div class="stat-number" id="stat-renewal">
+                            <div class="loading-skeleton" style="height: 2rem; width: 60px;"></div>
+                        </div>
+                        <div id="stat-renewal-date" style="font-size: 0.875rem; color: #6c757d;"></div>
+                        <i class="fas fa-calendar-check stat-icon"></i>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <!-- Charts -->
+        <div class="row mb-4">
+            <div class="col-xl-8 mb-4">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line me-2"></i>
+                        Internal Navigation - Last 30 days
+                    </div>
+                    <div class="card-body">
+                        <canvas id="usageChart" style="height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!--Usage Distribution-->
+            <div class="col-xl-4 mb-4">
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie me-2"></i>
+                        Usage Distribution
+                    </div>
+                    <div class="card-body">
+                        <canvas id="distributionChart" style="height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Widgets and Quick Actions -->
+        <div class="row">
+            <div class="col-xl-8 mb-4">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #00b894, #00a884); color: white; border: none;">
+                        <i class="fas fa-rocket me-2"></i>
+                        Active Widgets
+                    </div>
+                    <div class="card-body" id="activeWidgetsContainer">
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 mb-4">
+                <div class="card">
+                    <div class="card-header" style="background: linear-gradient(135deg, #00b894, #00a884); color: white; border: none;">
+                        <i class="fas fa-bolt me-2"></i>
+                        Quick Actions
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-action-card mb-3" onclick="window.location.href='widgetSettings.html'">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #212529;">Setup Widget</div>
+                                <small class="text-muted">Get installation code</small>
+                            </div>
+                        </div>
+
+                        <div class="quick-action-card mb-3" onclick="window.location.href='customPlaces.html'">
+                            <i class="fas fa-plus-circle"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #212529;">Add Place</div>
+                                <small class="text-muted">Create custom places</small>
+                            </div>
+                        </div>
+
+                        <div class="quick-action-card mb-3" onclick="window.location.href='charts.html'">
+                            <i class="fas fa-chart-bar"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #212529;">View Statistics</div>
+                                <small class="text-muted">Detailed analytics</small>
+                            </div>
+                        </div>
+
+                        <div class="quick-action-card" onclick="window.location.href='updatePlan.html'">
+                            <i class="fas fa-crown"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #212529;">Upgrade Plan</div>
+                                <small class="text-muted">Unlock more features</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

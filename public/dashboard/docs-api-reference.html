@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="API Reference - myNaturevista SaaS Platform" />
+    <meta name="author" content="myNaturevista" />
+    <title>API Reference - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body data-page="docs-api-reference">
+    <!-- MODERN SIDEBAR -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Analytics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Locations">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Upgrade Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link active" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+            </div>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item"><i class="fas fa-envelope"></i> Support</a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <h1 class="header-title">Manage Your Account</h1>
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="docs-container">
+            <div class="breadcrumbs">
+                <a href="docs-overview.html">Documentation</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Account Management</span>
+            </div>
+
+            <div class="docs-hero">
+                <div class="docs-hero-icon"><i class="fas fa-plug"></i></div>
+                <h1 class="docs-hero-title">Account Management Guide</h1>
+                <p class="docs-hero-subtitle">Manage your API keys, domains, billing, and account settings</p>
+            </div>
+
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table of Contents</h3>
+                <ul>
+                    <li><a href="#api-keys">Create and Manage API Keys</a></li>
+                    <li><a href="#account-settings">Account Settings</a></li>
+                    <li><a href="#billing">Billing & Plans</a></li>
+                    <li><a href="#domains">Adding Domains</a></li>
+                    <li><a href="#custom-places">Custom Locations</a></li>
+                    <li><a href="#data-export">Export Your Data</a></li>
+                    <li><a href="#delete-account">Delete Account</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-section" id="api-keys">
+                <h2 class="docs-section-title"><i class="fas fa-key"></i> Create and Manage API Keys</h2>
+                <div class="docs-content">
+                    <p>Your API key is how you connect your website to MyNaturevista. Each key is unique and can be limited to specific websites for security.</p>
+
+                    <h3>Creating a New API Key</h3>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Click API Access</h3><p>In the left sidebar, click "API Access"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Create New Key</h3><p>Click the "Generate API Key" button</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Save</h3><p>Click Generate. Your API key will be created and displayed on the screen</p></div></div>
+                    </div>
+
+                    <h3>Editing an API Key</h3>
+                    <p>You can edit which domains are allowed to use each API key. This is useful if you want to add a new domain or remove an old one.</p>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Click API Access</h3><p>Go to "API Access" in the sidebar</p></div></div>
+                        <div class="step-item">
+    <div class="step-number">2</div>
+    <div class="step-content">
+        <h3>Manage Domain & API Key</h3>
+        <p>Each domain has its own container where you can create, revoke, or delete the API key and manage the domain settings.</p>
+    </div>
+</div>
+
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Update Domains</h3><p>Add or remove website domains and save</p></div></div>
+                    </div>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Tip: Different Keys Per Website</strong>
+                            <p>Create a separate API key for each website you own. This makes it easier to track which site gets more clicks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="account-settings">
+    <h2 class="docs-section-title">
+        <i class="fas fa-user-cog"></i>
+        Account Settings
+    </h2>
+    <div class="docs-content">
+        <p>Manage your account security, data privacy, and account lifecycle.</p>
+
+        <h3>Available Account Actions</h3>
+        <div class="step-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Change Your Password</h3>
+                    <p>You can update your password at any time to keep your account secure.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Request Your Data (GDPR)</h3>
+                    <p>You can request a copy of your personal data, which will be sent to your registered email in compliance with GDPR regulations.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Delete Your Account</h3>
+                    <p>You may permanently delete your account. This action is irreversible.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Update Additional Information</h3>
+                    <p>For changes to other account details, please contact our support team for assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="docs-section" id="billing">
+    <h2 class="docs-section-title">
+        <i class="fas fa-credit-card"></i>
+        Billing & Plans
+    </h2>
+    <div class="docs-content">
+        <p>Manage your subscription, plans, and billing information directly from the Billing section in the sidebar.</p>
+
+        <h3>Billing Section (Sidebar)</h3>
+        <p>The Billing section in the sidebar allows you to review your financial activity and subscription details.</p>
+
+        <ul>
+            <li>View your current subscription plan</li>
+            <li>Access your complete invoice history</li>
+            <li>Download invoices in PDF format</li>
+            <li>See the total amount paid</li>
+        </ul>
+
+        <h3>View or Upgrade Your Plan</h3>
+        <p>From the Billing section, you can view your current plan and choose to upgrade if needed.</p>
+
+        <div class="step-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Open Billing</h3>
+                    <p>Click on "Billing" in the sidebar navigation.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Select a Plan</h3>
+                    <p>Review your current plan or select a new one that fits your usage.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Complete Payment</h3>
+                    <p>Follow the secure checkout process to confirm your upgrade.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Invoices & Payment History</h3>
+        <p>You can view all your invoices, download them, and track your total payments from the Billing section.</p>
+
+        <div class="info-box info-success">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <strong>Need Help?</strong>
+                <p>If you have any billing questions or need assistance, please contact our support team.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="docs-section" id="domains">
+                <h2 class="docs-section-title"><i class="fas fa-globe"></i> Adding Domains</h2>
+                <div class="docs-content">
+                    <p>Each domain requires a separate purchase. Use the "Add Domain" option to expand to additional websites.</p>
+
+                    <h3>Add a New Domain</h3>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Click Add Domain</h3><p>In the Account section, click "Add Domain"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Complete Purchase</h3><p>Follow the secure checkout process</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Create an API Key</h3><p>Go to "API Access" and create a new key for your new domain</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="custom-places">
+                <h2 class="docs-section-title"><i class="fas fa-map-marker-alt"></i> Custom Locations</h2>
+                <div class="docs-content">
+                    <p>Add your own locations (hotels, restaurants, attractions, etc.) to showcase alongside natural destinations.</p>
+
+                    <h3>Create a Custom Location</h3>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Click Custom Locations</h3><p>In the Admin Widget section, click "Custom Locations"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Click Add New</h3><p>Click "Add New Location"</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Fill in Details</h3><p>Add title, description, image, price, location coordinates, and booking link</p></div></div>
+                        <div class="step-item"><div class="step-number">4</div><div class="step-content"><h3>Save</h3><p>Click Save Place. Your location will appear in the widget</p></div></div>
+                    </div>
+
+                    <h3>Best Practices for Custom Locations</h3>
+                    <ul>
+                        <li>Use high-quality images (at least 1600x1200 pixels)</li>
+                        <li>Include clear, compelling descriptions</li>
+                        <li>Always show pricing for transparency</li>
+                        <li>Provide a direct booking or contact link</li>
+                        <li>Use accurate location coordinates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="docs-section" id="data-export">
+                <h2 class="docs-section-title"><i class="fas fa-download"></i> Export Your Data</h2>
+                <div class="docs-content">
+                    <p>You can download all your data for backup or transfer to another service.</p>
+
+                    <h3>How to Export Your Data</h3>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Go to Account Settings</h3><p>Click "Account Settings" in the Account section</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Export Data</h3><p>Scroll down and click "Data Request"</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Check Your Email</h3><p>We'll email your data file within 24 hours</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="delete-account">
+                <h2 class="docs-section-title"><i class="fas fa-trash-alt"></i> Delete Account</h2>
+                <div class="docs-content">
+                    <p>You can delete your account at any time. This action is permanent.</p>
+
+                    <div class="info-box info-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Warning: Account Deletion is Permanent</strong>
+                            <p>When you delete your account, all your data will be permanently removed. This includes:</p>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Your account and profile information</li>
+                                <li>All API keys and custom locations</li>
+                                <li>Your analytics history</li>
+                                <li>Active subscription will be cancelled</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>How to Delete Your Account</h3>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Go to Account Settings</h3><p>Click "Account Settings"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Click Delete Account</h3><p>Scroll to the bottom and click "Delete Account"</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Confirm</h3><p>Confirm the deletion when prompted</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section">
+                <h2 class="docs-section-title"><i class="fas fa-forward"></i> Next Steps</h2>
+                <div class="docs-content">
+                    <div class="docs-nav-grid">
+                        <a href="docs-security.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-lock"></i></div>
+                            <h3>Security Guide</h3>
+                            <p>Keep your account and API keys safe</p>
+                        </a>
+                        <a href="docs-best-practices.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-star"></i></div>
+                            <h3>Best Practices</h3>
+                            <p>Get the most from your widget</p>
+                        </a>
+                        <a href="contact.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-life-ring"></i></div>
+                            <h3>Support</h3>
+                            <p>Get help from our team</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = '#22c55e';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+    </script>
+
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</main>
+
+    <script type="module">
+        import { SidebarManager } from './js/components/SidebarManager.js';
+        import { SubscriptionChecker } from './js/components/SubscriptionChecker.js';
+        document.addEventListener('DOMContentLoaded', function() {
+            SidebarManager.init();
+            SubscriptionChecker.check();
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>

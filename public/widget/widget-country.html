@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="translate">
+    <meta http-equiv="content-language" content="es">
+    <title>Country</title>
+    <link rel="stylesheet" href="widget/src/styles/widget-country.css?v=1209">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/favicon.ico">
+    <meta name="theme-color" content="#ff5016">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+      /* Indicador visual para enlaces externos permitidos */
+.seeMorePlace::after,
+a[data-custom-place="true"]::after {
+    content: " ↗";
+    font-size: 0.85em;
+    opacity: 0.7;
+    margin-left: 0.2em;
+}
+
+.seeMorePlace:hover::after,
+a[data-custom-place="true"]:hover::after {
+    opacity: 1;
+}
+    </style>
+</head>
+<body>
+  <!-- Donde se inyectará el gadget de Google (se crea al pulsar el botón) -->
+  <div id="google_translate_element"></div>
+
+  <header>
+    <div class="logo">
+      <a id="home-link">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"/>
+        </svg>
+      </a>
+      <div class="logo" translate="no">
+        <span class="span1"><!--COUNTRY--><sup id="customName">{{CUSTOM_NAME}} &nbsp;</sup></span> 
+      </div>
+    </div>
+    <button class= "mapBtn">
+      <img src="https://res.cloudinary.com/drprd4k9o/image/upload/v1762631956/Home/assets/eachPlaceDom/map-icon_bysonnycandraa.png" alt="mapIcon">
+    </button>
+  </header>
+<a onclick="scrollTo(); location.href='#continents'" class="earth-button" title="Explore Continents" id="home-linkEarth">
+  <img src="https://res.cloudinary.com/drprd4k9o/image/upload/q_auto,f_auto/Home/assets/icons/planet-earth_3594282" alt="Planet Earth" class="earth-icon" />
+</a>
+  <!-- Botón Toggle inspirado por MuhammadHasann (uiverse.io) -->
+  <div class="toggle-cont">
+    <h4>Video</h4>
+  <input class="toggle-input" id="toggle" name="toggle" type="checkbox" checked />
+  <label class="toggle-label" for="toggle">
+    <div class="cont-label-play">
+      <span class="label-play"></span>
+    </div>
+  </label>
+</div>
+
+<div class="video-background-container">
+  <video  id="background-video"  autoplay muted loop playsinline disablepictureinpicture preload="auto"
+       poster="https://res.cloudinary.com/drprd4k9o/image/upload/v1762634093/Home/assets/videos/screenshotVideoBackground.jpg">
+    <source src="https://res.cloudinary.com/drprd4k9o/video/upload/v1763800662/backgroundVideo_jnx1km.webm" type="video/webm" >
+    Your browser does not support HTML5 video.
+</video>
+
+</div>
+  <!--<button id="pauseButton" class="pause-button">⏸ Pausar</button>-->
+  
+  <div class="wrapAllInfo">
+    <div class="hero-content">
+      <div class="titleCountry">
+        <div class="wrapFlagName">
+          <img src="" alt="" id="flag" data-pin-nopin="true">
+          <h1 class="heroTitle"></h1>
+        </div>
+        <p translate="yes" class="descriptionsHead"></p>
+      </div>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div translate="yes" class="container">
+    <div translate="yes" class="card" style="--clr:#009688;">
+      <div class="imgBx" loading="lazy" ></div>
+      <div translate="yes" class="content">
+        <h2 translate="yes" class="heroTitle"></h2>
+        <p translate="yes" class="descriptionPlace"></p>
+        <a translate="yes" href="" class="seeMorePlace"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMPurify for XSS protection -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <!-- Sanitizer functions -->
+  <script src="/js/sanitizer.js"></script>
+  <script type="module" src="/widget/src/country.js?v=2033"></script>
+  <script src="/widget/src/fakeLoadBar.js"></script>
+  <script src="/widget/src/clientPreferences.js"></script>
+
+
+<script>
+  document.querySelector('.closeBtn')?.addEventListener('click', () => {
+    parent.postMessage('nature-widget-close', '*');
+  });
+</script>
+<script>
+(function () {
+  let googleScriptLoaded = false;
+  let googleInitialized = false;
+  const pageLang = 'en';
+
+  // Create translator container (initially hidden)
+  const GT_DIV = document.createElement('div');
+  GT_DIV.id = 'google_translate_element';
+  GT_DIV.style.position = 'fixed';
+  GT_DIV.style.top = '12px';
+  GT_DIV.style.right = '20px';
+  GT_DIV.style.zIndex = '99999';
+  GT_DIV.style.display = 'none';
+  document.body.appendChild(GT_DIV);
+
+  // Insert global styles to hide Google Translate header
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Hide Google Translate top banner */
+    .goog-te-banner-frame.skiptranslate,
+    #goog-gt-tt,
+    .goog-te-balloon-frame,
+    .goog-logo-link,
+    .goog-te-banner-frame {
+      display:none !important;
+      visibility:hidden !important;
+      height:0!important;
+      width:0!important;
+      overflow:hidden!important;
+    }
+
+    /* Hide the banner iframe that appears at the top (NOT the menu) */
+    .VIpgJd-ZVi9od-ORHb-OEVmcd,
+    iframe.VIpgJd-ZVi9od-ORHb-OEVmcd,
+    iframe#\\:1\\.container {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+      z-index: -999999 !important;
+      pointer-events: none !important;
+    }
+
+    /* Allow the language menu iframe */
+    iframe.goog-te-menu-frame.skiptranslate {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+      width: auto !important;
+      position: absolute !important;
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    /* Google Translate selector - FIXED like the header */
+    #google_translate_element {
+      position: fixed !important;
+      top: 12px !important;
+      right: 80px !important;
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+
+    .goog-te-gadget {
+      font-family: Inter, sans-serif !important;
+      font-size: 13px !important;
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .goog-te-combo {
+      border:none!important;
+      background:transparent!important;
+      cursor:pointer;
+      outline:none!important;
+      pointer-events: auto !important;
+      min-width: 100px;
+      padding: 5px;
+    }
+
+    /* The selector's dropdown menu */
+    .goog-te-menu-frame {
+      z-index: 999999 !important;
+      position: fixed !important;
+      pointer-events: auto !important;
+    }
+
+    .goog-te-menu2 {
+      z-index: 999999 !important;
+      pointer-events: auto !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Initializer that Google will call
+  window.googleTranslateElementInit = function() {
+    new google.translate.TranslateElement({
+      pageLanguage: pageLang,
+      includedLanguages: 'en,es,fr,de,it,ar,pt,ru,zh-CN,ja,ko,hi',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      autoDisplay: false
+    }, 'google_translate_element');
+
+    googleInitialized = true;
+    GT_DIV.style.display = 'block';
+
+    // Apply saved language if exists
+    const saved = localStorage.getItem('preferredLanguage');
+    if (saved && saved !== pageLang) {
+      setTimeout(() => applyTranslation(saved), 500);
+    }
+  };
+
+  // Load Google script
+  function loadGoogleTranslate() {
+    if (googleScriptLoaded) return;
+    const s = document.createElement('script');
+    s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    s.async = true;
+    document.head.appendChild(s);
+    googleScriptLoaded = true;
+  }
+
+  // Apply language automatically
+  function applyTranslation(langCode) {
+    const tryApply = () => {
+      const combo = document.querySelector('.goog-te-combo');
+      if (combo) {
+        combo.value = langCode;
+        combo.dispatchEvent(new Event('change'));
+        localStorage.setItem('preferredLanguage', langCode);
+        return true;
+      }
+      return false;
+    };
+    let tries = 0;
+    const interval = setInterval(() => {
+      if (tryApply() || tries++ > 10) clearInterval(interval);
+    }, 400);
+  }
+
+  // Listen for messages from parent widget
+  window.addEventListener('message', (e) => {
+    if (!e.data || e.data.type !== 'toggle-translate') return;
+
+    if (!googleInitialized) {
+      loadGoogleTranslate();
+    } else {
+      // Toggle selector visibility
+      GT_DIV.style.display = GT_DIV.style.display === 'none' ? 'block' : 'none';
+    }
+  });
+
+  // Security: remove banners and iframes if they appear
+  const observer = new MutationObserver(() => {
+    // Remove banners
+    document.querySelectorAll('.goog-te-banner-frame,#goog-gt-tt').forEach(el => el.remove());
+    
+    // Remove annoying iframes
+    document.querySelectorAll('iframe.VIpgJd-ZVi9od-ORHb-OEVmcd, iframe.skiptranslate').forEach(iframe => {
+      if (iframe.className.includes('VIpgJd-ZVi9od-ORHb-OEVmcd')) {
+        iframe.style.display = 'none';
+        iframe.style.visibility = 'hidden';
+        iframe.style.opacity = '0';
+        iframe.style.height = '0';
+        iframe.style.width = '0';
+        iframe.style.position = 'absolute';
+        iframe.style.top = '-9999px';
+        iframe.style.zIndex = '-999999';
+      }
+    });
+    
+    document.body.style.top = '0';
+    document.body.style.position = 'static';
+  });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<script>
+  (function() {
+    'use strict';
+    
+    // ========================================
+    // INTERCEPT CLICKS ON LINKS
+    // ========================================
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a');
+        if (!link) return;
+        
+        // ✅ ALLOW: Custom places links (class "seeMorePlace" or "premium-link")
+        if (link.classList.contains('seeMorePlace') ||
+            link.classList.contains('premium-link') ||
+            link.closest('.place-card') ||
+            link.closest('.premium-section') ||
+            link.dataset.customPlace === 'true') {
+
+            // Force target="_blank" and security
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+
+            return; // Let it work normally
+        }
+        
+        // ✅ ALLOW: Internal widget navigation
+        const isInternal = link.href.startsWith(window.location.origin) || 
+                          link.href.startsWith('#') || 
+                          link.href === '' ||
+                          link.classList.contains('internal-nav') ||
+                          link.id === 'home-link' ||
+                          link.id === 'home-linkEarth';
+        
+        if (isInternal && link.target !== '_blank') {
+            return; // OK
+        }
+        
+        // ❌ BLOCK: Unauthorized external links
+        if (link.target === '_blank' || !isInternal) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Silently block unauthorized external links
+            return false;
+        }
+        
+    }, true);
+    
+    // ========================================
+    // PROTECT window.open WITH EXCEPTION
+    // ========================================
+    const originalWindowOpen = window.open;
+    window.open = function(url, name, specs) {
+        // Verify call origin
+        const stack = new Error().stack || '';
+        const isCustomPlace = stack.includes('seeMorePlace') ||
+                             stack.includes('premium-link') ||
+                             stack.includes('place-card') ||
+                             stack.includes('custom-place') ||
+                             stack.includes('premium-section');
+
+        if (isCustomPlace) {
+            return originalWindowOpen.call(window, url, name, specs);
+        }
+
+        // Silently block unauthorized window.open
+        return null;
+    };
+    
+    // ========================================
+    // AUTO-MARK CUSTOM PLACES
+    // ========================================
+    function markCustomPlaceLinks() {
+        // Find all links within custom places containers
+        const selectors = [
+            '.place-card .seeMorePlace',
+            '.premium-link',
+            '.premium-section a',
+            '.custom-place-link',
+            '[data-custom-place="true"]',
+            '.container .card a.seeMorePlace' // Your specific structure
+        ];
+        
+        document.querySelectorAll(selectors.join(', ')).forEach(link => {
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.dataset.customPlace = 'true';
+        });
+    }
+    
+    // Execute on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', markCustomPlaceLinks);
+    } else {
+        markCustomPlaceLinks();
+    }
+    
+    // Observe dynamic DOM changes
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length > 0) {
+                markCustomPlaceLinks();
+            }
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+    
+})();
+</script>
+</body>
+</html>

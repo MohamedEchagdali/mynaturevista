@@ -1,0 +1,2260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Custom Places - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #00b894, #00a884);
+            --secondary-gradient: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            color: #212529;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-header h1 i {
+            color: #00b894;
+        }
+
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .breadcrumb-item a {
+            color: #00b894;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Container */
+        .custom-places-container {
+            background: white;
+            max-width: 95%;
+            margin: 0 auto 3rem;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #212529;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .section-title i {
+            color: #00b894;
+        }
+
+        .add-place-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 184, 148, 0.2);
+        }
+
+        .add-place-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 184, 148, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .close-btn {
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            line-height: 1;
+            opacity: 0.9;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #495057;
+            font-size: 0.925rem;
+        }
+
+        .required {
+            color: var(--danger-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00b894;
+            box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.1);
+            background: white;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 0.813rem;
+            color: #6c757d;
+            margin-top: 0.375rem;
+        }
+
+        /* Image Upload */
+        .image-upload-area {
+            border: 2px dashed #00b894;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: linear-gradient(135deg, #f8fffe 0%, #f0fdf4 100%);
+        }
+
+        .image-upload-area:hover {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe8d5 100%);
+            transform: translateY(-2px);
+        }
+
+        .image-upload-area.dragover {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #00b894;
+            margin-bottom: 1rem;
+        }
+
+        .image-upload-area p {
+            margin: 0.5rem 0;
+            color: #495057;
+        }
+
+        .image-upload-area p:last-child {
+            font-size: 0.813rem;
+            color: #6c757d;
+        }
+
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 1rem;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e0;
+            transition: 0.4s;
+            border-radius: 32px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #00b894;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(28px);
+        }
+
+        #statusText {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        /* Places Grid */
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .place-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .place-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .place-content {
+            padding: 1.5rem;
+        }
+
+        .place-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            gap: 1rem;
+        }
+
+        .place-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #212529;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .place-status {
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.813rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status-active {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+        }
+
+        .status-inactive {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+        }
+
+        .place-description {
+            color: #6c757d;
+            font-size: 0.925rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .place-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .place-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #00b894;
+        }
+
+        .place-category {
+            background: linear-gradient(135deg, #e8f5e8, #d1fae5);
+            color: #00b894;
+            padding: 0.375rem 0.875rem;
+            border-radius: 20px;
+            font-size: 0.813rem;
+            font-weight: 600;
+        }
+
+        .place-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            padding: 0.625rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .edit-btn {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1e40af;
+        }
+
+        .edit-btn:hover {
+            background: var(--info-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+        }
+
+        .delete-btn:hover {
+            background: var(--danger-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .toggle-btn {
+            background: #f8f9fa;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+        }
+
+        .toggle-btn:hover {
+            background: #6c757d;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.3;
+            color: #00b894;
+        }
+
+        .empty-state h3 {
+            color: #495057;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .empty-state p {
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            border: 4px solid #e9ecef;
+            border-top: 4px solid #00b894;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Scrollbar */
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background: #00b894;
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb:hover {
+            background: #00a884;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .custom-places-container {
+                padding: 1.5rem;
+                max-width: 98%;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .add-place-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .place-actions {
+                flex-wrap: wrap;
+            }
+
+            .action-btn {
+                flex: 1;
+                min-width: 100px;
+                justify-content: center;
+            }
+        }
+        /*-------------------------------------------------*/
+        /* Places Grid */
+.places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Place Card Container */
+.place-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.place-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Place Card Image */
+.place-card-image {
+    width: 100%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Place Card Status Badge (dentro de la imagen) */
+.place-card-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.813rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.place-card-status.active {
+    background: rgba(16, 185, 129, 0.95);
+    color: white;
+}
+
+.place-card-status.inactive {
+    background: rgba(239, 68, 68, 0.95);
+    color: white;
+}
+
+.place-card-status i {
+    font-size: 0.6rem;
+}
+
+/* Map Indicator */
+.map-indicator {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(102, 126, 234, 0.95);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Place Card Content */
+.place-card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Place Card Title */
+.place-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212529;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+}
+
+/* Place Card Description */
+.place-card-description {
+    color: #6c757d;
+    font-size: 0.925rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Location Badge */
+.location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+}
+
+.location-badge i {
+    font-size: 0.9rem;
+}
+
+/* Badges para lugares EN EL MAPA */
+.location-badge.all-countries {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.location-badge.specific-country {
+    background: linear-gradient(135deg, #00b894, #00a884);
+    color: white;
+}
+
+.location-badge.map-only {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: white;
+}
+
+/* Badges para lugares SOLO EN LA LISTA (sin mapa) */
+.location-badge.list-all {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    color: white;
+}
+
+.location-badge.list-country {
+    background: linear-gradient(135deg, #55efc4, #00b894);
+    color: #2d3436;
+}
+
+/* Coordinates Info */
+.coordinates-info {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #667eea;
+}
+
+.coordinates-info small {
+    color: #666;
+    font-size: 0.813rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.coordinates-info i {
+    color: #667eea;
+}
+
+/* Place Card Price */
+.place-card-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #00b894;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Place Card Actions */
+.place-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.action-btn i {
+    font-size: 0.9rem;
+}
+
+.action-btn.edit-btn {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    color: #1e40af;
+}
+
+.action-btn.edit-btn:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.action-btn.delete-btn {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #991b1b;
+}
+
+.action-btn.delete-btn:hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.action-btn.toggle-btn {
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #e9ecef;
+}
+
+.action-btn.toggle-btn:hover {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.3;
+    color: #00b894;
+}
+
+.empty-state h3 {
+    color: #495057;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.empty-state p {
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        transform: translateX(100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+}
+
+@keyframes slideInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .places-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .places-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .place-card-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+    }
+    
+    .place-card-image {
+        height: 200px;
+    }
+    
+    .location-badge {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .place-card-content {
+        padding: 1rem;
+    }
+    
+    .place-card-title {
+        font-size: 1.1rem;
+    }
+    
+    .place-card-description {
+        font-size: 0.875rem;
+    }
+    
+    .map-indicator {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+}
+
+/* Asegurar que las tarjetas tengan altura mínima consistente */
+.place-card {
+    min-height: 500px;
+}
+
+/* Fix para garantizar que el contenido no se superponga */
+.place-card-content > * {
+    flex-shrink: 0;
+}
+
+/* Mejora de accesibilidad */
+.action-btn:focus {
+    outline: 2px solid #00b894;
+    outline-offset: 2px;
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+    </style>
+    <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   SIDEBAR CONTAINER
+======================================== */
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* En móvil, ocultar por defecto */
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+/* ========================================
+   LOGO SECTION - AHORA ES EL TOGGLE
+======================================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+.logo-icon:active {
+  transform: scale(0.95);
+}
+
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   MENU SECTIONS
+======================================== */
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAV LINKS
+======================================== */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Badge en los links */
+.nav-badge {
+  margin-left: auto;
+  padding: 4px 8px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-badge {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   USER DROPDOWN MENU
+======================================== */
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* ========================================
+   MODERN HEADER - FIJO
+======================================== */
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0; /* 🔥 SIEMPRE COMIENZA EN 0 */
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none; /* 🔥 SIN TRANSICIÓN */
+}
+
+/* 🔥 PADDING EN LUGAR DE LEFT PARA NO MOVER EL HEADER */
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #4a5568;
+}
+
+.header-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.header-btn .badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+/* Dropdown menu del header */
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ========================================
+   MAIN CONTENT - FIJO CON PADDING
+======================================== */
+.main-content {
+  margin-left: 0; /* 🔥 SIEMPRE 0 */
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none; /* 🔥 SIN TRANSICIÓN */
+}
+
+/* 🔥 PADDING EN LUGAR DE MARGIN */
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+/* ========================================
+   TOOLTIP PARA SIDEBAR COLAPSADO
+======================================== */
+.nav-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  margin-left: 10px;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.collapsed .nav-link:hover::after {
+  opacity: 1;
+}
+
+/* ========================================
+   OVERLAY PARA MÓVIL
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+/* ========================================
+   BOTÓN HAMBURGUESA PARA MÓVIL
+======================================== */
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+/* ========================================
+   DASHBOARD STYLES
+======================================== */
+.stat-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 4px;
+}
+
+.stat-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 2.5rem;
+  opacity: 0.1;
+}
+
+.progress-custom {
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-custom {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+.chart-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px 12px 0 0;
+  padding: 15px 20px;
+}
+
+.quick-action-card {
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quick-action-card:hover {
+  background: white;
+  border-color: #667eea;
+  transform: translateX(5px);
+}
+
+.quick-action-card i {
+  font-size: 1.5rem;
+  color: #667eea;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+}
+
+.plan-badge {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+    </style>
+</head>
+<body data-page="customPlaces">
+    <!-- ========================================
+         MODERN SIDEBAR
+    ======================================== -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <!-- Logo - Ahora funciona como toggle -->
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <!-- Principal -->
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link active" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Estadísticas">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <!-- Gestión del Widget -->
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Guía de Integración">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Lugares Personalizados">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <!-- Cuenta y Facturación -->
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Configuración de Cuenta">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Cambiar Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Historial de Facturación">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+
+            </div>
+
+            <!-- Admin (solo visible para administradores) -->
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Panel Admin">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                    <span class="nav-badge">Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Footer con perfil de usuario -->
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">Usuario</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan Free</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <!-- Dropdown Menu -->
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+         MODERN HEADER
+    ======================================== -->
+    <header class="modern-header">
+        <!-- Botón hamburguesa para móvil -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title"> Custom Places</h1>
+        
+        <div class="header-actions">
+            <!-- Search 
+            <button class="header-btn" title="Buscar">
+                <i class="fas fa-search"></i>
+            </button>-->
+            
+            <!-- Notifications 
+            <button class="header-btn" title="Notificaciones">
+                <i class="fas fa-bell"></i>
+                <span class="badge-dot"></span>
+            </button>-->
+            
+            <!-- Settings 
+            <button class="header-btn" title="Configuración" onclick="window.location.href='accountSettings.html'">
+                <i class="fas fa-cog"></i>
+            </button>-->
+            
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <main>
+                <div class="custom-places-container">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-map-marked-alt"></i> Manage Your Custom Places
+                        </h2>
+                        <button class="add-place-btn" onclick="openAddPlaceModal()" style="background: #00b894">
+                            <i class="fas fa-plus-circle"></i>
+                            Add New Place
+                        </button>
+                    </div>
+
+                    <!-- Places Grid -->
+                    <div id="placesContainer">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p style="margin-top: 1rem; color: #6c757d;">Loading your places...</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+        </div>
+    </div>
+
+    <!-- Add/Edit Place Modal -->
+<div id="placeModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Add New Place</h2>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <form id="placeForm">
+                <input type="hidden" id="placeId">
+                
+                <!-- Image Upload -->
+                <div class="form-group">
+                    <label><i class="fas fa-image me-1"></i> Image <span class="required">*</span></label>
+                    <div class="image-upload-area" id="imageUploadArea" onclick="document.getElementById('imageInput').click()">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p><strong>Click to upload or drag and drop</strong></p>
+                        <p>JPG or PNG, max 5MB</p>
+                        <input type="file" id="imageInput" accept="image/jpeg,image/png" style="display: none;" onchange="handleImageSelect(event)">
+                    </div>
+                    <img id="imagePreview" class="image-preview" alt="Preview">
+                </div>
+                <!-- Selector de Dominio -->
+<div class="form-group">
+    <label for="domainSelect">
+        <i class="fas fa-globe"></i> Select Domain <span class="required">*</span>
+    </label>
+    <select class="form-control" id="domainSelect" required>
+        <option value="">-- Select a domain --</option>
+        <!-- Las opciones se llenarán dinámicamente con JavaScript -->
+    </select>
+    <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+        This place will only appear on the selected domain’s widget. Don’t forget to generate an API key for that domain in order to select it.
+    </small>
+</div>
+                <!-- Title -->
+                <div class="form-group">
+                    <label for="placeTitle"><i class="fas fa-heading me-1"></i> Title <span class="required">*</span></label>
+                    <input type="text" class="form-control" id="placeTitle" required maxlength="100" placeholder="Enter place title">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="placeDescription"><i class="fas fa-align-left me-1"></i> Description <span class="required">*</span></label>
+                    <textarea class="form-control" id="placeDescription" required maxlength="300" onkeyup="updateCharCounter()" placeholder="Describe this place..."></textarea>
+                    <div class="char-counter" id="charCounter">0 / 300</div>
+                </div>
+
+                <!-- Price -->
+                <!-- Price with Currency -->
+<div class="form-group">
+    <label for="placePrice">
+        <i class="fas fa-euro-sign me-1"></i> Price (Optional)
+    </label>
+    
+    <div style="display: grid; grid-template-columns: 1fr 130px; gap: 0.75rem;">
+        <input 
+            type="number" 
+            class="form-control" 
+            id="placePrice" 
+            min="0" 
+            step="0.01" 
+            placeholder="25.00"
+        >
+        
+        <select class="form-control" id="placeCurrency">
+            <option value="EUR" selected>€ EUR</option>
+            <option value="USD">$ USD</option>
+            <option value="GBP">£ GBP</option>
+            <option value="JPY">¥ JPY</option>
+            <option value="CAD">C$ CAD</option>
+            <option value="AUD">A$ AUD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">¥ CNY</option>
+            <option value="INR">₹ INR</option>
+            <option value="BRL">R$ BRL</option>
+            <option value="MXN">$ MXN</option>
+            <option value="ZAR">R ZAR</option>
+            <option value="AED">د.إ AED</option>
+            <option value="SAR">﷼ SAR</option>
+            <option value="MAD">د.م. MAD</option>
+            <option value="EGP">E£ EGP</option>
+        </select>
+    </div>
+    
+    <small style="color: #666; font-size: 0.85rem; display: block; margin-top: 0.5rem;">
+        Select the currency that best matches your location
+    </small>
+</div>
+
+                <!-- Link -->
+                <div class="form-group">
+                    <label for="placeLink"><i class="fas fa-link me-1"></i> Link/URL <span class="required">*</span></label>
+                    <input type="url" class="form-control" id="placeLink" required placeholder="https://example.com">
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label for="placeCategory"><i class="fas fa-tag me-1"></i> Category</label>
+                      <select class="form-control" id="placeCategory">
+                            <option value="">Select a category</option>
+                            <option value="Adventure">🏔️ Adventure</option>
+                            <option value="Nature">🌿 Nature</option>
+                            <option value="Culture">🏛️ Culture</option>
+                            <option value="Accommodation">🏠 Accommodation</option>
+                            <option value="Reviews">⭐ Reviews & Recommendations</option>
+                            <option value="Wildlife">🦁 Wildlife</option>
+                            <option value="Other">✨ Other</option>
+                        </select>
+                </div>
+
+                <!-- ========================================= -->
+                <!-- ✅ NUEVA SECCIÓN: Display Settings (Mejorada) -->
+                <!-- ========================================= -->
+                <div class="form-group" style="border-top: 2px solid #e9ecef; padding-top: 1.5rem; margin-top: 1.5rem;">
+                    <label style="font-size: 1.1rem; font-weight: 600; color: #333; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fas fa-sliders-h" style="color: #00b894;"></i> 
+                        Display Settings
+                    </label>
+                    
+                    <!-- Info Box -->
+                    <div style="background: #e8f5f1; border-left: 4px solid #00b894; padding: 12px; border-radius: 6px; margin-bottom: 1.5rem;">
+                        <p style="margin: 0; font-size: 0.9rem; color: #2d3436;">
+                            <strong>💡 How it works:</strong><br>
+                            • Your place will appear in the <strong>"Featured Country"</strong> section<br>
+                            • Optionally, also show it <strong>on the map</strong> with GPS coordinates<br>
+                            • Choose where it appears: <strong>specific country</strong> or <strong>all countries</strong>
+                        </p>
+                    </div>
+
+                    <!-- Toggle: Show on Map -->
+                    <div class="toggle-container" style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fas fa-map-pin" style="color: #00b894;"></i>
+                                    <span style="font-weight: 500;">Also show on the interactive map</span>
+                                </div>
+                                <small style="color: #666; font-size: 0.85rem; margin-left: 1.5rem;">
+                                    Requires GPS coordinates • Places markers on the widget map
+                                </small>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showOnMap" onchange="toggleMapOptions()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Opciones del mapa (se muestran solo si showOnMap está activado) -->
+                    <div id="mapOptionsContainer" style="display: none; padding-left: 1rem; border-left: 3px solid #00b894; margin-left: 0.5rem; margin-bottom: 1rem;">
+                        
+                        <!-- Coordenadas -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label for="placeLatitude" style="font-size: 0.9rem; color: #666; display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.3rem;">
+                                    <i class="fas fa-location-arrow"></i> Latitude <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="placeLatitude" 
+                                    step="0.000001" 
+                                    min="-90" 
+                                    max="90" 
+                                    placeholder="e.g., 40.416775"
+                                    style="font-size: 0.9rem;">
+                                <small style="color: #888; font-size: 0.75rem;">Range: -90 to 90</small>
+                            </div>
+                            <div>
+                                <label for="placeLongitude" style="font-size: 0.9rem; color: #666; display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.3rem;">
+                                    <i class="fas fa-location-arrow"></i> Longitude <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="placeLongitude" 
+                                    step="0.000001" 
+                                    min="-180" 
+                                    max="180" 
+                                    placeholder="e.g., -3.703790"
+                                    style="font-size: 0.9rem;">
+                                <small style="color: #888; font-size: 0.75rem;">Range: -180 to 180</small>
+                            </div>
+                        </div>
+
+                        <!-- Ayuda para obtener coordenadas -->
+                        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #856404;">
+                                <i class="fas fa-info-circle" style="color: #ffc107;"></i>
+                                <strong>How to get coordinates:</strong><br>
+                                1. Open <a href="https://www.google.com/maps" target="_blank" style="color: #007bff; text-decoration: underline;">Google Maps</a><br>
+                                2. Right-click on the location<br>
+                                3. Click the coordinates to copy them
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- ✅ Selector de País/Región (SIEMPRE VISIBLE) -->
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label for="placeCountry" style="font-size: 0.95rem; color: #666; display: flex; align-items: center; gap: 0.3rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-globe-americas"></i> Where to display this place?
+                        </label>
+                        
+                        <!-- Toggle: Show in all countries -->
+                        <div class="toggle-container" style="background: #fff; padding: 0.75rem; border-radius: 6px; border: 1px solid #e9ecef; margin-bottom: 0.75rem;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; flex-direction: column; gap: 0.2rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <i class="fas fa-globe" style="color: #6c757d;"></i>
+                                        <span style="font-size: 0.9rem; font-weight: 500;">Show in all countries</span>
+                                    </div>
+                                    <small style="color: #666; font-size: 0.8rem; margin-left: 1.5rem;">
+                                        This place will appear globally
+                                    </small>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="showAllCountries" onchange="toggleCountrySelector()">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Selector de país específico -->
+                        <div id="countrySelectContainer">
+                            <select class="form-control" id="placeCountry" style="font-size: 0.9rem;">
+                                <option value="">Or select a specific country</option>
+                                <option value="1">🇲🇦 Morocco</option>
+                                <option value="2">🇧🇼 Botswana</option>
+                                <option value="3">🇨🇩 DR Congo</option>
+                                <option value="4">🇹🇿 Tanzania</option>
+                                <option value="5">🇰🇪 Kenya</option>
+                                <option value="6">🇳🇦 Namibia</option>
+                                <option value="7">🇿🇦 South Africa</option>
+                                <option value="8">🇹🇳 Tunisia</option>
+                                <option value="9">🇨🇭 Switzerland</option>
+                                <option value="10">🇵🇹 Portugal</option>
+                                <option value="11">🇪🇸 Spain</option>
+                                <option value="12">🇳🇱 Netherlands</option>
+                                <option value="13">🇦🇹 Austria</option>
+                                <option value="14">🇩🇪 Germany</option>
+                                <option value="15">🇮🇹 Italy</option>
+                                <option value="16">🇬🇷 Greece</option>
+                                <option value="17">🇬🇧 United Kingdom</option>
+                                <option value="18">🇫🇷 France</option>
+                                <option value="19">🇹🇷 Turkey</option>
+                                <option value="20">🇯🇵 Japan</option>
+                                <option value="21">🇦🇪 UAE</option>
+                                <option value="22">🇨🇳 China</option>
+                                <option value="23">🇱🇰 Sri Lanka</option>
+                                <option value="24">🇮🇩 Indonesia</option>
+                                <option value="25">🇮🇳 India</option>
+                                <option value="26">🇲🇾 Malaysia</option>
+                                <option value="27">🇵🇭 Philippines</option>
+                                <option value="28">🇸🇦 Saudi Arabia</option>
+                                <option value="29">🇹🇭 Thailand</option>
+                                <option value="30">🇧🇷 Brazil</option>
+                                <option value="31">🇦🇷 Argentina</option>
+                                <option value="32">🇨🇱 Chile</option>
+                                <option value="33">🇵🇪 Peru</option>
+                                <option value="34">🇨🇴 Colombia</option>
+                                <option value="35">🇺🇸 USA</option>
+                                <option value="36">🇵🇷 Puerto Rico</option>
+                                <option value="37">🇨🇦 Canada</option>
+                                <option value="38">🇵🇦 Panama</option>
+                                <option value="39">🇳🇮 Nicaragua</option>
+                                <option value="40">🇭🇳 Honduras</option>
+                                <option value="41">🇬🇹 Guatemala</option>
+                                <option value="42">🇨🇷 Costa Rica</option>
+                                <option value="43">🇲🇽 Mexico</option>
+                                <option value="44">🇸🇧 Solomon Islands</option>
+                                <option value="45">🇦🇺 Australia</option>
+                                <option value="46">🇻🇺 Vanuatu</option>
+                                <option value="47">🇵🇬 Papua New Guinea</option>
+                                <option value="48">🇫🇯 Fiji</option>
+                                <option value="49">🇳🇿 New Zealand</option>
+                                <option value="50">🇦🇶 Antarctica</option>
+                            </select>
+                            <small style="color: #888; font-size: 0.75rem; display: block; margin-top: 0.3rem;">
+                                Leave empty for no country restriction
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- FIN: Display Settings -->
+
+                <!-- Active Status -->
+                <div class="form-group">
+                    <label><i class="fas fa-toggle-on me-1"></i> Status</label>
+                    <div class="toggle-container">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="placeActive" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span id="statusText">Active</span>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="action-btn" style="background: #e9ecef; color: #495057; border: 1px solid #dee2e6;" onclick="closeModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                    <button type="submit" class="add-place-btn" style="margin: 0;">
+                        <i class="fas fa-save"></i> Save Place
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="js/main.js"></script>
+    <script src="js/customPlaces.js"></script>
+</body>
+</html>

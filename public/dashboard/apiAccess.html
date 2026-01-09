@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>API Access - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .api-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        /* Cards de dominios */
+        .domain-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .domain-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.12);
+        }
+
+        /* Dominio BASE - Verde */
+        .domain-card.base-domain {
+            border-left: 5px solid #00b894;
+            background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
+        }
+
+        /* Dominio EXTRA - Naranja */
+        .domain-card.extra-domain {
+            border-left: 5px solid #ff6b6b;
+            background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+        }
+
+        .domain-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .domain-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .domain-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.875rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-base {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+        }
+
+        .badge-extra {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .domain-price {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .domain-price strong {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        /* Sección de API Key */
+        .api-key-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .api-key-display {
+            margin-bottom: 1.5rem;
+        }
+
+        .api-key-display label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .key-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: stretch;
+        }
+
+        .key-value {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+
+        .key-value:hover {
+            border-color: #00b894;
+        }
+
+        .key-info {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        /* Botones */
+        .button-primary {
+            background: linear-gradient(135deg, #ff6b6b, #fa4c4c);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 184, 148, 0.3);
+        }
+
+        .button-secondary {
+            background: #64748b;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgb(58, 146, 180);
+        }
+
+        .button-secondary:hover {
+            background: rgb(1, 122, 170);
+        }
+
+        .button-danger {
+            background: #970000;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .button-danger:hover {
+            background: #dc2626;
+        }
+
+        .button-icon {
+            background: white;
+            border: 2px solid #e2e8f0;
+            color: #64748b;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+        }
+
+        .button-icon:hover {
+            border-color: #00b894;
+            color: #00b894;
+            background: #f0fff4;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        /* Sin API Key */
+        .no-api-key {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 12px;
+            border: 2px dashed #f59e0b;
+        }
+
+        .no-api-key p {
+            color: #92400e;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Historial */
+        .key-history {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .key-history summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #00b894;
+            font-size: 0.875rem;
+            user-select: none;
+        }
+
+        .key-history summary:hover {
+            text-decoration: underline;
+        }
+
+        .history-list {
+            margin-top: 1rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .history-item {
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #ce0707;
+        }
+
+        /* Alertas */
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 300px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert.show {
+            display: flex;
+        }
+
+        .alert.success {
+            background: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+        }
+
+        .alert.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #334155;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00b894;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+        footer {
+  margin-top: 40px;
+  padding: 24px 0;
+  margin-left: 20%;
+  background: white;
+  border-top: 2px solid var(--border-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  width: 70%;
+  position: relative;
+}
+        /* Responsive */
+        @media (max-width: 768px) {
+            .domain-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .key-container {
+                flex-direction: column;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   SIDEBAR CONTAINER
+======================================== */
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+/* En móvil, ocultar por defecto */
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+/* ========================================
+   LOGO SECTION - AHORA ES EL TOGGLE
+======================================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+.logo-icon:active {
+  transform: scale(0.95);
+}
+
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   MENU SECTIONS
+======================================== */
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAV LINKS
+======================================== */
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: white;
+  border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Badge en los links */
+.nav-badge {
+  margin-left: auto;
+  padding: 4px 8px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-badge {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   USER DROPDOWN MENU
+======================================== */
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* ========================================
+   MODERN HEADER - FIJO
+======================================== */
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0; /* 🔥 SIEMPRE COMIENZA EN 0 */
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none; /* 🔥 SIN TRANSICIÓN */
+}
+
+/* 🔥 PADDING EN LUGAR DE LEFT PARA NO MOVER EL HEADER */
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #4a5568;
+}
+
+.header-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.header-btn .badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+/* Dropdown menu del header */
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ========================================
+   MAIN CONTENT - FIJO CON PADDING
+======================================== */
+.main-content {
+  margin-left: 0; /* 🔥 SIEMPRE 0 */
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none; /* 🔥 SIN TRANSICIÓN */
+}
+
+/* 🔥 PADDING EN LUGAR DE MARGIN */
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+/* ========================================
+   TOOLTIP PARA SIDEBAR COLAPSADO
+======================================== */
+.nav-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  margin-left: 10px;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+  z-index: 10000;
+}
+
+.collapsed .nav-link:hover::after {
+  opacity: 1;
+}
+
+/* ========================================
+   OVERLAY PARA MÓVIL
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+/* ========================================
+   BOTÓN HAMBURGUESA PARA MÓVIL
+======================================== */
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+/* ========================================
+   DASHBOARD STYLES
+======================================== */
+.stat-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 4px;
+}
+
+.stat-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 2.5rem;
+  opacity: 0.1;
+}
+
+.progress-custom {
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-custom {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+.chart-card {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px 12px 0 0;
+  padding: 15px 20px;
+}
+
+.quick-action-card {
+  padding: 16px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quick-action-card:hover {
+  background: white;
+  border-color: #667eea;
+  transform: translateX(5px);
+}
+
+.quick-action-card i {
+  font-size: 1.5rem;
+  color: #667eea;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 10px;
+}
+
+.plan-badge {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+    </style>
+</head>
+<body data-page="dashboard">
+    <!-- ========================================
+         MODERN SIDEBAR
+    ======================================== -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <!-- Logo - Ahora funciona como toggle -->
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <!-- Principal -->
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link active" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Estadísticas">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <!-- Gestión del Widget -->
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Guía de Integración">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Lugares Personalizados">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <!-- Cuenta y Facturación -->
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Configuración de Cuenta">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Cambiar Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Historial de Facturación">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <!-- Admin (solo visible para administradores) -->
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Panel Admin">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                    <span class="nav-badge">Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Footer con perfil de usuario -->
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">Usuario</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan Free</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <!-- Dropdown Menu -->
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Overlay para móvil -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+         MODERN HEADER
+    ======================================== -->
+    <header class="modern-header">
+        <!-- Botón hamburguesa para móvil -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">API Key & Domains</h1>
+        
+        <div class="header-actions">
+            <!-- Search 
+            <button class="header-btn" title="Buscar">
+                <i class="fas fa-search"></i>
+            </button>-->
+            
+            <!-- Notifications 
+            <button class="header-btn" title="Notificaciones">
+                <i class="fas fa-bell"></i>
+                <span class="badge-dot"></span>
+            </button>-->
+            
+            <!-- Settings 
+            <button class="header-btn" title="Configuración" onclick="window.location.href='accountSettings.html'">
+                <i class="fas fa-cog"></i>
+            </button>-->
+            
+            <!-- User Dropdown -->
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="main-content">
+    <main>
+        <div class="container-fluid px-4">
+            <!-- Page Header -->
+            <div class="page-header" style="margin: 2rem 0;">
+                <h1 style="color: #1e293b; font-weight: 700;">
+                    <i class="fas fa-key" style="color: #00b894;"></i>
+                    API Access Management
+                </h1>
+            </div>
+
+            <div class="api-container">
+                <!-- Container for all domains -->
+                <div id="domainsContainer">
+                    <div style="text-align: center; padding: 3rem; color: #6c757d;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 1rem; color: #00b894;"></i>
+                        <p style="font-size: 1.125rem; font-weight: 500;">Loading your domains and API Keys...</p>
+                    </div>
+                </div>
+
+                <!-- Add New Domain Button -->
+                <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 12px;">
+                    <button 
+                        id="btnAddNewDomain" 
+                        class="button-primary"
+                        style="font-size: 1rem; padding: 0.875rem 2rem;"
+                        onclick="handleAddNewDomain()"
+                    >
+                        <i class="fas fa-plus-circle"></i> Add New Extra Domain
+                    </button>
+                    
+                    <!-- Limit reached message (hidden by default) -->
+                    <div 
+                        id="limitReachedMessage" 
+                        style="display: none; margin-top: 1rem; padding: 1rem; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 8px;"
+                    >
+                        <i class="fas fa-lock" style="color: #f59e0b;"></i>
+                        <strong>Limit reached.</strong> Your plan allows <span id="limitText">1 domain</span>.
+                        <a href="addDomain.html" style="color: #f59e0b; font-weight: 600; margin-left: 0.5rem;">
+                            Add new domain →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+    </div>
+
+    <!-- Alert Notifications -->
+    <div class="alert success" id="successAlert">
+        <i class="fas fa-check-circle"></i>
+        <span id="successMessage">Success!</span>
+    </div>
+    <div class="alert error" id="errorAlert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="errorMessage">Error!</span>
+    </div>
+
+    <!-- Modal para generar/regenerar API Key -->
+    <div id="apiKeyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Generar API Key</h3>
+                <button class="button-icon" onclick="closeModal()" style="border: none;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage" style="margin-bottom: 1rem; color: #64748b;"></p>
+                <div class="form-group">
+                    <label for="modalDescription">Descripción (opcional)</label>
+                    <input 
+                        type="text" 
+                        id="modalDescription" 
+                        class="form-control" 
+                        placeholder="Example: Development API Key"
+                    />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button-secondary" onclick="closeModal()">
+                    Cancelar
+                </button>
+                <button class="button-primary" id="modalConfirmBtn" onclick="confirmGenerateKey()">
+                    <i class="fas fa-check"></i> Confirmar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar este nuevo modal después del modal existente "apiKeyModal" (alrededor de la línea 800) -->
+
+<!-- Modal de Advertencia sobre Custom Places -->
+<div id="customPlacesWarningModal" class="modal">
+    <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header" style="border-bottom: 3px solid #f59e0b;">
+            <h3 class="modal-title" style="color: #f59e0b; display: flex; align-items: center; gap: 0.75rem;">
+                <i class="fas fa-exclamation-triangle"></i>
+                Important: Update Your Custom Places
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f59e0b; margin-bottom: 1.5rem;">
+                <h4 style="color: #92400e; font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700;">
+                    <i class="fas fa-info-circle"></i> Action Required
+                </h4>
+                <p style="color: #78350f; margin: 0; line-height: 1.6;">
+                    After regenerating your API Key for <strong id="warningDomainName"></strong>, 
+                    you must update all custom places associated with this domain.
+                </p>
+            </div>
+
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; border: 2px solid #e5e7eb;">
+                <h4 style="color: #1e293b; font-size: 1rem; margin-bottom: 1rem; font-weight: 600;">
+                    📋 Steps to Update Custom Places:
+                </h4>
+                <ol style="color: #475569; line-height: 1.8; padding-left: 1.5rem; margin: 0;">
+                    <li>Go to <strong>Custom Locations</strong> section</li>
+                    <li>Click <strong>Edit</strong> on each custom place</li>
+                    <li>Select the <strong>active domain</strong> from the dropdown "Select Domain"</li>
+                    <li>Click <strong>Save</strong> to apply changes</li>
+                </ol>
+                
+                <div style="margin-top: 1.25rem; padding: 1rem; background: #f8fafc; border-radius: 8px; border-left: 3px solid #00b894;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #334155;">
+                        <i class="fas fa-lightbulb" style="color: #00b894;"></i>
+                        <strong>Tip:</strong> Custom places are linked to domains via API Keys. 
+                        Regenerating a key breaks this connection until you reassign them.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.25rem; padding: 1rem; background: #fee2e2; border-radius: 8px; border-left: 3px solid #ef4444;">
+                <p style="margin: 0; font-size: 0.875rem; color: #991b1b; line-height: 1.5;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>Warning:</strong> Custom places will not appear on your widget until you complete this update.
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer" style="justify-content: space-between;">
+            <button class="button-secondary" onclick="closeCustomPlacesWarning(false)">
+                <i class="fas fa-times"></i> Cancel Regeneration
+            </button>
+            <button class="button-primary" onclick="closeCustomPlacesWarning(true)" style="background: linear-gradient(135deg, #00b894, #00cec9);">
+                <i class="fas fa-check"></i> I Understand, Continue
+            </button>
+        </div>
+    </div>
+</div>
+
+    <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+                    </div>
+                </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="./js/main.js"></script>
+
+<script>
+// ============================================
+// 🚀 API KEYS MANAGEMENT - CLEAN ARCHITECTURE
+// ============================================
+
+let currentModalDomain = null;
+let currentModalMode = 'generate'; // 'generate' or 'regenerate'
+let allDomainsData = null;
+
+// ============================================
+// MAIN FUNCTION: Load all domains
+// ============================================
+
+async function loadAllDomains() {
+    
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'loginSignup.html';
+            return;
+        }
+
+        // 🔥 1. Get domains (base + extras)
+        const domainsResponse = await fetch('/api/domains/all', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!domainsResponse.ok) {
+            throw new Error('Error loading domains');
+        }
+
+        const domainsData = await domainsResponse.json();
+
+        // 🔥 2. Get API keys
+        const keysResponse = await fetch('/api/keys/my-keys', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!keysResponse.ok) {
+            throw new Error('Error loading API keys');
+        }
+
+        const keysData = await keysResponse.json();
+
+        // Store data globally
+        allDomainsData = {
+            baseDomain: domainsData.baseDomain,
+            extraDomains: domainsData.extraDomains || [],
+            keys: keysData.keys || [],
+            limits: keysData.limits || {}
+        };
+
+        // 🔥 3. Render UI
+        renderAllDomains();
+        
+        // 🔥 4. Update "add domain" button
+        updateAddDomainButton(keysData.limits);
+
+    } catch (error) {
+        console.error('❌ Error:', error);
+        showAlert('error', 'Error loading data: ' + error.message);
+        
+        // Show error message in container
+        document.getElementById('domainsContainer').innerHTML = `
+            <div style="text-align: center; padding: 3rem;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                <h3 style="color: #1e293b;">Error loading domains</h3>
+                <p style="color: #64748b; margin-bottom: 1.5rem;">${error.message}</p>
+                <button class="button-primary" onclick="loadAllDomains()">
+                    <i class="fas fa-sync"></i> Retry
+                </button>
+            </div>
+        `;
+    }
+}
+
+// ============================================
+// RENDER ALL DOMAINS
+// ============================================
+
+function renderAllDomains() {
+    const container = document.getElementById('domainsContainer');
+    if (!container || !allDomainsData) return;
+
+    let html = '';
+
+    // 🔥 1. Render BASE DOMAIN
+    if (allDomainsData.baseDomain) {
+        html += renderDomainCard(allDomainsData.baseDomain, true, null);
+    }
+
+    // 🔥 2. Render EXTRA DOMAINS
+    if (allDomainsData.extraDomains && allDomainsData.extraDomains.length > 0) {
+        allDomainsData.extraDomains.forEach(extraDomain => {
+            html += renderDomainCard(extraDomain.domain, false, extraDomain);
+        });
+    }
+
+    // No content message
+    if (!html) {
+        html = `
+            <div style="text-align: center; padding: 3rem;">
+                <i class="fas fa-globe" style="font-size: 3rem; color: #00b894; margin-bottom: 1rem;"></i>
+                <h3 style="color: #1e293b;">No domains configured</h3>
+                <p style="color: #64748b;">Contact support to configure your base domain.</p>
+            </div>
+        `;
+    }
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER DOMAIN CARD
+// ============================================
+
+function renderDomainCard(domain, isBase = false, extraDomainData = null) {
+    const apiKey = allDomainsData.keys.find(k => 
+        k.domain === domain && k.is_active
+    );
+
+    const historyKeys = allDomainsData.keys.filter(k => 
+        k.domain === domain && !k.is_active
+    );
+
+    const domainId = domain.replace(/[^a-zA-Z0-9]/g, '_');
+
+    return `
+        <div class="domain-card ${isBase ? 'base-domain' : 'extra-domain'}" id="domain-${domainId}">
+            <div class="domain-header">
+                <div>
+                    <div class="domain-title">
+                        <h2 class="domain-name">
+                            <i class="fas fa-globe"></i>
+                            ${domain}
+                        </h2>
+                        <span class="badge ${isBase ? 'badge-base' : 'badge-extra'}">
+                            ${isBase ? '🏠 BASE DOMAIN' : '💎 EXTRA DOMAIN'}
+                        </span>
+                    </div>
+                    ${!isBase && extraDomainData ? `
+                        <div class="domain-price">
+                            <strong>${extraDomainData.price_eur || (extraDomainData.monthly_price / 100).toFixed(2)}€/month</strong>
+                            ${extraDomainData.next_billing_date ? `• Next invoice: ${new Date(extraDomainData.next_billing_date).toLocaleDateString()}` : ''}
+                        </div>
+                    ` : ''}
+                    ${isBase ? `
+                        <div class="domain-price" style="color: #00b894;">
+                            <i class="fas fa-check-circle"></i> Included in your plan
+                        </div>
+                    ` : ''}
+                </div>
+                ${!isBase && extraDomainData ? `
+                    <button class="button-danger" style="padding: 0.5rem 1rem; font-size: 0.875rem;" onclick="cancelDomain(${extraDomainData.id}, '${domain}')">
+                        <i class="fas fa-trash"></i> Cancel
+                    </button>
+                ` : ''}
+            </div>
+
+            <div class="api-key-section">
+                ${apiKey ? `
+                    <!-- Active API Key -->
+                    <div class="api-key-display">
+                        <label>🔑 Active API Key</label>
+                        <div class="key-container">
+                            <div class="key-value" id="key-${domainId}" onclick="toggleKeyVisibility('${domainId}', '${apiKey.api_key}')">
+                                ${maskKey(apiKey.api_key)}
+                            </div>
+                            <button class="button-icon" onclick="toggleKeyVisibility('${domainId}', '${apiKey.api_key}')" title="Show/Hide">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="button-icon" onclick="copyKeyToClipboard('${apiKey.api_key}')" title="Copy">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="key-info">
+                            <i class="fas fa-calendar"></i> Created: ${new Date(apiKey.created_at).toLocaleDateString()}
+                            ${apiKey.description ? `• ${apiKey.description}` : ''}
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="button-secondary" onclick="openRegenerateModal('${domain}')">
+                            <i class="fas fa-sync"></i> Regenerate Key
+                        </button>
+                        <button class="button-danger" onclick="revokeKey(${apiKey.id}, '${domain}')">
+                            <i class="fas fa-ban"></i> Revoke Key
+                        </button>
+                    </div>
+
+                    ${historyKeys.length > 0 ? `
+                        <details class="key-history">
+                            <summary>
+                                <i class="fas fa-history"></i> View history (${historyKeys.length} previous keys)
+                            </summary>
+                            <ul class="history-list">
+                                ${historyKeys.map(k => `
+                                    <li class="history-item">
+                                        <code>${maskKey(k.api_key)}</code>
+                                        <span style="color: #94a3b8; font-size: 0.75rem;">
+                                            ${new Date(k.created_at).toLocaleDateString()}
+                                        </span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </details>
+                    ` : ''}
+                ` : `
+                    <!-- No API Key -->
+                    <div class="no-api-key">
+                        <i class="fas fa-key" style="font-size: 2rem; color: #f59e0b; margin-bottom: 1rem;"></i>
+                        <p>⚠️ No active API Key for this domain</p>
+                        <button class="button-primary" onclick="openGenerateModal('${domain}')">
+                            <i class="fas fa-plus"></i> Generate API Key
+                        </button>
+                    </div>
+                `}
+            </div>
+        </div>
+    `;
+}
+
+// ============================================
+// MODALS: GENERATE / REGENERATE
+// ============================================
+
+function openGenerateModal(domain) {
+    currentModalDomain = domain;
+    currentModalMode = 'generate';
+    
+    document.getElementById('modalTitle').textContent = 'Generate API Key';
+    document.getElementById('modalMessage').textContent = `A new API Key will be generated for domain: ${domain}`;
+    document.getElementById('modalDescription').value = '';
+    document.getElementById('modalConfirmBtn').innerHTML = '<i class="fas fa-check"></i> Generate';
+    
+    document.getElementById('apiKeyModal').classList.add('show');
+}
+
+function openRegenerateModal(domain) {
+    currentModalDomain = domain;
+    currentModalMode = 'regenerate';
+    
+    document.getElementById('modalTitle').textContent = 'Regenerate API Key';
+    document.getElementById('modalMessage').innerHTML = `
+        <strong>⚠️ Warning:</strong> The previous API Key will stop working.<br>
+        A new one will be generated for: <strong>${domain}</strong>
+    `;
+    document.getElementById('modalDescription').value = '';
+    document.getElementById('modalConfirmBtn').innerHTML = '<i class="fas fa-sync"></i> Regenerate';
+    
+    document.getElementById('apiKeyModal').classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('apiKeyModal').classList.remove('show');
+    currentModalDomain = null;
+}
+
+// ============================================
+// GENERATE / REGENERATE API KEY
+// ============================================
+
+async function confirmGenerateKey() {
+    if (!currentModalDomain) return;
+    
+    const description = document.getElementById('modalDescription').value.trim();
+    const confirmBtn = document.getElementById('modalConfirmBtn');
+    const originalHTML = confirmBtn.innerHTML;
+    
+    try {
+        confirmBtn.disabled = true;
+        confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        
+        const token = localStorage.getItem('token');
+        const payload = {
+            description: description || `API Key generated from dashboard`,
+            domain: currentModalDomain
+        };
+        
+        const response = await fetch('/api/keys/generate', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+            showAlert('success', `✅ API Key ${currentModalMode === 'generate' ? 'generated' : 'regenerated'} successfully`);
+            closeModal();
+            
+            setTimeout(() => {
+                loadAllDomains();
+            }, 1000);
+        } else {
+            throw new Error(data.error || data.message || 'Error generating API Key');
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('error', error.message);
+        confirmBtn.disabled = false;
+        confirmBtn.innerHTML = originalHTML;
+    }
+}
+
+// ============================================
+// MODALS: GENERATE / REGENERATE
+// ============================================
+
+function openGenerateModal(domain) {
+    currentModalDomain = domain;
+    currentModalMode = 'generate';
+    
+    document.getElementById('modalTitle').textContent = 'Generate API Key';
+    document.getElementById('modalMessage').textContent = `A new API Key will be generated for domain: ${domain}`;
+    document.getElementById('modalDescription').value = '';
+    document.getElementById('modalConfirmBtn').innerHTML = '<i class="fas fa-check"></i> Generate';
+    
+    document.getElementById('apiKeyModal').classList.add('show');
+}
+
+function openRegenerateModal(domain) {
+    currentModalDomain = domain;
+    currentModalMode = 'regenerate';
+    
+    // 🔥 MOSTRAR ADVERTENCIA SOBRE CUSTOM PLACES PRIMERO
+    document.getElementById('warningDomainName').textContent = domain;
+    document.getElementById('customPlacesWarningModal').classList.add('show');
+}
+
+// 🆕 NUEVA FUNCIÓN: Cerrar advertencia y decidir si continuar
+function closeCustomPlacesWarning(continueAction) {
+    document.getElementById('customPlacesWarningModal').classList.remove('show');
+    
+    if (continueAction) {
+        // Usuario confirmó, ahora mostrar el modal de regeneración
+        const domain = currentModalDomain;
+        
+        document.getElementById('modalTitle').textContent = 'Regenerate API Key';
+        document.getElementById('modalMessage').innerHTML = `
+            <strong>⚠️ Warning:</strong> The previous API Key will stop working.<br>
+            A new one will be generated for: <strong>${domain}</strong>
+        `;
+        document.getElementById('modalDescription').value = '';
+        document.getElementById('modalConfirmBtn').innerHTML = '<i class="fas fa-sync"></i> Regenerate';
+        
+        document.getElementById('apiKeyModal').classList.add('show');
+    } else {
+        // Usuario canceló
+        currentModalDomain = null;
+        currentModalMode = 'generate';
+    }
+}
+
+function closeModal() {
+    document.getElementById('apiKeyModal').classList.remove('show');
+    currentModalDomain = null;
+}
+
+// ============================================
+// REVOKE API KEY
+// ============================================
+
+async function revokeKey(keyId, domain) {
+    if (!confirm(`Are you sure you want to revoke the API Key for "${domain}"?\n\nThis action cannot be undone.`)) {
+        return;
+    }
+    
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/keys/revoke/${keyId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) throw new Error('Error revoking API Key');
+        
+        showAlert('success', '✅ API Key revoked successfully');
+        
+        setTimeout(() => {
+            loadAllDomains();
+        }, 1000);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('error', 'Error revoking API Key');
+    }
+}
+
+// ============================================
+// CANCEL EXTRA DOMAIN
+// ============================================
+
+async function cancelDomain(domainId, domainName) {
+    if (!confirm(`Are you sure you want to cancel the domain "${domainName}"?\n\nIts API Key will be deactivated and billing will stop for this domain.`)) {
+        return;
+    }
+    
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/domains/cancel/${domainId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) throw new Error('Error canceling domain');
+        
+        showAlert('success', `✅ Domain "${domainName}" canceled successfully`);
+        
+        setTimeout(() => {
+            loadAllDomains();
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showAlert('error', 'Error canceling domain');
+    }
+}
+
+// ============================================
+// UTILITIES
+// ============================================
+
+function maskKey(key) {
+    if (!key || key.length < 8) return key;
+    const first = key.substring(0, 4);
+    const last = key.substring(key.length - 4);
+    return `${first} ${'•'.repeat(Math.max(key.length - 8, 4))} ${last}`;
+}
+
+function toggleKeyVisibility(domainId, fullKey) {
+    const keyEl = document.getElementById(`key-${domainId}`);
+    if (!keyEl) return;
+    
+    if (keyEl.textContent.includes('•')) {
+        keyEl.textContent = fullKey.match(/.{1,4}/g)?.join(' ') || fullKey;
+    } else {
+        keyEl.textContent = maskKey(fullKey);
+    }
+}
+
+async function copyKeyToClipboard(key) {
+    try {
+        await navigator.clipboard.writeText(key);
+        showAlert('success', '✅ API Key copied to clipboard');
+    } catch (err) {
+        console.error('Error:', err);
+        showAlert('error', 'Error copying API Key');
+    }
+}
+
+function updateAddDomainButton(limits) {
+    const btn = document.getElementById('btnAddNewDomain');
+    const limitMsg = document.getElementById('limitReachedMessage');
+    const limitText = document.getElementById('limitText');
+    
+    if (!btn || !limitMsg) return;
+    
+    const domainsAllowed = limits?.domains_allowed || 1;
+    const domainsExtra = limits?.domains_extra || 0;
+    const domainsUsed = limits?.domains_used || 0;
+    const totalAllowed = domainsAllowed + domainsExtra;
+    
+    if (limitText) {
+        limitText.textContent = `${totalAllowed} domain${totalAllowed > 1 ? 's' : ''}`;
+    }
+    
+    if (domainsUsed >= totalAllowed) {
+        btn.style.display = 'none';
+        limitMsg.style.display = 'block';
+    } else {
+        btn.style.display = 'inline-flex';
+        limitMsg.style.display = 'none';
+    }
+}
+
+function handleAddNewDomain() {
+    window.location.href = 'addDomain.html';
+}
+
+function showAlert(type, message) {
+    const alert = type === 'success' ? document.getElementById('successAlert') : document.getElementById('errorAlert');
+    const messageSpan = type === 'success' ? document.getElementById('successMessage') : document.getElementById('errorMessage');
+    
+    if (alert && messageSpan) {
+        messageSpan.textContent = message;
+        alert.classList.add('show');
+        
+        setTimeout(() => {
+            alert.classList.remove('show');
+        }, 4000);
+    }
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadAllDomains();
+});
+
+// Close modal with ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Close modal on outside click
+document.getElementById('apiKeyModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Terms of Service for myNaturevista - Legal terms and conditions for using our SaaS platform." />
+    <meta name="author" content="myNaturevista" />
+    <title>Terms of Service - myNaturevista</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff3d5d;
+            --primary-dark: #00a884;
+            --secondary: #667eea;
+            --accent: #f59e0b;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #00b894 0%, #ff3d5d 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 2rem 4rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .content {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid transparent;
+            border-image: var(--gradient-1) 1;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: #444;
+        }
+
+        strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(0, 184, 148, 0.1) 0%, rgba(255, 61, 93, 0.1) 100%);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 2rem;
+            }
+
+            .container {
+                padding: 100px 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="landing/landingPage.html" class="logo">🌿 myNaturevista</a>
+            <ul class="nav-links">
+                <li><a href="landing/landingPage.html" class="nav-link">Home</a></li>
+                <li><a href="dashboard/loginSignup.html" class="nav-link">Dashboard</a></li>
+                <li><a href="privacy-policy.html" class="nav-link">Privacy</a></li>
+                <li><a href="cookie-policy.html" class="nav-link">Cookies</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: January 6, 2026</p>
+        </div>
+
+        <div class="content">
+            <h2>1. Agreement to Terms</h2>
+            <p>Welcome to myNaturevista. These Terms of Service govern your access to and use of our SaaS platform, including our website, dashboard, APIs, and embeddable widgets (collectively, the "Service").</p>
+            <div class="highlight-box">
+                <strong>BY ACCESSING OR USING OUR SERVICE, YOU AGREE TO BE BOUND BY THESE TERMS.</strong> If you do not agree to these Terms, you may not access or use the Service.
+            </div>
+            <p>We reserve the right to update these Terms at any time. Your continued use of the Service after changes constitutes acceptance of the modified Terms.</p>
+
+            <h2>2. Eligibility and Account Registration</h2>
+
+            <h3>2.1 Eligibility</h3>
+            <p>To use our Service, you must:</p>
+            <ul>
+                <li>Be at least 18 years of age</li>
+                <li>Have the legal capacity to enter into binding contracts</li>
+                <li>Represent a legitimate business or organization</li>
+                <li>Not be prohibited from using the Service under applicable laws</li>
+            </ul>
+
+            <h3>2.2 Account Registration</h3>
+            <p>When creating an account, you must:</p>
+            <ul>
+                <li>Provide accurate, current, and complete information</li>
+                <li>Maintain and update your information to keep it accurate</li>
+                <li>Maintain the security and confidentiality of your account credentials</li>
+                <li>Be responsible for all activities under your account</li>
+                <li>Immediately notify us of any unauthorized access or security breaches</li>
+            </ul>
+
+            <h2>3. Description of Service</h2>
+            <p>myNaturevista provides a SaaS platform for distributing natural places and tourism content through embeddable widgets. Our Service includes:</p>
+            <ul>
+                <li>Widget embedding technology for websites</li>
+                <li>API access for programmatic integration</li>
+                <li>Custom place management and content curation</li>
+                <li>Usage analytics and reporting dashboard</li>
+                <li>Multi-domain support (plan-dependent)</li>
+                <li>Customer support services</li>
+            </ul>
+
+            <h2>4. Subscription Plans and Billing</h2>
+
+            <h3>4.1 Subscription Tiers</h3>
+            <p>We offer three subscription plans:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Price</th>
+                        <th>Domains</th>
+                        <th>Widget Openings/Month</th>
+                        <th>Custom Places</th>
+                        <th>Extra Domain Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Starter</strong></td>
+                        <td>€19/month</td>
+                        <td>1</td>
+                        <td>3,000</td>
+                        <td>0</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business</strong></td>
+                        <td>€49/month</td>
+                        <td>1</td>
+                        <td>20,000</td>
+                        <td>100</td>
+                        <td>€10/month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterprise</strong></td>
+                        <td>€149/month</td>
+                        <td>1</td>
+                        <td>150,000</td>
+                        <td>Unlimited</td>
+                        <td>€15/month</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Plan features and pricing are subject to change with 30 days' notice to active subscribers.</em></p>
+
+            <h3>4.2 Billing Terms</h3>
+            <ul>
+                <li><strong>Billing Cycle</strong>: Subscriptions are billed monthly in advance</li>
+                <li><strong>Payment Method</strong>: All payments processed securely through Stripe</li>
+                <li><strong>Currency</strong>: Prices listed in Euros (€) unless otherwise specified</li>
+                <li><strong>Automatic Renewal</strong>: Subscriptions automatically renew unless cancelled</li>
+                <li><strong>Failed Payments</strong>: Service may be suspended after 3 failed payment attempts</li>
+                <li><strong>No Refunds</strong>: Subscription fees are non-refundable except where required by law</li>
+            </ul>
+
+            <h3>4.3 Usage Limits</h3>
+            <ul>
+                <li><strong>Widget Openings</strong>: Monthly limits apply per your subscription plan</li>
+                <li><strong>API Rate Limiting</strong>: 100 requests per 15 minutes per API key</li>
+                <li><strong>Custom Places</strong>: Limited by your subscription plan</li>
+                <li><strong>Overage</strong>: Exceeding limits may result in service throttling or suspension</li>
+            </ul>
+
+            <h3>4.4 Subscription Changes</h3>
+            <ul>
+                <li><strong>Upgrades</strong>: Take effect immediately; you are charged the prorated difference</li>
+                <li><strong>Downgrades</strong>: Take effect at the next billing cycle</li>
+                <li><strong>Cancellation</strong>: You may cancel anytime; access continues until the end of the current billing period</li>
+            </ul>
+
+            <h2>5. API Keys and Security</h2>
+
+            <h3>5.1 API Key Management</h3>
+            <ul>
+                <li>You are responsible for securing your API keys</li>
+                <li>API keys are unique identifiers for accessing our Service</li>
+                <li>Do not share, publish, or expose API keys publicly</li>
+                <li>Immediately rotate keys if compromised</li>
+            </ul>
+
+            <h3>5.2 Domain Validation</h3>
+            <ul>
+                <li>API keys are restricted to approved domains in your account</li>
+                <li>You must register all domains where widgets will be embedded</li>
+                <li>Domain verification may be required</li>
+                <li>Subdomains of registered domains are automatically allowed</li>
+            </ul>
+
+            <h2>6. Acceptable Use Policy</h2>
+
+            <h3>6.1 Permitted Use</h3>
+            <p>You may use our Service only for lawful purposes and in accordance with these Terms. Our platform is designed for sharing natural places and tourism content suitable for all audiences.</p>
+
+            <h3>6.2 Prohibited Content</h3>
+            <div class="highlight-box">
+                <p><strong>You may NOT upload, share, or display content that:</strong></p>
+                <ul style="margin-top: 0.5rem;">
+                    <li>Is sexually explicit, pornographic, or obscene</li>
+                    <li>Contains graphic violence or disturbing imagery</li>
+                    <li>Promotes hate speech, discrimination, or harassment</li>
+                    <li>Is denigrating, defamatory, or harmful to minors</li>
+                    <li>Contains malware, viruses, or malicious code</li>
+                    <li>Infringes intellectual property rights</li>
+                    <li>Violates any applicable laws or regulations</li>
+                    <li>Is fraudulent, misleading, or deceptive</li>
+                    <li>Promotes illegal activities</li>
+                </ul>
+            </div>
+
+            <h3>6.3 Prohibited Activities</h3>
+            <p>You may NOT:</p>
+            <ul>
+                <li>Use the Service for any unlawful purpose</li>
+                <li>Attempt to bypass security measures or access controls</li>
+                <li>Reverse engineer, decompile, or disassemble our Service</li>
+                <li>Scrape, crawl, or harvest data without authorization</li>
+                <li>Interfere with or disrupt the Service or servers</li>
+                <li>Impersonate any person or entity</li>
+                <li>Resell or redistribute the Service without authorization</li>
+                <li>Exceed rate limits or attempt to overwhelm our systems</li>
+            </ul>
+
+            <h2>7. Intellectual Property Rights</h2>
+
+            <h3>7.1 Our Property</h3>
+            <p>The Service, including all content, features, software, designs, logos, and trademarks, is owned by myNaturevista and protected by intellectual property laws.</p>
+
+            <h3>7.2 Your Content</h3>
+            <p>You retain ownership of content you upload ("User Content"). By uploading User Content, you grant us a worldwide, non-exclusive, royalty-free license to use, store, display, and distribute your content solely to provide and improve the Service.</p>
+            <p>You represent and warrant that:</p>
+            <ul>
+                <li>You own or have rights to your User Content</li>
+                <li>Your content does not infringe third-party rights</li>
+                <li>Your content complies with these Terms</li>
+            </ul>
+
+            <h2>8. Data and Privacy</h2>
+
+            <h3>8.1 Privacy Policy</h3>
+            <p>Our <a href="privacy-policy.html">Privacy Policy</a> explains how we collect, use, and protect your information. By using the Service, you also agree to our Privacy Policy.</p>
+
+            <h3>8.2 Data Processing</h3>
+            <ul>
+                <li>We act as a data processor for widget visitor data</li>
+                <li>You act as the data controller for visitors to your website</li>
+                <li>You must have appropriate privacy notices and consents for your website visitors</li>
+                <li>You are responsible for compliance with privacy laws (GDPR, CCPA, etc.) regarding your visitors</li>
+            </ul>
+
+            <h2>9. Service Availability and Modifications</h2>
+
+            <h3>9.1 Service Availability</h3>
+            <p>We strive to provide reliable, uninterrupted Service, but we do not guarantee 100% uptime or availability. We may temporarily suspend the Service for maintenance or security updates.</p>
+
+            <h3>9.2 Service Modifications</h3>
+            <p>We reserve the right to modify, update, or discontinue features with reasonable notice to users.</p>
+
+            <h2>10. Disclaimer of Warranties</h2>
+            <div class="highlight-box">
+                <p><strong>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED.</strong></p>
+                <p style="margin-top: 0.5rem;">We disclaim all warranties, including merchantability, fitness for a particular purpose, non-infringement, accuracy, completeness, and security.</p>
+            </div>
+
+            <h2>11. Limitation of Liability</h2>
+            <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</strong></p>
+
+            <h3>11.1 No Liability for Damages</h3>
+            <p>We shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, revenue, data, or business opportunities.</p>
+
+            <h3>11.2 Liability Cap</h3>
+            <p>Our total liability for all claims shall not exceed the greater of: (a) €100, or (b) the amount you paid us in the 12 months preceding the claim.</p>
+
+            <h2>12. Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless myNaturevista from any claims, liabilities, damages, losses, and expenses arising from:</p>
+            <ul>
+                <li>Your violation of these Terms</li>
+                <li>Your violation of any laws or regulations</li>
+                <li>Your User Content or use of the Service</li>
+                <li>Your infringement of third-party rights</li>
+            </ul>
+
+            <h2>13. Termination</h2>
+
+            <h3>13.1 Termination by You</h3>
+            <p>You may terminate your account at any time through your dashboard settings. Upon termination, access ends at the end of your billing period with no refunds for partial months.</p>
+
+            <h3>13.2 Termination by Us</h3>
+            <p>We may suspend or terminate your account immediately if you violate these Terms, engage in fraudulent activities, or pose a security risk.</p>
+
+            <h3>13.3 Effect of Termination</h3>
+            <p>Upon termination, your API keys will be deactivated, widgets will stop functioning, and your data will be deleted per our retention policy.</p>
+
+            <h2>14. General Provisions</h2>
+
+            <h3>14.1 Governing Law</h3>
+            <p>These Terms are governed by the laws of Belgium, without regard to conflict of law principles.</p>
+
+            <h3>14.2 Entire Agreement</h3>
+            <p>These Terms, along with our Privacy Policy and Cookie Policy, constitute the entire agreement between you and myNaturevista.</p>
+
+            <h3>14.3 Contact Information</h3>
+            <div class="highlight-box">
+                <strong>myNaturevista Support</strong><br>
+                Email: <a href="mailto:support@mynaturevista.com">info@mynaturevista.com</a><br>
+                Legal: <a href="mailto:legal@mynaturevista.com">mynaturevista@gmail.com</a>
+            </div>
+
+            <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e0e0e0;">
+
+            <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 2rem;">
+                <strong>Acknowledgment:</strong> By clicking "I Agree," creating an account, or using the Service, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
+            </p>
+
+            <p style="text-align: center; margin-top: 1rem;">
+                <strong>Thank you for choosing myNaturevista!</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 myNaturevista. All rights reserved.</p>
+        <p>
+            <a href="privacy-policy.html" style="margin: 0 1rem;">Privacy Policy</a> |
+            <a href="terms-of-service.html" style="margin: 0 1rem;">Terms of Service</a> |
+            <a href="cookie-policy.html" style="margin: 0 1rem;">Cookie Policy</a>
+        </p>
+    </footer>
+</body>
+</html>

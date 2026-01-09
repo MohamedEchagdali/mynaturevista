@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff3d5d;
+            --secondary-color: #f1683a;
+            --accent-color: #8a172a;
+            --dark-color: #2c1810;
+            --light-bg: #fff7f6;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --gradient-primary: linear-gradient(135deg, #ff3d5d, #f1683a);
+            --gradient-dark: linear-gradient(135deg, #2c1810, #8a172a);
+            --gradient-success: linear-gradient(135deg, #10a733, #0aaa7a);
+            --shadow-light: 0 4px 15px rgba(255, 61, 93, 0.1);
+            --shadow-medium: 0 8px 30px rgba(255, 61, 93, 0.15);
+            --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #00b894 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.05"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #00b894 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .main-container {
+            margin-top: 100px;
+            padding: 2rem 1rem 4rem;
+            display: flex;
+            align-items: center;
+            min-height: calc(100vh - 100px);
+        }
+
+        .success-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: var(--shadow-heavy);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header-success {
+            background: var(--gradient-success);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header-success::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .card-header-success h1 {
+            color: white;
+            font-weight: 600;
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header-success .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-body-success {
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        .success-message {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .success-details {
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(40, 167, 69, 0.3);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(40, 167, 69, 0.1);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--success-color);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(40, 167, 69, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--success-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Email status badges */
+        .email-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .email-status.loading {
+            color: var(--warning-color);
+        }
+
+        .email-status.success {
+            color: var(--success-color);
+        }
+
+        .email-status.error {
+            color: #dc3545;
+        }
+
+        .btn-success-custom {
+            background: var(--gradient-success);
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .btn-success-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-success-custom:hover::before {
+            left: 100%;
+        }
+
+        .btn-success-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-secondary-custom {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .btn-secondary-custom:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            text-decoration: none;
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            animation: confetti 3s linear infinite;
+        }
+
+        .confetti-piece:nth-child(odd) {
+            background: var(--success-color);
+            animation-delay: -0.5s;
+        }
+
+        .confetti-piece:nth-child(even) {
+            background: var(--secondary-color);
+            animation-delay: -1s;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin-top: 80px;
+                padding: 1rem;
+            }
+
+            .card-body-success {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-header-success h1 {
+                font-size: 2rem;
+            }
+
+            .success-icon {
+                font-size: 3rem;
+            }
+
+            .btn-success-custom,
+            .btn-secondary-custom {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/">🌿 myNaturevista</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-10">
+                    <div class="success-card">
+                        <div class="card-header-success">
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h1>Payment Successful!</h1>
+                            <p class="subtitle">Welcome to myNaturevista - Your subscription is now active</p>
+                        </div>
+
+                        <div class="card-body-success">
+                            <div class="success-message">
+                                <strong>Congratulations!</strong> Your payment has been processed successfully. 
+                                You now have full access to all the features of your selected plan.
+                            </div>
+
+                            <div class="success-details" id="paymentDetails">
+                                <div class="detail-item">
+                                    <span class="detail-label">
+                                        <i class="fas fa-box"></i> Plan
+                                    </span>
+                                    <span class="detail-value" id="planName">Loading...</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">
+                                        <i class="fas fa-calendar-alt"></i> Transaction Date
+                                    </span>
+                                    <span class="detail-value" id="transactionDate"></span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">
+                                        <i class="fas fa-credit-card"></i> Payment Method
+                                    </span>
+                                    <span class="detail-value">Stripe Secure Payment</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">
+                                        <i class="fas fa-shield-alt"></i> Status
+                                    </span>
+                                    <span class="detail-value">
+                                        <i class="fas fa-check"></i> Confirmed
+                                    </span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">
+                                        <i class="fas fa-envelope"></i> Confirmation Email
+                                    </span>
+                                    <span class="detail-value email-status loading" id="emailStatus">
+                                        <span class="spinner"></span>
+                                        Verifying...
+                                    </span>
+                                </div>
+                            </div>
+
+<div class="text-center">
+    <button id="dashboardBtn" class="btn-success-custom" disabled>
+        <span class="spinner-border spinner-border-sm me-2" role="status" id="btnSpinner"></span>
+        <i class="fas fa-tachometer-alt" id="btnIcon" style="display: none;"></i>
+        <span id="btnText">Preparing dashboard...</span>
+    </button>
+    <a href="/" class="btn-secondary-custom">
+        <i class="fas fa-home"></i>
+        Back to Home
+    </a>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   // ✅ FUNCIÓN PARA CREAR CONFETTI
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#ff6b6b', '#00b894', '#f59e0b', '#10a733'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confettiPiece = document.createElement('div');
+                confettiPiece.className = 'confetti-piece';
+                confettiPiece.style.left = Math.random() * 100 + '%';
+                confettiPiece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's';
+                confettiPiece.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+
+        // ✅ FUNCIÓN PARA OBTENER PARÁMETROS DE URL
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // ✅ FUNCIÓN PRINCIPAL: Verificar pago
+        async function verifyPaymentAndPrepareAccess(sessionId) {
+            try {
+                
+                const response = await fetch(`/api/stripe/verify-payment?session_id=${sessionId}`);
+                const data = await response.json();
+
+                // Actualizar nombre del plan
+                if (data.planName) {
+                    document.getElementById('planName').textContent = data.planName;
+                }
+
+                // Actualizar estado del email
+                const emailStatusEl = document.getElementById('emailStatus');
+                
+                if (data.emailSent) {
+                    emailStatusEl.className = 'detail-value email-status success';
+                    emailStatusEl.innerHTML = '<i class="fas fa-check-circle"></i> Sent successfully';
+                } else {
+                    emailStatusEl.className = 'detail-value email-status error';
+                    emailStatusEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Pending';
+                }
+
+                // Verificar token JWT
+                let token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                
+                if (!token) {
+                    console.log('⚠️ No hay token, redirigir a login');
+                    enableLoginButton();
+                    return;
+                }
+
+                // Verificar si el token está actualizado
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    
+                    if (!payload.is_subscribed) {
+                        enableLoginButton();
+                        return;
+                    }
+                } catch (e) {
+                    console.warn('⚠️ Error decodificando token');
+                    enableLoginButton();
+                    return;
+                }
+
+                // ✅ Token válido, habilitar acceso directo
+                console.log('✅ Token válido, habilitando dashboard');
+                enableDashboardButton();
+
+            } catch (error) {
+                console.error('❌ Error verificando pago:', error);
+                
+                const emailStatusEl = document.getElementById('emailStatus');
+                emailStatusEl.className = 'detail-value email-status error';
+                emailStatusEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                
+                enableLoginButton();
+            }
+        }
+
+        // ✅ HABILITAR BOTÓN DE DASHBOARD
+        function enableDashboardButton() {
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const btnIcon = document.getElementById('btnIcon');
+            const btnText = document.getElementById('btnText');
+            
+            dashboardBtn.disabled = false;
+            btnSpinner.style.display = 'none';
+            btnIcon.style.display = 'inline';
+            btnText.textContent = 'Access Dashboard';
+            
+            dashboardBtn.onclick = function() {
+                window.location.href = '/dashboard/dashboard.html';
+            };
+        }
+
+        // ✅ HABILITAR BOTÓN DE LOGIN
+        function enableLoginButton() {
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const btnIcon = document.getElementById('btnIcon');
+            const btnText = document.getElementById('btnText');
+            
+            dashboardBtn.disabled = false;
+            btnSpinner.style.display = 'none';
+            btnIcon.style.display = 'inline';
+            btnIcon.className = 'fas fa-tachometer-alt';
+            btnText.textContent = 'Go to dashboard';
+            
+            dashboardBtn.onclick = function() {
+                window.location.href = '/dashboard/dashboard.html?redirect=dashboard&payment=success';
+            };
+        }
+
+        // ✅ INICIALIZAR AL CARGAR
+        document.addEventListener('DOMContentLoaded', function() {
+            createConfetti();
+            
+            const now = new Date();
+            document.getElementById('transactionDate').textContent = now.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const sessionId = getUrlParameter('session_id');
+            if (sessionId) {
+                verifyPaymentAndPrepareAccess(sessionId);
+            } else {
+                enableLoginButton();
+            }
+        });
+</script>
+</body>
+</html>

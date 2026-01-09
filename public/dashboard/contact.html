@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Contact Support - myNaturevista</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/stylesDashboard.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .contact-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .contact-card {
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+                padding: 40px;
+                margin-bottom: 30px;
+            }
+            
+            .contact-header {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            
+            .contact-header h2 {
+                color: #333;
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+            
+            .contact-header p {
+                color: #666;
+                font-size: 16px;
+            }
+            
+            .form-group {
+                margin-bottom: 25px;
+            }
+            
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
+                font-size: 14px;
+            }
+            
+            .form-group label .required {
+                color: #ff6b6b;
+            }
+            
+            .form-control {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                font-size: 15px;
+                transition: all 0.3s ease;
+            }
+            
+            .form-control:focus {
+                outline: none;
+                border-color: #00b894;
+                box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+            }
+            
+            .form-control:disabled {
+                background-color: #f5f5f5;
+                cursor: not-allowed;
+            }
+            
+            textarea.form-control {
+                resize: vertical;
+                min-height: 150px;
+            }
+            
+            .priority-selector {
+                display: flex;
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .priority-option {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .priority-option input[type="radio"] {
+                display: none;
+            }
+            
+            .priority-label {
+                display: block;
+                padding: 12px 20px;
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 600;
+            }
+            
+            .priority-option input[type="radio"]:checked + .priority-label {
+                border-color: #00b894;
+                background: linear-gradient(135deg, #00b894 0%, #00a67d 100%);
+                color: white;
+            }
+            
+            .priority-label.low {
+                color: #10b981;
+            }
+            
+            .priority-label.medium {
+                color: #f59e0b;
+            }
+            
+            .priority-label.high {
+                color: #ef4444;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 15px;
+                background: linear-gradient(135deg, #00b894 0%, #ff6b6b 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .submit-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(0, 184, 148, 0.4);
+            }
+            
+            .submit-btn:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+            
+            .info-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+            
+            .info-card {
+                background: linear-gradient(135deg, #00b894 0%, #059669 100%);
+                padding: 25px;
+                border-radius: 12px;
+                color: white;
+                text-align: center;
+            }
+            
+            .info-card i {
+                font-size: 32px;
+                margin-bottom: 15px;
+                opacity: 0.9;
+            }
+            
+            .info-card h4 {
+                font-size: 16px;
+                margin-bottom: 8px;
+                font-weight: 600;
+            }
+            
+            .info-card p {
+                font-size: 14px;
+                opacity: 0.9;
+                margin: 0;
+            }
+            
+            .account-info {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                margin-bottom: 25px;
+                border-left: 4px solid #00b894;
+            }
+            
+            .account-info h4 {
+                margin-bottom: 15px;
+                color: #333;
+                font-size: 18px;
+            }
+            
+            .account-details {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            
+            .account-detail {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .account-detail i {
+                color: #00b894;
+                font-size: 18px;
+            }
+            
+            .account-detail span {
+                color: #666;
+                font-size: 14px;
+            }
+            
+            .account-detail strong {
+                color: #333;
+                margin-left: 5px;
+            }
+        </style>
+            <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   SIDEBAR CONTAINER
+======================================== */
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+/* ========================================
+   LOGO SECTION
+======================================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+  color: var(--sidebar-text);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   USER DROPDOWN MENU
+======================================== */
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* ========================================
+   MODERN HEADER
+======================================== */
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #4a5568;
+}
+
+.header-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+.main-content {
+  margin-left: 0;
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+/* ========================================
+   OVERLAY Y MOBILE
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+
+    </style>
+    </head>
+<body data-page="contact">
+    <!-- ========================================
+         MODERN SIDEBAR
+    ======================================== -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Estadísticas">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Guía de Integración">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Lugares Personalizados">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Configuración de Cuenta">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Cambiar Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link active" data-tooltip="Historial de Facturación">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Panel Admin">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">Usuario</div>
+                    <div class="user-plan" id="sidebarUserPlan">Plan Free</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+         MODERN HEADER
+    ======================================== -->
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">Support</h1>
+        
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+            <div class="main-content">
+                <main>
+                    <div class="container-fluid px-4">
+                        
+                        <div class="contact-container">
+                            <!-- Info Cards -->
+                            <div class="info-cards">
+                                <div class="info-card">
+                                    <i class="fas fa-headset"></i>
+                                    <h4>7/7 Support</h4>
+                                    <p>We're here to help anytime</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-clock"></i>
+                                    <h4>Quick Response</h4>
+                                    <p>Average reply time: 5-7 hours</p>
+                                </div>
+                                <div class="info-card">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <h4>Priority Support</h4>
+                                    <p>High-priority issues are handled first to ensure faster resolution.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Form Card -->
+                            <div class="contact-card">
+                                <div class="contact-header">
+                                    <h2>How can we help you?</h2>
+                                    <p>Fill out the form below and our support team will get back to you shortly</p>
+                                </div>
+                                
+                                <!-- Account Info -->
+                                <div class="account-info">
+                                    <h4><i class="fas fa-user-circle"></i> Your Account Information</h4>
+                                    <div class="account-details">
+                                        <div class="account-detail">
+                                            <i class="fas fa-envelope"></i>
+                                            <span>Email: <strong id="userEmail">Loading...</strong></span>
+                                        </div>
+                                        <div class="account-detail">
+                                            <i class="fas fa-crown"></i>
+                                            <span>Plan: <strong id="userPlan">Loading...</strong></span>
+                                        </div>
+                                        <div class="account-detail">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span>Member since: <strong id="memberSince">Loading...</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Contact Form -->
+                                <form id="clientContactForm">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            Full Name <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="name" 
+                                            class="form-control" 
+                                            placeholder="Your full name"
+                                            required
+                                        />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">
+                                            Email Address <span class="required">*</span>
+                                        </label>
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            class="form-control" 
+                                            placeholder="your@email.com"
+                                            disabled
+                                            required
+                                        />
+                                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                                            We'll use your account email for communication
+                                        </small>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="subject">
+                                            Subject <span class="required">*</span>
+                                        </label>
+                                        <select id="subject" class="form-control" required>
+                                            <option value="">Select a subject</option>
+                                            <option value="technical">Technical Issue</option>
+                                            <option value="billing">Billing Question</option>
+                                            <option value="feature">Feature Request</option>
+                                            <option value="bug">Bug Report</option>
+                                            <option value="account">Account Management</option>
+                                            <option value="api">API Integration Help</option>
+                                            <option value="widget">Widget Configuration</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>
+                                            Priority Level <span class="required">*</span>
+                                        </label>
+                                        <div class="priority-selector">
+                                            <div class="priority-option">
+                                                <input type="radio" id="low" name="priority" value="low" checked>
+                                                <label for="low" class="priority-label low">
+                                                    <i class="fas fa-circle"></i> Low
+                                                </label>
+                                            </div>
+                                            <div class="priority-option">
+                                                <input type="radio" id="medium" name="priority" value="medium">
+                                                <label for="medium" class="priority-label medium">
+                                                    <i class="fas fa-exclamation-circle"></i> Medium
+                                                </label>
+                                            </div>
+                                            <div class="priority-option">
+                                                <input type="radio" id="high" name="priority" value="high">
+                                                <label for="high" class="priority-label high">
+                                                    <i class="fas fa-exclamation-triangle"></i> High
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="message">
+                                            Message <span class="required">*</span>
+                                        </label>
+                                        <textarea 
+                                            id="message" 
+                                            class="form-control" 
+                                            placeholder="Please describe your issue or question in detail..."
+                                            required
+                                        ></textarea>
+                                        <small style="color: #666; font-size: 12px; margin-top: 5px; display: block;">
+                                            The more details you provide, the faster we can help you
+                                        </small>
+                                    </div>
+                                    
+                                    <button type="submit" class="submit-btn">
+                                        <i class="fas fa-paper-plane"></i> Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script type="module" src="js/main.js"></script>
+        
+        <script>
+            // Cargar información del usuario
+// Cargar información del usuario
+document.addEventListener('DOMContentLoaded', async function() {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+        window.location.href = 'loginSignup.html';
+        return;
+    }
+    
+    try {
+        // Obtener información básica del usuario
+        const profileResponse = await fetch('/api/profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        
+        if (profileResponse.ok) {
+            const userData = await profileResponse.json();
+            
+            // Llenar campos básicos
+            document.getElementById('name').value = userData.name || '';
+            document.getElementById('email').value = userData.email || '';
+            document.getElementById('userEmail').textContent = userData.email || 'N/A';
+            
+            if (userData.created_at) {
+                const date = new Date(userData.created_at);
+                document.getElementById('memberSince').textContent = date.toLocaleDateString();
+            }
+        }
+        
+        // 🔥 OBTENER EL PLAN DESDE EL ENDPOINT CORRECTO
+        const planResponse = await fetch('/api/user/current-plan', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (planResponse.ok) {
+            const planData = await planResponse.json();
+            const planName = planData.planName || 'Free';
+            document.getElementById('userPlan').textContent = planName;
+        } else {
+            document.getElementById('userPlan').textContent = 'Free';
+        }
+        
+    } catch (error) {
+        console.error('Error loading user data:', error);
+        document.getElementById('userPlan').textContent = 'Free';
+    }
+});
+            // Manejar envío del formulario
+            document.getElementById('clientContactForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonHTML = submitButton.innerHTML;
+                
+                // Deshabilitar botón durante el envío
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                const token = localStorage.getItem('token');
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value;
+                const priority = document.querySelector('input[name="priority"]:checked').value;
+                const message = document.getElementById('message').value.trim();
+                
+                try {
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // ✅ ESTO ES LO IMPORTANTE
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            subject,
+                            priority,
+                            message,
+                            source: 'dashboard' // ✅ Identificador de origen
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        showNotification('✅ Message sent successfully! We\'ll get back to you soon.', 'success');
+                        
+                        // Limpiar formulario excepto campos de usuario
+                        document.getElementById('subject').value = '';
+                        document.getElementById('message').value = '';
+                        document.querySelector('input[name="priority"][value="low"]').checked = true;
+                    } else {
+                        showNotification(`❌ ${data.error || 'Failed to send message'}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('❌ Connection error. Please try again.', 'error');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalButtonHTML;
+                }
+            });
+            
+            // Función para mostrar notificaciones
+            function showNotification(message, type = 'info') {
+                const existingNotification = document.querySelector('.custom-notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                const notification = document.createElement('div');
+                notification.className = `custom-notification ${type}`;
+                notification.textContent = message;
+                
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 20px 30px;
+                    background: ${type === 'success' ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'};
+                    color: white;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                    z-index: 10000;
+                    font-size: 16px;
+                    font-weight: 500;
+                    animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-in 4.5s;
+                    max-width: 400px;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(400px); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; transform: translateX(400px); }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+        </script>
+    </body>
+</html>

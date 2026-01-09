@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Best Practices - myNaturevista SaaS Platform" />
+    <title>Best Practices - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body data-page="docs-best-practices">
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Analytics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Locations">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Upgrade Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Keys & Domains">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Keys & Domains</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Account & Privacy">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Account & Privacy</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link active" data-tooltip="Tips & Recommendations">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Tips & Recommendations</span>
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+            </div>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item"><i class="fas fa-envelope"></i> Support</a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <h1 class="header-title">Best Practices for Success</h1>
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="docs-container">
+            <div class="breadcrumbs"><a href="docs-overview.html">Documentation</a><i class="fas fa-chevron-right"></i><span>Best Practices</span></div>
+
+            <div class="docs-hero">
+                <div class="docs-hero-icon"><i class="fas fa-star"></i></div>
+                <h1 class="docs-hero-title">Best Practices for Success</h1>
+                <p class="docs-hero-subtitle">Tips to maximize conversions and ROI from your widget</p>
+            </div>
+
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table of Contents</h3>
+                <ul>
+                    <li><a href="#placement">Widget Placement Strategy</a></li>
+                    <li><a href="#custom-places">Creating Great Custom Locations</a></li>
+                    <li><a href="#management">Managing Your Costs</a></li>
+                    <li><a href="#analytics">Using Analytics</a></li>
+                    <li><a href="#optimization">Optimization Tips</a></li>
+                    <li><a href="#mistakes">Common Mistakes to Avoid</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-section" id="placement">
+                <h2 class="docs-section-title"><i class="fas fa-th-large"></i> Widget Placement Strategy</h2>
+                <div class="docs-content">
+                    <p>Where you place your widget on your website significantly impacts how many times it gets clicked.</p>
+
+                    <h3>Best Pages to Add the Widget</h3>
+                    <ul>
+                        <li><strong>Product/Service Pages:</strong> Show related destinations alongside your offerings</li>
+                        <li><strong>Destination Pages:</strong> Let visitors explore similar places</li>
+                        <li><strong>Booking Pages:</strong> Help customers find additional destinations</li>
+                        <li><strong>Blog Posts:</strong> Enhance travel-related content with the widget</li>
+                    </ul>
+
+                    <h3>Pages to Avoid</h3>
+                    <ul>
+                        <li>Generic homepage (unless integrated naturally)</li>
+                        <li>Error or "not found" pages</li>
+                        <li>Pages unrelated to travel or destinations</li>
+                        <li>Low-traffic pages</li>
+                    </ul>
+
+                    <div class="info-box info-success">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Placement Tip</strong>
+                            <p>Place the widget where visitors have high intent - when they're actively looking for travel information, not just browsing casually.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="custom-places">
+                <h2 class="docs-section-title"><i class="fas fa-map-marker-alt"></i> Creating Great Custom Locations</h2>
+                <div class="docs-content">
+                    <p>Your custom locations drive conversions. Make them compelling!</p>
+
+                    <h3>High-Quality Images</h3>
+                    <ul>
+                        <li>Use professional photos (at least 1600x1200 pixels)</li>
+                        <li>Landscape format (4:3 ratio) works best</li>
+                        <li>Show the best features of the location</li>
+                        <li>Avoid small or low-resolution images</li>
+                    </ul>
+
+                    <h3>Compelling Descriptions</h3>
+                    <p>Write descriptions that make people want to visit:</p>
+                    <ul>
+                        <li>Include specific features and highlights</li>
+                        <li>Mention what makes it unique</li>
+                        <li>Be honest about what visitors will experience</li>
+                        <li>Keep it concise but informative</li>
+                    </ul>
+
+                    <h3>Always Include Pricing</h3>
+                    <p>Transparent pricing builds trust and increases bookings:</p>
+                    <ul>
+                        <li>Show clear per-person or per-night pricing</li>
+                        <li>Use "From" for variable pricing</li>
+                        <li>Match your audience's currency</li>
+                        <li>Update prices seasonally if they change</li>
+                    </ul>
+
+                    <h3>Direct Booking Links</h3>
+                    <p>Link directly to booking pages, not your homepage:</p>
+                    <ul>
+                        <li>Link to the specific location or package</li>
+                        <li>Include booking discounts in the link if available</li>
+                        <li>Test that links work before saving</li>
+                    </ul>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Conversion Boost</strong>
+                            <p>Well-created custom locations with high-quality images and direct links convert 3x better than basic listings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="management">
+                <h2 class="docs-section-title"><i class="fas fa-coins"></i> Managing Your Costs</h2>
+                <div class="docs-content">
+                    <p>Stay within budget and optimize your plan for maximum value.</p>
+
+                    <h3>Understanding "Openings"</h3>
+                    <p>Only when a visitor clicks the widget button does it count as 1 opening.</p>
+                    <ul>
+                        <li>Widget loading on a page = free (unlimited)</li>
+                        <li>Visitor clicks to open widget = 1 opening</li>
+                        <li>Browsing inside the widget = free</li>
+                        <li>Clicking a destination link = free</li>
+                    </ul>
+
+                    <h3>Monitor Your Usage</h3>
+                    <p>Check your analytics regularly:</p>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Click Analytics</h3><p>In the left sidebar, click "Analytics"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Check Your Usage %</h3><p>See what percentage of your monthly limit you've used</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Plan Accordingly</h3><p>If you're approaching 80%, consider upgrading your plan</p></div></div>
+                    </div>
+
+                    <h3>Right-Sizing Your Plan</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Monthly Openings</th>
+                                <th>Recommended Plan</th>
+                                <th>Why</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Less than 2K</td>
+                                <td>Starter</td>
+                                <td>Low-cost trial</td>
+                            </tr>
+                            <tr>
+                                <td>2K - 20K</td>
+                                <td>Business</td>
+                                <td>Best value, includes custom locations</td>
+                            </tr>
+                            <tr>
+                                <td>More than 20K</td>
+                                <td>Enterprise</td>
+                                <td>Best per-opening price</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Budget Tip</strong>
+                            <p>Higher-tier plans offer better pricing per opening. If you consistently use 80%+ of your limit, upgrading saves money.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="analytics">
+                <h2 class="docs-section-title"><i class="fas fa-chart-line"></i> Using Analytics to Improve Results</h2>
+                <div class="docs-content">
+                    <p>Your analytics dashboard shows where your clicks come from and which destinations are most popular.</p>
+
+                    <h3>Key Metrics to Track</h3>
+                    <ul>
+                        <li><strong>Total Opens:</strong> How many times your widget was opened</li>
+                        <li><strong>Popular Locations:</strong> Which destinations get the most interest</li>
+                        <li><strong>Top Countries:</strong> Where your visitors are from</li>
+                        <li><strong>Performance by Domain:</strong> Which of your websites drives more clicks</li>
+                    </ul>
+
+                    <h3>How to Use This Data</h3>
+                    <p>Use your insights to drive better results:</p>
+                    <ul>
+                        <li>Add more custom locations in high-demand categories</li>
+                        <li>Place widgets on your best-performing pages</li>
+                        <li>Update pricing for popular destinations</li>
+                        <li>Focus marketing efforts on top-converting regions</li>
+                        <li>Remove underperforming custom locations</li>
+                    </ul>
+
+                    <div class="info-box info-success">
+                        <i class="fas fa-chart-bar"></i>
+                        <div>
+                            <strong>Weekly Review</strong>
+                            <p>Spend 15 minutes weekly reviewing your analytics. Regular optimization can increase conversions by 20-40%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="optimization">
+                <h2 class="docs-section-title"><i class="fas fa-bolt"></i> Optimization Tips</h2>
+                <div class="docs-content">
+                    <p>These proven tactics improve widget performance:</p>
+
+                    <h3>Customize the Button Text</h3>
+                    <p>Use compelling button text that matches your brand:</p>
+                    <ul>
+                        <li>"Explore Destinations"</li>
+                        <li>"Book Your Adventure"</li>
+                        <li>"Find Inspiration"</li>
+                        <li>"Discover More Places"</li>
+                    </ul>
+
+                    <h3>Use Multiple Widgets Strategically</h3>
+                    <ul>
+                        <li>Main widget on homepage/general pages</li>
+                        <li>Country widget on region-specific pages</li>
+                        <li>Single-place widget on detail pages</li>
+                    </ul>
+
+                    <h3>Multiple Custom Locations</h3>
+                    <ul>
+                        <li>Create at least 5-10 custom locations</li>
+                        <li>Keep them updated with current pricing</li>
+                        <li>Rotate featured locations seasonally</li>
+                        <li>Focus on high-margin offerings</li>
+                    </ul>
+
+                    <h3>A/B Testing</h3>
+                    <p>Test different placements and messaging:</p>
+                    <ul>
+                        <li>Try different button text</li>
+                        <li>Test placement on different pages</li>
+                        <li>Experiment with widget styling</li>
+                        <li>Track which variations perform best</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="docs-section" id="mistakes">
+                <h2 class="docs-section-title"><i class="fas fa-exclamation-triangle"></i> Common Mistakes to Avoid</h2>
+                <div class="docs-content">
+                    <p>Learn from others' mistakes:</p>
+
+                    <h3>Mistake 1: Poor Quality Custom Locations</h3>
+                    <div class="info-box info-danger">
+                        <i class="fas fa-times"></i>
+                        <div>
+                            <strong>Problem:</strong> Low-resolution images, vague descriptions, no pricing
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Invest in professional images and detailed, compelling descriptions with transparent pricing.</p>
+                        </div>
+                    </div>
+
+                    <h3>Mistake 2: Wrong Page Placement</h3>
+                    <div class="info-box info-danger">
+                        <i class="fas fa-times"></i>
+                        <div>
+                            <strong>Problem:</strong> Widget on pages where visitors aren't looking for travel
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Place widgets on travel-relevant pages where visitors have high intent.</p>
+                        </div>
+                    </div>
+
+                    <h3>Mistake 3: Not Monitoring Analytics</h3>
+                    <div class="info-box info-danger">
+                        <i class="fas fa-times"></i>
+                        <div>
+                            <strong>Problem:</strong> Set it and forget it - missing optimization opportunities
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Check analytics weekly and continuously optimize your strategy.</p>
+                        </div>
+                    </div>
+
+                    <h3>Mistake 4: Ignoring Usage Limits</h3>
+                    <div class="info-box info-danger">
+                        <i class="fas fa-times"></i>
+                        <div>
+                            <strong>Problem:</strong> Widget stops working when you exceed your monthly limit
+                            <p style="margin-top: 0.5rem;"><strong>Solution:</strong> Monitor usage and upgrade your plan proactively before hitting limits.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section">
+                <h2 class="docs-section-title"><i class="fas fa-flag-checkered"></i> Key Takeaways</h2>
+                <div class="docs-content">
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                            <h3>Quality Matters</h3>
+                            <p>High-quality images and descriptions drive conversions</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Data-Driven</h3>
+                            <p>Use analytics to guide your strategy</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                            <h3>Smart Placement</h3>
+                            <p>Right widget, right page, right audience</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><i class="fas fa-coins"></i></div>
+                            <h3>Budget Control</h3>
+                            <p>Monitor usage and upgrade when needed</p>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-life-ring"></i>
+                        <div>
+                            <strong>Need Help?</strong>
+                            <p>Our support team is here to help optimize your setup. Contact us anytime with questions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section">
+                <h2 class="docs-section-title"><i class="fas fa-book"></i> Learn More</h2>
+                <div class="docs-content">
+                    <div class="docs-nav-grid">
+                        <a href="docs-widget-setup.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-code"></i></div>
+                            <h3>Widget Setup</h3>
+                            <p>How to add the widget to your website</p>
+                        </a>
+                        <a href="docs-security.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-lock"></i></div>
+                            <h3>Security</h3>
+                            <p>Keep your account safe</p>
+                        </a>
+                        <a href="contact.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-life-ring"></i></div>
+                            <h3>Support</h3>
+                            <p>Get help from our team</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                    <div>
+                        <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                        &middot;
+                        <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                        &middot;
+                        <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { SidebarManager } from './js/components/SidebarManager.js';
+        import { SubscriptionChecker } from './js/components/SubscriptionChecker.js';
+        document.addEventListener('DOMContentLoaded', function() {
+            SidebarManager.init();
+            SubscriptionChecker.check();
+        });
+    </script>
+</body>
+</html>

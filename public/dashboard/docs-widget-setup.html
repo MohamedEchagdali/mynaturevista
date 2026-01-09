@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Widget Setup & Configuration - myNaturevista SaaS Platform" />
+    <meta name="author" content="myNaturevista" />
+    <title>Widget Setup - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        .country-list, .place-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .country-item, .place-item {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #2d3748;
+            transition: all 0.2s;
+        }
+        .country-item:hover, .place-item:hover {
+            background: #e9ecef;
+            border-left-color: #764ba2;
+            transform: translateX(3px);
+        }
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 15px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .highlight {
+            background-color: #ffd700;
+            padding: 0 2px;
+        }
+    </style>
+</head>
+<body data-page="docs-widget-setup">
+    <!-- MODERN SIDEBAR -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <!-- Principal -->
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Analytics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <!-- Admin Widget -->
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Buttons">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Edit Buttons">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Locations">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <!-- Account -->
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Upgrade Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Add Domain">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link active" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <!-- Admin -->
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Admin Panel">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                    <span class="nav-badge">Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MODERN HEADER -->
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h1 class="header-title">Widget Setup & Configuration</h1>
+
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="docs-container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="docs-overview.html">Documentation</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Widget Setup</span>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="docs-hero">
+                <div class="docs-hero-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h1 class="docs-hero-title">Widget Setup & Configuration</h1>
+                <p class="docs-hero-subtitle">Simple steps to add the MyNaturevista widget to your website</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table of Contents</h3>
+                <ul>
+                    <li><a href="#widget-types">Widget Types Overview</a></li>
+                    <li><a href="#main-widget">Main Widget (All Destinations)</a></li>
+                    <li><a href="#country-widget">Country Widget (Specific Country)</a></li>
+                    <li><a href="#place-widget">Single Place Widget</a></li>
+                    <li><a href="#customization">Customization Options</a></li>
+                    <li><a href="#available-countries">Available Countries</a></li>
+                    <li><a href="#available-places">Available Places</a></li>
+                    <li><a href="#domain-setup">Domain Setup</a></li>
+                    <li><a href="#tracking">How Openings Are Counted</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </div>
+
+            <!-- Widget Types Overview -->
+            <div class="docs-section" id="widget-types">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-th-large"></i>
+                    Widget Types Overview
+                </h2>
+                <div class="docs-content">
+                    <p>MyNaturevista offers three different widgets to choose from based on your needs.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3>Main Widget</h3>
+                            <p>Shows all countries and destinations. Best for homepage or general pages.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <h3>Country Widget</h3>
+                            <p>Shows destinations from one specific country. Perfect for country-specific pages.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Place Widget</h3>
+                            <p>Shows one specific destination. Ideal for detailed destination pages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Widget -->
+            <div class="docs-section" id="main-widget">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-globe"></i>
+                    Main Widget (All Destinations)
+                </h2>
+                <div class="docs-content">
+                    <p>The main widget displays all available destinations with full browsing capabilities.</p>
+
+                    <h3>Basic Code</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">HTML</span>
+                            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-html">&lt;script src="https://api.mynaturevista.com/widget.html?apikey=YOUR_API_KEY" async&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Important</strong>
+                            <p>Replace <code>YOUR_API_KEY</code> with your actual API key from API Access page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Country Widget -->
+            <div class="docs-section" id="country-widget">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-flag"></i>
+                    Country Widget (Specific Country)
+                </h2>
+                <div class="docs-content">
+                    <p>Show destinations from one specific country.</p>
+
+                    <h3>Basic Code</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">HTML</span>
+                            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-html">&lt;script src="https://api.mynaturevista.com/widget-country.html?apikey=YOUR_API_KEY&country=Italy" async&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <p>Replace <code>YOUR_API_KEY</code> with your key and <code>Italy</code> with any country name from the <a href="#available-countries">available countries list</a>.</p>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Tip</strong>
+                            <p>Country names are case-sensitive. Use exact names from the list below.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Place Widget -->
+            <div class="docs-section" id="place-widget">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Single Place Widget
+                </h2>
+                <div class="docs-content">
+                    <p>Display one specific destination with its details.</p>
+
+                    <h3>Basic Code</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">HTML</span>
+                            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-html">&lt;script src="https://api.mynaturevista.com/widget-eachPlace.html?apikey=YOUR_API_KEY&place=FranceCalanquesOfCassis" async&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <p>Replace <code>YOUR_API_KEY</code> with your key and <code>FranceCalanquesOfCassis</code> with any place name from the <a href="#available-places">available places list</a>.</p>
+
+                    <div class="info-box info-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Custom Locations</strong>
+                            <p>You can also use your custom locations created in the "Custom Locations" section.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customization Options -->
+            <div class="docs-section" id="customization">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-paint-brush"></i>
+                    Customization Options
+                </h2>
+                <div class="docs-content">
+                    <p>You can customize the widget's appearance by adding URL parameters.</p>
+
+                    <h3>Available Parameters</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td>Custom button text</td>
+                                <td><code>&name=Explore</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>primaryColor</code></td>
+                                <td>Main color (hex format with %23 instead of #)</td>
+                                <td><code>&primaryColor=%23ff5733</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>secondaryColor</code></td>
+                                <td>Secondary color (hex format with %23 instead of #)</td>
+                                <td><code>&secondaryColor=%2333c1ff</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>fontFamily</code></td>
+                                <td>Custom font (use + for spaces)</td>
+                                <td><code>&fontFamily=Open+Sans</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Full Customization Example</h3>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">HTML</span>
+                            <button class="code-copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code class="language-html">&lt;script src="https://api.mynaturevista.com/widget-country.html?apikey=YOUR_API_KEY&country=France&name=Discover%20France&primaryColor=%23ff5733&secondaryColor=%2333c1ff&fontFamily=Montserrat" async&gt;&lt;/script&gt;</code></pre>
+                    </div>
+
+                    <div class="info-box info-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Important: Color Format</strong>
+                            <p>Colors must use hex format with <code>%23</code> instead of <code>#</code>. Example: <code>#ff5733</code> becomes <code>%23ff5733</code></p>
+                        </div>
+                    </div>
+
+                    <h3>URL Encoding Quick Reference</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Character</th>
+                                <th>URL Encoded</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Space</td>
+                                <td><code>%20</code></td>
+                            </tr>
+                            <tr>
+                                <td>#</td>
+                                <td><code>%23</code></td>
+                            </tr>
+                            <tr>
+                                <td>&</td>
+                                <td><code>%26</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Available Countries -->
+            <div class="docs-section" id="available-countries">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-globe-americas"></i>
+                    Available Countries
+                </h2>
+                <div class="docs-content">
+                    <p>Use these exact country names in the <code>&country=</code> parameter. Names are case-sensitive.</p>
+
+                    <input type="text" id="countrySearch" class="search-box" placeholder="🔍 Search countries...">
+
+                    <div class="country-list" id="countryList">
+                        <div class="country-item">Antarctica</div>
+                        <div class="country-item">Argentina</div>
+                        <div class="country-item">Australia</div>
+                        <div class="country-item">Austria</div>
+                        <div class="country-item">Botswana</div>
+                        <div class="country-item">Brazil</div>
+                        <div class="country-item">Canada</div>
+                        <div class="country-item">Chile</div>
+                        <div class="country-item">China</div>
+                        <div class="country-item">Colombia</div>
+                        <div class="country-item">CostaRica</div>
+                        <div class="country-item">EEUU</div>
+                        <div class="country-item">Fiji</div>
+                        <div class="country-item">France</div>
+                        <div class="country-item">Germany</div>
+                        <div class="country-item">Greece</div>
+                        <div class="country-item">Guatemala</div>
+                        <div class="country-item">Honduras</div>
+                        <div class="country-item">India</div>
+                        <div class="country-item">Indonesia</div>
+                        <div class="country-item">Italy</div>
+                        <div class="country-item">Japan</div>
+                        <div class="country-item">Kenya</div>
+                        <div class="country-item">Malaysia</div>
+                        <div class="country-item">Mexico</div>
+                        <div class="country-item">Morocco</div>
+                        <div class="country-item">Namibia</div>
+                        <div class="country-item">Netherlands</div>
+                        <div class="country-item">NewZealand</div>
+                        <div class="country-item">Nicaragua</div>
+                        <div class="country-item">Panama</div>
+                        <div class="country-item">PapuaNewGuinea</div>
+                        <div class="country-item">Peru</div>
+                        <div class="country-item">Philippines</div>
+                        <div class="country-item">Portugal</div>
+                        <div class="country-item">PuertoRico</div>
+                        <div class="country-item">RDCongo</div>
+                        <div class="country-item">SaudiArabia</div>
+                        <div class="country-item">SolomonIslands</div>
+                        <div class="country-item">SouthAfrica</div>
+                        <div class="country-item">Spain</div>
+                        <div class="country-item">SriLanka</div>
+                        <div class="country-item">Switzerland</div>
+                        <div class="country-item">Tanzania</div>
+                        <div class="country-item">Thailand</div>
+                        <div class="country-item">Tunisia</div>
+                        <div class="country-item">Turkey</div>
+                        <div class="country-item">UAEmirates</div>
+                        <div class="country-item">UnitedKingdom</div>
+                        <div class="country-item">Vanuatu</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Places -->
+            <div class="docs-section" id="available-places">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Available Places
+                </h2>
+                <div class="docs-content">
+                    <p>Use these exact place names in the <code>&place=</code> parameter. Names are case-sensitive.</p>
+
+                    <input type="text" id="placeSearch" class="search-box" placeholder="🔍 Search places...">
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Tip</strong>
+                            <p>Places are organized by country prefix. Example: <code>FranceCalanquesOfCassis</code> is in France.</p>
+                        </div>
+                    </div>
+
+                    <div class="place-list" id="placeList">
+                        <div class="place-item">AntarcticaDeceptionIsland</div>
+                        <div class="place-item">AntarticaDryvalleys</div>
+                        <div class="place-item">AntarticaLemairechannel</div>
+                        <div class="place-item">AntarticaMounterebus</div>
+                        <div class="place-item">AntarticaRossiceshelf</div>
+                        <div class="place-item">ArgentinaBariloche</div>
+                        <div class="place-item">ArgentinaGlaciaresNationalPark</div>
+                        <div class="place-item">ArgentinaIguazuFalls</div>
+                        <div class="place-item">ArgentinaPeritoMorenoGlacier</div>
+                        <div class="place-item">ArgentinaQuebradaHumahuaca</div>
+                        <div class="place-item">ArgentinaValdesPeninsula</div>
+                        <div class="place-item">AustraliaGreatBarrierReef</div>
+                        <div class="place-item">AustraliaKakaduNationalPark</div>
+                        <div class="place-item">AustraliaTwelveApostles</div>
+                        <div class="place-item">AustraliaUluru</div>
+                        <div class="place-item">austriaDachsteinSalzkammergut</div>
+                        <div class="place-item">austriaEisriesenwelt</div>
+                        <div class="place-item">austriaGrossglocknerRoad</div>
+                        <div class="place-item">austriaKrimml</div>
+                        <div class="place-item">austriaWachau</div>
+                        <div class="place-item">austriaZellamSee</div>
+                        <div class="place-item">botswanaChobe</div>
+                        <div class="place-item">botswanaKalahari</div>
+                        <div class="place-item">botswan aMakgadikgadi</div>
+                        <div class="place-item">botswanaMoremiGame</div>
+                        <div class="place-item">botswan aNxaiPan</div>
+                        <div class="place-item">botswanaOkavangoDelta</div>
+                        <div class="place-item">botswan aTsodiloHills</div>
+                        <div class="place-item">brasilChapadaVeadeiros</div>
+                        <div class="place-item">brasilchapadaDiamantina</div>
+                        <div class="place-item">brasilFernandoNoronha</div>
+                        <div class="place-item">brasilIguacuFalls</div>
+                        <div class="place-item">brasilJericoacoara</div>
+                        <div class="place-item">brasilLencoisMaranhenses</div>
+                        <div class="place-item">brasilMarajoIsland</div>
+                        <div class="place-item">brasilMountRoraimas</div>
+                        <div class="place-item">brasilPantanal</div>
+                        <div class="place-item">brasilSerraDosOrgaos</div>
+                        <div class="place-item">calanquesofcassis</div>
+                        <div class="place-item">canadaBanffNationalPark</div>
+                        <div class="place-item">canadaBayFundy</div>
+                        <div class="place-item">canadaGrosMorne</div>
+                        <div class="place-item">canadaJasper</div>
+                        <div class="place-item">canadaNiagaraFalls</div>
+                        <div class="place-item">canadaPrinceEdwardIsland</div>
+                        <div class="place-item">canadaYoho</div>
+                        <div class="place-item">chileAtacamaDesert</div>
+                        <div class="place-item">chileChiloeIsland</div>
+                        <div class="place-item">chileEasterIsland</div>
+                        <div class="place-item">chilePatagonianFjords</div>
+                        <div class="place-item">chileTorresPaine</div>
+                        <div class="place-item">chileValleyMoon</div>
+                        <div class="place-item">chinaHuangshan</div>
+                        <div class="place-item">chinaHutiaoXia</div>
+                        <div class="place-item">chinaJiuzhaigou</div>
+                        <div class="place-item">chinaShilin</div>
+                        <div class="place-item">chinaTheGreatWall</div>
+                        <div class="place-item">chinaZhangjiajieGuojiaSenlinGongyuan</div>
+                        <div class="place-item">chinaZhangyeDanxiaDimao</div>
+                        <div class="place-item">cliffsofetretat</div>
+                        <div class="place-item">colombiaAmazon</div>
+                        <div class="place-item">colombiaCocoraValley</div>
+                        <div class="place-item">colombiaRosarioIslands</div>
+                        <div class="place-item">colombiaSierraSantaMarta</div>
+                        <div class="place-item">colombiaTatacoaDesert</div>
+                        <div class="place-item">colombiaTayrona</div>
+                        <div class="place-item">CostaRicaArenalVolcano</div>
+                        <div class="place-item">CostaRicaManuelAntonio</div>
+                        <div class="place-item">CostaRicaMonteverdeCloudForest</div>
+                        <div class="place-item">duneofpilat</div>
+                        <div class="place-item">eeuuacadiaNationalPark</div>
+                        <div class="place-item">eeuubryceCanyon</div>
+                        <div class="place-item">eeuucanyonlands</div>
+                        <div class="place-item">eeuugrandCanyon</div>
+                        <div class="place-item">eeuuGreatSmokyMountains</div>
+                        <div class="place-item">eeuurockyMountain</div>
+                        <div class="place-item">eeuusequoiaKingsCanyon</div>
+                        <div class="place-item">eeuuyellowstone</div>
+                        <div class="place-item">eeuuyosemite</div>
+                        <div class="place-item">eeuuzion</div>
+                        <div class="place-item">EXEMPLER</div>
+                        <div class="place-item">FijiBeqalaLagoon</div>
+                        <div class="place-item">FijiBoumaFalls</div>
+                        <div class="place-item">FijiMamanucaIslands</div>
+                        <div class="place-item">FranceCalanquesOfCassis</div>
+                        <div class="place-item">FranceCliffsOfEtretat</div>
+                        <div class="place-item">FranceDuneofpilat</div>
+                        <div class="place-item">FranceLakeannecy</div>
+                        <div class="place-item">FranceMontblanc</div>
+                        <div class="place-item">FranceMontsaintmichel</div>
+                        <div class="place-item">FranceVerdongorge</div>
+                        <div class="place-item">germanyBasteiBridge</div>
+                        <div class="place-item">germanyBerchtesgaden</div>
+                        <div class="place-item">germanyBlackForest</div>
+                        <div class="place-item">germanyEibseeLake</div>
+                        <div class="place-item">germanyKonigsseeLake</div>
+                        <div class="place-item">germanyRakotzbrucke</div>
+                        <div class="place-item">germanyRugenIsland</div>
+                        <div class="place-item">greeceBalosLagoon</div>
+                        <div class="place-item">greeceCapeDrastis</div>
+                        <div class="place-item">greeceElafonissiBeach</div>
+                        <div class="place-item">greeceGiolaNaturalPool</div>
+                        <div class="place-item">greeceMeteoraMountains</div>
+                        <div class="place-item">greeceMountOlympus</div>
+                        <div class="place-item">greeceSamariaGorge</div>
+                        <div class="place-item">GuatemalaLakeAtitlan</div>
+                        <div class="place-item">GuatemalaSemucChampey</div>
+                        <div class="place-item">GuatemalaTikal</div>
+                        <div class="place-item">HondurasCelaqueNationalPark</div>
+                        <div class="place-item">HondurasGuanajaIsland</div>
+                        <div class="place-item">HondurasRioCangrejal</div>
+                        <div class="place-item">HondurasRoatanIsland</div>
+                        <div class="place-item">HondurasUtilaIsland</div>
+                        <div class="place-item">indiaAndamanAndNicobarIslands</div>
+                        <div class="place-item">indiaBackwatersOfKerala</div>
+                        <div class="place-item">indiaHimalayas</div>
+                        <div class="place-item">indiaRannOfKutch</div>
+                        <div class="place-item">indiaSundarbansMangrove</div>
+                        <div class="place-item">indiaTharDesert</div>
+                        <div class="place-item">indiaValleyOfFlowers</div>
+                        <div class="place-item">indonesiaBali</div>
+                        <div class="place-item">indonesiaGunungBromo</div>
+                        <div class="place-item">indonesiaKepulauanSeriu</div>
+                        <div class="place-item">indonesiaKomodo</div>
+                        <div class="place-item">indonesiaLorentz</div>
+                        <div class="place-item">indonesiaRajaAmpat</div>
+                        <div class="place-item">italyCoastAmalfitana</div>
+                        <div class="place-item">italyCoastSardinien</div>
+                        <div class="place-item">italyDolomitas</div>
+                        <div class="place-item">italyIslandsAeolias</div>
+                        <div class="place-item">italyMountEtna</div>
+                        <div class="place-item">italyNorthernLakes</div>
+                        <div class="place-item">italyValleyOrcia</div>
+                        <div class="place-item">japanArashiyama</div>
+                        <div class="place-item">japanBiwa</div>
+                        <div class="place-item">japanDaisetsuzan</div>
+                        <div class="place-item">japanfuji</div>
+                        <div class="place-item">japanOkinawa</div>
+                        <div class="place-item">japanShiretoko</div>
+                        <div class="place-item">japanYakushima</div>
+                        <div class="place-item">kenyaAmboseli</div>
+                        <div class="place-item">kenyaHGate</div>
+                        <div class="place-item">kenyaLakeNakuru</div>
+                        <div class="place-item">kenyaMaasaiMara</div>
+                        <div class="place-item">kenyaMountKenya</div>
+                        <div class="place-item">kenyaSamburu</div>
+                        <div class="place-item">kenyaTsavo</div>
+                        <div class="place-item">lakeannecy</div>
+                        <div class="place-item">malaysiaCameronHighlands</div>
+                        <div class="place-item">malaysiaMountKinabalu</div>
+                        <div class="place-item">malaysiaPerhentianIslands</div>
+                        <div class="place-item">malaysiaSepilok</div>
+                        <div class="place-item">malaysiaTamanNegara</div>
+                        <div class="place-item">malaysiaTiomanIsland</div>
+                        <div class="place-item">mexicoButterflyBiosphere</div>
+                        <div class="place-item">mexicoCascadasAguaazul</div>
+                        <div class="place-item">mexicoCenotesYucatan</div>
+                        <div class="place-item">mexicoCopperCanyon</div>
+                        <div class="place-item">mexicoHierveAgua</div>
+                        <div class="place-item">mexicoLacandonJungle</div>
+                        <div class="place-item">mexicoLasColoradas</div>
+                        <div class="place-item">mexicoNevadoToluca</div>
+                        <div class="place-item">mexicoParicutin</div>
+                        <div class="place-item">mexicoPopocatpetAndIztacchuatl</div>
+                        <div class="place-item">mexicoSierraNorteOaxaca</div>
+                        <div class="place-item">mexicoSumideroCanyon</div>
+                        <div class="place-item">montblanc</div>
+                        <div class="place-item">montsaintmichel</div>
+                        <div class="place-item">moroccoAtlas</div>
+                        <div class="place-item">moroccoMadayaTodra</div>
+                        <div class="place-item">moroccoOuzoud</div>
+                        <div class="place-item">moroccoRiverDraa</div>
+                        <div class="place-item">moroccoSahara</div>
+                        <div class="place-item">moroccoShatiLegzira</div>
+                        <div class="place-item">namibiaDamaraland</div>
+                        <div class="place-item">namibiaEtosha</div>
+                        <div class="place-item">namibiaFishRiver</div>
+                        <div class="place-item">namibiaNaukluft</div>
+                        <div class="place-item">namibiaSkeletonCoast</div>
+                        <div class="place-item">namibiaSossusvlei</div>
+                        <div class="place-item">namibiaSwakopmund</div>
+                        <div class="place-item">netherlandsBiesbosch</div>
+                        <div class="place-item">netherlandsHogeVeluwe</div>
+                        <div class="place-item">netherlandsOosterschelde</div>
+                        <div class="place-item">netherlandsVeluwezoom</div>
+                        <div class="place-item">netherlandsWaddeneilanden</div>
+                        <div class="place-item">netherlandsZuidKennemerland</div>
+                        <div class="place-item">NewZealandHobbiton</div>
+                        <div class="place-item">NewZealandMilfordSound</div>
+                        <div class="place-item">NewZealandMountCook</div>
+                        <div class="place-item">NewZealandRotorua</div>
+                        <div class="place-item">NicaraguaApoyoLagoon</div>
+                        <div class="place-item">NicaraguaOmetepeIsland</div>
+                        <div class="place-item">NicaraguaSomotoCanyon</div>
+                        <div class="place-item">PanamaCoibaNationalPark</div>
+                        <div class="place-item">PanamaLosQuetzalesTrail</div>
+                        <div class="place-item">PanamaSanBlasIslands</div>
+                        <div class="place-item">PapuaNewGuineaMountWilhelm</div>
+                        <div class="place-item">PapuaNewGuineaTariValley</div>
+                        <div class="place-item">peruAmazonRainforest</div>
+                        <div class="place-item">peruColcaCanyon</div>
+                        <div class="place-item">peruLakeTiticaca</div>
+                        <div class="place-item">peruMachuPicchu</div>
+                        <div class="place-item">peruParacas</div>
+                        <div class="place-item">peruRainbowMountainVinicunca</div>
+                        <div class="place-item">philippinesChocolateHills</div>
+                        <div class="place-item">philippinesElNidoIslands</div>
+                        <div class="place-item">philippinesPuertoPrincesa</div>
+                        <div class="place-item">portugalAcores</div>
+                        <div class="place-item">portugalAlgarve</div>
+                        <div class="place-item">portugalCaboRoca</div>
+                        <div class="place-item">portugalDouro</div>
+                        <div class="place-item">portugalMadeira</div>
+                        <div class="place-item">portugalPenedaGeres</div>
+                        <div class="place-item">puertoRicoBioluminiscente</div>
+                        <div class="place-item">puertoRicoCamuy</div>
+                        <div class="place-item">puertoRicoCuevaVentana</div>
+                        <div class="place-item">puertoRicoFlamenco</div>
+                        <div class="place-item">puertoRicoYunque</div>
+                        <div class="place-item">rdCongoChutesBoyoma</div>
+                        <div class="place-item">rdCongoGaramba</div>
+                        <div class="place-item">rdCongoLacKivu</div>
+                        <div class="place-item">rdCongoMontsRwenzori</div>
+                        <div class="place-item">rdCongoVirunga</div>
+                        <div class="place-item">saudiArabiaAlDisahValley</div>
+                        <div class="place-item">saudiArabiaAlHijr</div>
+                        <div class="place-item">saudiArabiaAsirMountains</div>
+                        <div class="place-item">saudiArabiaElephantRock</div>
+                        <div class="place-item">saudiArabiaJabalAlNour</div>
+                        <div class="place-item">saudiArabiaRubAlKhaliDesert</div>
+                        <div class="place-item">SolomonIslandsMarovoLagoon</div>
+                        <div class="place-item">SolomonIslandsTulagiDive</div>
+                        <div class="place-item">southAfricaAddoElephant</div>
+                        <div class="place-item">southAfricaBlydeRiverCanyon</div>
+                        <div class="place-item">southAfricaCapeOfGHope</div>
+                        <div class="place-item">southAfricaDrakensberg</div>
+                        <div class="place-item">southAfricaGardenRoute</div>
+                        <div class="place-item">southAfricaKruger</div>
+                        <div class="place-item">southAfricaTableMountain</div>
+                        <div class="place-item">spainBardenasReales</div>
+                        <div class="place-item">spainCabodegato</div>
+                        <div class="place-item">spainDonana</div>
+                        <div class="place-item">spainOrdesaMontePerdido</div>
+                        <div class="place-item">spainPicosdeEuropa</div>
+                        <div class="place-item">spainTeide</div>
+                        <div class="place-item">sriLankaElla</div>
+                        <div class="place-item">sriLankaHortonPlains</div>
+                        <div class="place-item">sriLankaMirissa</div>
+                        <div class="place-item">sriLankaSigiriyaRock</div>
+                        <div class="place-item">sriLankaSinharaja</div>
+                        <div class="place-item">sriLankaYala</div>
+                        <div class="place-item">switzerlandGenferseeLacLeman</div>
+                        <div class="place-item">switzerlandInterlaken</div>
+                        <div class="place-item">switzerlandJungfraujoch</div>
+                        <div class="place-item">switzerlandLauterbrunnental</div>
+                        <div class="place-item">switzerlandVierwaldstattersee</div>
+                        <div class="place-item">switzerlandZermattunddasMatterhorn</div>
+                        <div class="place-item">TanzaniaLakeManyara</div>
+                        <div class="place-item">TanzaniaMountKilimanjaro</div>
+                        <div class="place-item">TanzaniaNgorongoroCrater</div>
+                        <div class="place-item">TanzaniaRuahaNationalPark</div>
+                        <div class="place-item">TanzaniaSerengeti</div>
+                        <div class="place-item">TanzaniaTarangire</div>
+                        <div class="place-item">TanzaniaZanzibarArchipelago</div>
+                        <div class="place-item">thailandDoiInthanon</div>
+                        <div class="place-item">thailandErawan</div>
+                        <div class="place-item">thailandkhaoSok</div>
+                        <div class="place-item">thailandKohTaoIsland</div>
+                        <div class="place-item">thailandPhangNgaBay</div>
+                        <div class="place-item">thailandPhiPhiIslands</div>
+                        <div class="place-item">thailandSimilanIslands</div>
+                        <div class="place-item">tunisiaDjerbaIsland</div>
+                        <div class="place-item">tunisiaIchkeul</div>
+                        <div class="place-item">tunisiaSahraDesert</div>
+                        <div class="place-item">turkeyAgriDagi</div>
+                        <div class="place-item">turkeyKapadokya</div>
+                        <div class="place-item">turkeyOludeniz</div>
+                        <div class="place-item">turkeyPamukkale</div>
+                        <div class="place-item">turkeyVangolu</div>
+                        <div class="place-item">uaeHatta</div>
+                        <div class="place-item">uaeJais</div>
+                        <div class="place-item">uaeLiwa</div>
+                        <div class="place-item">uaeQudra</div>
+                        <div class="place-item">unitedKingdomCairngorms</div>
+                        <div class="place-item">unitedKingdomGiantsCausewayy</div>
+                        <div class="place-item">unitedKingdomIsleSkye</div>
+                        <div class="place-item">unitedKingdomLakeDistrict</div>
+                        <div class="place-item">unitedKingdomSevenSister</div>
+                        <div class="place-item">unitedKingdomSnowdonia</div>
+                        <div class="place-item">unitedKingdomWhiteCliffsDover</div>
+                        <div class="place-item">VanuatuBlueHolesOfEspirituSanto</div>
+                        <div class="place-item">VanuatuVolcanoyasur</div>
+                        <div class="place-item">verdongorge</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain Setup -->
+            <div class="docs-section" id="domain-setup">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-globe-europe"></i>
+                    Domain Setup
+                </h2>
+                <div class="docs-content">
+                    <p>For security, you must register which domains are allowed to use your API key.</p>
+
+                    <h3>Adding Your Domain</h3>
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Go to API Access</h3>
+                                <p>Click "API Access" in the sidebar</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Create or Edit Key</h3>
+                                <p>Create a new key or edit an existing one</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Add Domain</h3>
+                                <p>Enter your domain (e.g., <code>https://mywebsite.com</code>)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Always Use HTTPS</strong>
+                            <p>Always use <code>https://</code> (not <code>http://</code>)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tracking -->
+            <div class="docs-section" id="tracking">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-chart-line"></i>
+                    How Openings Are Counted
+                </h2>
+                <div class="docs-content">
+                    <h3>What Counts as an Opening</h3>
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Counted?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Widget loads on page</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Visitor clicks to open widget</td>
+                                <td>Yes - 1 opening</td>
+                            </tr>
+                            <tr>
+                                <td>Browsing inside widget</td>
+                                <td>No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="docs-section" id="troubleshooting">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-tools"></i>
+                    Troubleshooting
+                </h2>
+                <div class="docs-content">
+                    <h3>Common Issues</h3>
+
+                    <div class="info-box info-danger">
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>Widget not showing</strong>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Check that you replaced <code>YOUR_API_KEY</code></li>
+                                <li>Verify domain is added to API key settings</li>
+                                <li>Wait 2-3 minutes and refresh</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>"Domain Not Allowed" error</strong>
+                            <p>Add your domain in API Access settings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-forward"></i>
+                    Next Steps
+                </h2>
+                <div class="docs-content">
+                    <div class="docs-nav-grid">
+                        <a href="docs-best-practices.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Best Practices</h3>
+                            <p>Tips to optimize your widget</p>
+                        </a>
+
+                        <a href="docs-security.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h3>Security</h3>
+                            <p>Keep your API keys safe</p>
+                        </a>
+
+                        <a href="contact.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <h3>Support</h3>
+                            <p>Get help from our team</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                    <div>
+                        <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                        &middot;
+                        <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                        &middot;
+                        <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').innerText;
+
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                button.style.background = '#22c55e';
+
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // Search functionality for countries
+        document.getElementById('countrySearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.country-item');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    item.innerHTML = item.textContent.replace(regex, '<span class="highlight">$1</span>');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Search functionality for places
+        document.getElementById('placeSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.place-item');
+            
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    const regex = new RegExp(`(${searchTerm})`, 'gi');
+                    item.innerHTML = item.textContent.replace(regex, '<span class="highlight">$1</span>');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script type="module">
+        import { SidebarManager } from './js/components/SidebarManager.js';
+        import { SubscriptionChecker } from './js/components/SubscriptionChecker.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            SidebarManager.init();
+            SubscriptionChecker.check();
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>

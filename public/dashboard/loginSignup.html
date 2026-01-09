@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/loginStyle.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                🌿 myNaturevista
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="/" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact" class="nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="auth-wrapper">
+            <!-- Left Side - Info Panel -->
+            <div class="info-panel">
+                <div class="info-content">
+                    <h2>Welcome to myNaturevista</h2>
+                    <p>Transform your website with beautiful nature destinations from around the world.</p>
+
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span>Quick 10-minute setup</span>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <span>293+ natural destinations</span>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span>Real-time analytics</span>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <span>Secure & GDPR compliant</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side - Form Panel -->
+            <div class="form-panel">
+                <div class="form-header">
+                    <h1>Get Started</h1>
+                    <p>Create an account or sign in to continue</p>
+                </div>
+
+                <!-- Tabs -->
+                <div class="auth-tabs">
+                    <button class="tab-btn active" data-tab="login">
+                        Login
+                    </button>
+                    <button class="tab-btn" data-tab="signup">
+                        Sign Up
+                    </button>
+                </div>
+
+                <!-- Forms Container -->
+                <div class="form-container">
+                    <!-- Login Form -->
+                    <form class="auth-form active" id="loginForm">
+                        <div class="message" id="loginMessage"></div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" required>
+                                <button type="button" class="password-toggle" data-target="loginPassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-links">
+                            <a href="../password.html" class="forgot-link">Forgot password?</a>
+                        </div>
+
+                        <!-- reCAPTCHA v2 Container (hidden by default) -->
+                        <div id="recaptchaV2Container" style="display:none;">
+                            <div id="recaptchaWidget"></div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Login to Dashboard
+                        </button>
+                    </form>
+
+                    <!-- Signup Form -->
+                    <form class="auth-form" id="signupForm" novalidate>
+                        <div class="message" id="signupMessage"></div>
+
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" class="form-input" id="signupPassword" placeholder="Create a password" required>
+                                <button type="button" class="password-toggle" data-target="signupPassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="confirmPassword" class="form-input" id="confirmPassword" placeholder="Confirm your password" required>
+                                <button type="button" class="password-toggle" data-target="confirmPassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Main Domain</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-globe"></i>
+                                <input type="text" name="domain" class="form-input" placeholder="example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone <span class="optional">(Optional)</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone"></i>
+                                <input type="text" name="phone" class="form-input" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Address <span class="optional">(Optional)</span></label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" name="addresses" class="form-input" placeholder="123 Main St, City, Country">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Create Account
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Hidden reCAPTCHA v3 Token -->
+                <input type="hidden" id="recaptchaTokenV3" name="recaptchaTokenV3">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/loginSignup.js"></script>
+
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfV-OQrAAAAAA6Baqh2cODcFmtppaYov9EWqnNj"></script>
+
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+
+                // Update active tab button
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update active form
+                document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+                document.getElementById(tab + 'Form').classList.add('active');
+            });
+        });
+
+        // Password Toggle
+        document.querySelectorAll('.password-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const input = document.getElementById(targetId);
+                const icon = btn.querySelector('i');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

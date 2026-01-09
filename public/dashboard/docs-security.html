@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Security Documentation - myNaturevista SaaS Platform" />
+    <title>Security - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body data-page="docs-security">
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Analytics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Botones Disponibles">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Editar Botones">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Locations">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Upgrade Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Añadir Dominio">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Keys & Domains">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Keys & Domains</span>
+                </a>
+                <a href="docs-security.html" class="nav-link active" data-tooltip="Account & Privacy">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Account & Privacy</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Tips & Recommendations">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Tips & Recommendations</span>
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar"><i class="fas fa-user"></i></div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+            </div>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item"><i class="fas fa-envelope"></i> Support</a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <h1 class="header-title">Security & Safety</h1>
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="docs-container">
+            <div class="breadcrumbs"><a href="docs-overview.html">Documentation</a><i class="fas fa-chevron-right"></i><span>Security</span></div>
+
+            <div class="docs-hero">
+                <div class="docs-hero-icon"><i class="fas fa-lock"></i></div>
+                <h1 class="docs-hero-title">Security & Safety Guide</h1>
+                <p class="docs-hero-subtitle">How we protect your data and what you should do</p>
+            </div>
+
+            <div class="toc">
+                <h3><i class="fas fa-list"></i> Table of Contents</h3>
+                <ul>
+                    <li><a href="#overview">Our Security Measures</a></li>
+                    <li><a href="#password">Your Password</a></li>
+                    <li><a href="#api-key">Protecting Your API Keys</a></li>
+                    <li><a href="#domain">Domain Security</a></li>
+                    <li><a href="#data-protection">Your Data Protection</a></li>
+                    <li><a href="#privacy">Privacy & GDPR</a></li>
+                </ul>
+            </div>
+
+            <div class="docs-section" id="overview">
+                <h2 class="docs-section-title"><i class="fas fa-shield-alt"></i> Our Security Measures</h2>
+                <div class="docs-content">
+                    <p>MyNaturevista takes security seriously. We protect your account and your data with multiple layers of security:</p>
+                    <ul>
+                        <li>All data is encrypted during transmission</li>
+                        <li>Your passwords are securely stored (not visible to anyone, even us)</li>
+                        <li>API keys are validated on every request</li>
+                        <li>We use secure HTTPS connections everywhere</li>
+                        <li>Regular security updates and monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="docs-section" id="password">
+                <h2 class="docs-section-title"><i class="fas fa-key"></i> Your Password</h2>
+                <div class="docs-content">
+                    <p>Your password is your primary defense against unauthorized access to your account.</p>
+
+                    <h3>Creating a Strong Password</h3>
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Password Best Practices</strong>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Use at least 8 characters</li>
+                                <li>Mix uppercase and lowercase letters</li>
+                                <li>Include numbers</li>
+                                <li>Include special characters (!@#$%)</li>
+                                <li>Avoid personal information (name, birthday, etc.)</li>
+                                <li>Never use "password123" or similar common phrases</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Changing Your Password</h3>
+                    <p>Change your password regularly for added security:</p>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Go to Account Settings</h3><p>Click "Account Settings" in the Account section</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Click Change Password</h3><p>Enter your current password and new password</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Save</h3><p>Click "Update Password". Your password will be updated immediately</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="api-key">
+    <h2 class="docs-section-title">
+        <i class="fas fa-user-secret"></i>
+        Protecting Your API Keys
+    </h2>
+    <div class="docs-content">
+        <p>
+            Your API keys control access to your widget. For security, each API key is restricted to specific domains,
+            so even if a key is exposed, it can only be used on the domain it was created for.
+        </p>
+
+        <h3>How Domain-Restricted API Keys Work</h3>
+        <p>
+            Each API key is tied to one or more authorized domains. Requests coming from any other domain are automatically blocked.
+        </p>
+
+        <h3>API Key Safety Rules</h3>
+        <div class="info-box info-danger">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+                <strong>NEVER:</strong>
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    <li>Share your API key with others</li>
+                    <li>Post it in public forums or social media</li>
+                    <li>Store it in plain text or unencrypted emails</li>
+                    <li>Commit it to public repositories</li>
+                    <li>Attempt to use the same key across unrelated domains</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-box info-success">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <strong>BEST PRACTICES:</strong>
+                <ul style="margin: 0.5rem 0 0 1.5rem;">
+                    <li>Create one API key per domain</li>
+                    <li>Each key is automatically limited to its assigned domain</li>
+                    <li>Revoke and regenerate keys if you suspect misuse</li>
+                    <li>Delete API keys that are no longer needed</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>If You Think Your Key Is Compromised</h3>
+        <div class="step-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Create a New Key</h3>
+                    <p>Go to the API Access section and generate a new API key for the affected domain.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Update Your Website</h3>
+                    <p>Replace the old API key with the new one on your website.</p>
+                </div>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Revoke the Old Key</h3>
+                    <p>Delete or revoke the compromised API key to prevent further use.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <div class="docs-section" id="domain">
+                <h2 class="docs-section-title"><i class="fas fa-globe"></i> Domain Security</h2>
+                <div class="docs-content">
+                    <p>Your API keys only work on the specific domains you register. This prevents someone else from stealing your key and using it on their website.</p>
+
+                    <h3>Always Use HTTPS</h3>
+                    <p>Make sure your website uses HTTPS (secure connection), not HTTP. Check that your URL starts with "https://" not "http://".</p>
+
+                    <h3>Registering Your Domains</h3>
+                    <p>When you create an API key, be specific about which domains will use it:</p>
+                    <ul>
+                        <li>Enter exact domain: https://mywebsite.com</li>
+                        <li>Or with www: https://www.mywebsite.com</li>
+                        <li>Or all subdomains: https://*.mywebsite.com</li>
+                    </ul>
+
+                    <div class="info-box info-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Security Tip</strong>
+                            <p>Don't use overly broad domain patterns. Specify exact domains when possible to limit exposure if a key is compromised.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section" id="data-protection">
+                <h2 class="docs-section-title"><i class="fas fa-database"></i> Your Data Protection</h2>
+                <div class="docs-content">
+                    <p>All your data is protected and encrypted. We don't sell or share your information.</p>
+
+                    <h3>What We Collect</h3>
+                    <ul>
+                        <li>Your name and email (for your account)</li>
+                        <li>Widget usage statistics (how many times it's opened)</li>
+                        <li>Custom location information (what you create)</li>
+                        <li>Billing information (for processing payments)</li>
+                    </ul>
+
+                    <h3>What We DON'T Do</h3>
+                    <ul>
+                        <li>We never sell your data</li>
+                        <li>We never share your data with third parties</li>
+                        <li>We don't access your website's visitor data</li>
+                        <li>We don't track users across websites</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="docs-section" id="privacy">
+                <h2 class="docs-section-title"><i class="fas fa-balance-scale"></i> Privacy & GDPR</h2>
+                <div class="docs-content">
+                    <p>MyNaturevista complies with GDPR and privacy laws worldwide.</p>
+
+                    <h3>Your Rights</h3>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>See all data we have about you (download export)</li>
+                        <li>Delete your account and all your data</li>
+                        <li>Update your personal information anytime</li>
+                        <li>Know how your data is used</li>
+                    </ul>
+
+                    <h3>Request Data Export</h3>
+                    <p>You can download all your data:</p>
+                    <div class="step-container">
+                        <div class="step-item"><div class="step-number">1</div><div class="step-content"><h3>Go to Account Settings</h3><p>Click "Account Settings"</p></div></div>
+                        <div class="step-item"><div class="step-number">2</div><div class="step-content"><h3>Request Export</h3><p>Click " Data Request"</p></div></div>
+                        <div class="step-item"><div class="step-number">3</div><div class="step-content"><h3>Check Email</h3><p>We'll email your data within 24 hours</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="docs-section">
+                <h2 class="docs-section-title"><i class="fas fa-question-circle"></i> Still Have Questions?</h2>
+                <div class="docs-content">
+                    <p>Contact our support team if you have security concerns or questions about your data.</p>
+                    <div class="docs-nav-grid">
+                        <a href="contact.html" class="docs-nav-card">
+                            <div class="docs-nav-icon"><i class="fas fa-life-ring"></i></div>
+                            <h3>Contact Support</h3>
+                            <p>Get help with security questions</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                    <div>
+                        <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                        &middot;
+                        <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                        &middot;
+                        <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { SidebarManager } from './js/components/SidebarManager.js';
+        import { SubscriptionChecker } from './js/components/SubscriptionChecker.js';
+        document.addEventListener('DOMContentLoaded', function() {
+            SidebarManager.init();
+            SubscriptionChecker.check();
+        });
+    </script>
+</body>
+</html>

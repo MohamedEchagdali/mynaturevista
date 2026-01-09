@@ -1,0 +1,424 @@
+{
+    "continents": [
+      {
+        "code": "Af",
+        "name": "AFRICA",
+        "countries": [
+          {
+            "name": "Morocco",
+            "image": "./assets/images/1-indexImg/moroccoHero.jpg",
+            "flag": "./assets/Flags/morocco_verluk.webp",
+            "description": "Wander through the Sahara Desert and discover the vibrant landscapes of the Atlas Mountains.",
+            "url": "widget-country.html?country=Morocco"
+          },
+          {
+            "name": "RDC",
+            "image": "./assets/images/RDC/Lac-Kivu/Lac-Kivu.webp",
+            "flag": "./assets/Flags/congo_verluk.webp",
+            "description": "Explore the lush Virunga National Park, home to rare mountain gorillas and breathtaking landscapes.",
+            "url": "widget-country.html?country=RDCongo"
+          },
+          {
+            "name": "Kenya",
+            "image": "./assets/images/1-indexImg/keniaHero.jpg",
+            "flag": "./assets/Flags/kenya_byverluk.png",
+            "description": "Discover Kenya's Maasai Mara, a wildlife haven perfect for safaris and the Great Migration experience.",
+            "url": "widget-country.html?country=Kenya"
+          },
+          {
+            "name": "Tunisia",
+            "image": "./assets/images/Tunisia/DjerbaIsland/mynaturevista_DjerbaIsland.jpg",
+            "flag": "./assets/Flags/Tunisia-flag.png",
+            "description": "Visit the Sahara desert, Mediterranean beaches, and historic ancient ruins.",
+            "url": "widget-country.html?country=Tunisia"
+          },
+          {
+            "name": "Tanzania",
+            "image": "./assets/images/1-indexImg/tanzaniaHero.jpg",
+            "flag": "./assets/Flags/tanzania_byriajulislama.png",
+            "description": "Climb Mount Kilimanjaro or explore Serengeti National Park, a paradise for nature and wildlife lovers.",
+            "url": "widget-country.html?country=Tanzania"
+          },
+          {
+            "name": "South Africa",
+            "image": "./assets/images/1-indexImg/southAfricaHero.jpg",
+            "flag": "./assets/Flags/south-africa_byGeekClick.png",
+            "description": "Experience Kruger National Park and Cape Town's iconic Table Mountain for unforgettable adventures.",
+            "url": "widget-country.html?country=SouthAfrica"
+          },
+          {
+            "name": "Botswana",
+            "image": "./assets/images/1-indexImg/botswanaHero.jpg",
+            "flag": "./assets/Flags/botswana_byGeekClicka.png",
+            "description": "Visit the Okavango Delta, a unique oasis teeming with wildlife and breathtaking scenery.",
+            "url": "widget-country.html?country=Botswana"
+          },
+          {
+            "name": "Namibia",
+            "image": "./assets/images/Namibia/etoshaNationalPark/mynaturevista_etosha3.webp",
+            "flag": "./assets/Flags/namibia_byXinhStudio.png",
+            "description": "Namibia is a southern African country known for its vast deserts, rugged mountains, and open plains, offering striking contrasts and a deep sense of untouched nature.",
+            "url": "widget-country.html?country=Namibia"
+          }
+        ]
+      },
+      {
+        "code": "As",
+        "name": "ASIA",
+        "countries": [
+          {
+            "name": "Saudi Arabia",
+            "image": "./assets/images/SaudiArabia/Alhijr/mynaturevista_Alhijr.jpg",
+            "flag": "./assets/Flags/saudi-flag.png",
+            "description": "Explore vast deserts, the Red Sea coastline, and historic cities such as Riyadh and Jeddah.",
+            "url": "widget-country.html?country=SaudiArabia"
+          },
+          {
+            "name": "Turkey",
+            "image": "./assets/images/1-indexImg/turkeyHero.jpg",
+            "flag": "./assets/Flags/turkey_HightQualityIcons.webp",
+            "description": "Marvel at Cappadocia’s surreal landscapes or relax by the azure waters of the Turquoise Coast.",
+            "url": "widget-country.html?country=Turkey"
+          },
+          {
+            "name": "Philippines",
+            "image": "./assets/images/Philippines/PuertoPrincesa/mynaturevista_PuertoPrincesa3.jpg",
+            "flag": "./assets/Flags/Philippines-flag.png",
+            "description": "Explore pristine beaches, vibrant coral reefs, and tropical jungles across 7,000 islands.",
+            "url": "widget-country.html?country=Philippines"
+          },
+          {
+            "name": "Thailand",
+            "image": "./assets/images/Thailand/PhangNgaBay/mynaturevista_PhangNgaBay.jpg",
+            "flag": "./assets/Flags/Thailand-flag.png",
+            "description": "Discover tropical islands, majestic temples, bustling markets, and exotic wildlife.",
+            "url": "widget-country.html?country=Thailand"
+          },
+          {
+            "name": "India",
+            "image": "./assets/images/India/Himalayas/mynaturevista_Himalayas2.jpg",
+            "flag": "./assets/Flags/India-flag.png",
+            "description": "Discover the Himalayas, sacred rivers, vibrant wildlife, and colorful cultural landscapes.",
+            "url": "widget-country.html?country=India"
+          },
+          {
+            "name": "Malaysia",
+            "image": "./assets/images/Malaysia/TamanNegara/mynaturevista_TamanNegara.jpg",
+            "flag": "./assets/Flags/Malaysia-flag.png",
+            "description": "Visit tropical islands, lush rainforests, and vibrant cities like Kuala Lumpur.",
+            "url": "widget-country.html?country=Malaysia"
+          },
+          {
+            "name": "Japan",
+            "image": "./assets/images/1-indexImg/japanHero.jpg",
+            "flag": "./assets/Flags/japan_IconsBox.webp",
+            "description": "Witness Mount Fuji’s majestic beauty and explore Japan’s serene cherry blossom landscapes.",
+            "url": "widget-country.html?country=Japan"
+          },
+          {
+            "name": "China",
+            "image": "./assets/images/China/huangshan/huangshan1.webp",
+            "flag": "./assets/Flags/china_GeekClick.webp",
+            "description": "Discover Zhangjiajie’s Avatar-like mountains and the breathtaking landscapes of Guilin.",
+            "url": "widget-country.html?country=China"
+          },
+          {
+            "name": "Sri Lanka",
+            "image": "./assets/images/1-indexImg/srilankaHero.jpg",
+            "flag": "./assets/Flags/srilanka_customicondesign_1.webp",
+            "description": "Explore Sigiriya Rock Fortress and the lush tea plantations of Nuwara Eliya.",
+            "url": "widget-country.html?country=SriLanka"
+          },
+          {
+            "name": "Indonesia",
+            "image": "./assets/images/1-indexImg/indonesiaHero.jpg",
+            "flag": "./assets/Flags/indonesia_verluk.webp",
+            "description": "Dive into Bali’s stunning beaches and trek through Komodo National Park’s natural wonders.",
+            "url": "widget-country.html?country=Indonesia"
+          },
+          {
+            "name": "UAE",
+            "image": "./assets/images/1-indexImg/uaeHero.jpg",
+            "flag": "./assets/Flags/united-arab-emirates_IYAHICON.webp",
+            "description": "Explore the Liwa Desert’s golden dunes and the stunning mangroves of Abu Dhabi’s Jubail Island.",
+            "url": "widget-country.html?country=UAEmirates"
+          }
+        ]
+      },
+      {
+        "code": "Eu",
+        "name": "EUROPE",
+        "countries": [
+          {
+            "name": "Switzerland",
+            "image": "./assets/images/1-indexImg/switzerlandHero.jpg",
+            "flag": "./assets/Flags/switzerland_Roundicons.webp",
+            "description": "Explore the Swiss Alps, where serene lakes and snow-capped peaks create stunning natural beauty.",
+            "url": "widget-country.html?country=Switzerland"
+          },
+          {
+            "name": "United Kingdom",
+            "image": "./assets/images/UnitedKingdom/SevenSister/mynaturevista_SevenSister.jpg",
+            "flag": "./assets/Flags/United-Kingdom-flag.png",
+            "description": "Experience the Scottish Highlands, charming countryside, and historic cities like London and Edinburgh.",
+            "url": "widget-country.html?country=UnitedKingdom"
+          },
+          {
+            "name": "Portugal",
+            "image": "./assets/images/Portugal/Madeira/Madeira1.webp",
+            "flag": "./assets/Flags/portugal_verluk.png",
+            "description": "Discover Algarve's golden beaches and explore the lush vineyards of the Douro Valley.",
+            "url": "widget-country.html?country=Portugal"
+          },
+          {
+            "name": "Italy",
+            "image": "./assets/images/Italy/IslandsEolias/mynaturevista_IslandsEolias2.jpg",
+            "flag": "./assets/Flags/italy-flag.png",
+            "description": "Explore Tuscany's valleys, the Amalfi Coast, and the historic beauty of Rome and Venice.",
+            "url": "widget-country.html?country=Italy"
+          },
+          {
+            "name": "Spain",
+            "image": "./assets/images/1-indexImg/spainHero.jpg",
+            "flag": "./assets/Flags/spain_XinhStudio.webp",
+            "description": "Visit the Pyrenees Mountains or bask in the natural beauty of Costa Brava's beaches.",
+            "url": "widget-country.html?country=Spain"
+          },
+          {
+            "name": "Netherlands",
+            "image": "./assets/images/1-indexImg/netherlandsHero.jpg",
+            "flag": "./assets/Flags/holanda_XinhStudio.webp",
+            "description": "Cycle through the scenic Dutch countryside, featuring iconic tulip fields and picturesque windmills.",
+            "url": "widget-country.html?country=Netherlands"
+          },
+          {
+            "name": "Austria",
+            "image": "./assets/images/1-indexImg/austriaHero.jpg",
+            "flag": "./assets/Flags/austria_GeekClick.webp",
+            "description": "Explore the Austrian Alps, with pristine lakes and dramatic peaks ideal for outdoor adventures.",
+            "url": "widget-country.html?country=Austria"
+          },
+          {
+            "name": "France",
+            "image": "./assets/images/1-indexImg/franceHero.jpg",
+            "flag": "./assets/Flags/franceFlag.png",
+            "description": "Explore the stunning cliffs of Étretat, hike the majestic Mont Blanc, or unwind by the tranquil Lake Annecy.",
+            "url": "widget-country.html?country=France"
+          },
+          {
+            "name": "Greece",
+            "image": "./assets/images/Greece/MeteoraMountains/mynaturevista_MeteoraMountains.jpg",
+            "flag": "./assets/Flags/greece-flag.png",
+            "description": "Experience the Greek islands, ancient ruins, and breathtaking Mediterranean coastlines.",
+            "url": "widget-country.html?country=Greece"
+          },
+          {
+            "name": "Germany",
+            "image": "./assets/images/Germany/Rakotzbrucke/mynaturevista_Rakotzbrucke2.jpg",
+            "flag": "./assets/Flags/Germany-flag.png",
+            "description": "Discover Germany’s natural beauty, from enchanting forests and serene lakes to majestic alpine landscapes.",
+            "url": "widget-country.html?country=Germany"
+          }
+        ]
+      },
+      {
+        "code": "Sa",
+        "name": "SOUTH AMERICA",
+        "countries": [
+          {
+            "name": "Perú",
+            "image": "./assets/images/1-indexImg/peruHero.jpg",
+            "flag": "./assets/Flags/peru_GeekClick.png",
+            "description": "Visit Machu Picchu and explore the breathtaking landscapes of the Sacred Valley.",
+            "url": "widget-country.html?country=Peru"
+          },
+          {
+            "name": "Brazil",
+            "image": "./assets/images/1-indexImg/brazilHero.jpg",
+            "flag": "./assets/Flags/brazil_Icon.doit.png",
+            "description": "Experience the Amazon Rainforest or relax on Rio de Janeiro’s iconic Copacabana Beach.",
+            "url": "widget-country.html?country=Brazil"
+          },
+          {
+            "name": "Colombia",
+            "image": "./assets/images/1-indexImg/colombiaHero.jpg",
+            "flag": "./assets/Flags/colombia_HightQualityIcons.png",
+            "description": "Wander through Cocora Valley’s towering palms and discover the lush Amazon basin.",
+            "url": "widget-country.html?country=Colombia"
+          },
+          {
+            "name": "Argentina",
+            "image": "./assets/images/1-indexImg/argentinaHero.jpg",
+            "flag": "./assets/Flags/Argentina_amoghdesign.png",
+            "description": "Discover Patagonia’s glaciers and mountains, or explore the majestic Iguazu Falls.",
+            "url": "widget-country.html?country=Argentina"
+          },
+          {
+            "name": "Chile",
+            "image": "./assets/images/Chile/torresdelPaine/torresdelPaine_mynaturevista4.webp",
+            "flag": "./assets/Flags/Chile_GeekClick.png",
+            "description": "Explore Torres del Paine National Park, with its dramatic mountains and pristine lakes.",
+            "url": "widget-country.html?country=Chile"
+          }
+        ]
+      },
+      {
+        "code": "NCa",
+        "name": "NORTH AMERICA",
+        "countries": [
+          {
+            "name": "Mexico",
+            "image": "./assets/images/Mexico/CascadasAguaAzul/mynaturevista_CascadasAguaAzul.jpg",
+            "flag": "./assets/Flags/Mexico-flag.png",
+            "description": "Discover the Monarch Butterfly Biosphere, Copper Canyon, stunning cenotes, and the majestic volcanoes of Mexico.",
+            "url": "widget-country.html?country=Mexico"
+          },
+          {
+            "name": "Puerto Rico",
+            "image": "./assets/images/1-indexImg/puertoRicoHero.jpg",
+            "flag": "./assets/Flags/puerto-rico_IYAHICON.webp",
+            "description": "Relax on Flamenco Beach or explore the lush El Yunque Rainforest’s natural beauty.",
+            "url": "widget-country.html?country=PuertoRico"
+          },
+          {
+            "name": "Costa Rica",
+            "image": "./assets/images/1-indexImg/costaRicaHero.jpg",
+            "flag": "./assets/Flags/costa_rica_by_Xinh_Studio.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=CostaRica"
+          },
+          {
+            "name": "Guatemala",
+            "image": "./assets/images/1-indexImg/guatemalaHero.jpg",
+            "flag": "./assets/Flags/guatemala_by_Xinh Studio.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=Guatemala"
+          },
+          {
+            "name": "USA",
+            "image": "./assets/images/1-indexImg/usaHero.jpg",
+            "flag": "./assets/Flags/usa_GeekClick.webp",
+            "description": "Experience the Grand Canyon, Yellowstone’s geothermal wonders, and Yosemite’s majestic cliffs.",
+            "url": "widget-country.html?country=EEUU"
+          },
+          {
+            "name": "Honduras",
+            "image": "./assets/images/1-indexImg/hondurasHero.jpg",
+            "flag": "./assets/Flags/honduras_by_GeekClick.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=Honduras"
+          },
+          {
+            "name": "Canada",
+            "image": "./assets/images/1-indexImg/canadaHero.jpg",
+            "flag": "./assets/Flags/canada_GeekClick.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=Canada"
+          },
+          {
+            "name": "Nicaragua",
+            "image": "./assets/images/1-indexImg/nicaraguaHero.jpg",
+            "flag": "./assets/Flags/nicaragua_Xinh_Studio.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=Nicaragua"
+          },
+          {
+            "name": "Panama",
+            "image": "./assets/images/1-indexImg/panamaHero.jpg",
+            "flag": "./assets/Flags/panama_by_amoghdesign.png",
+            "description": "Discover Banff National Park, with turquoise lakes and stunning Rocky Mountain peaks.",
+            "url": "widget-country.html?country=Panama"
+          }
+        ]
+      },
+      {
+        "code": "Au",
+        "name": "OCEANIA",
+        "countries": [
+          {
+            "name": "Australia",
+            "image": "./assets/images/1-indexImg/australiaHero.jpg",
+            "flag": "./assets/Flags/australia_Icon_by_Roundiconsa.png",
+            "description": "Vast deserts, tropical reefs, and unique wildlife blend in this diverse natural wonderland.",
+            "url": "widget-country.html?country=Australia"
+          },
+          {
+            "name": "Vanuatu",
+            "image": "./assets/images/1-indexImg/vanutuHero.jpg",
+            "flag": "./assets/Flags/vanuatu_Icon_by_GeekClicka.png",
+            "description": "Volcanic islands with lush jungles, vibrant reefs, and authentic Melanesian culture.",
+            "url": "widget-country.html?country=Vanuatu"
+          },
+          {
+            "name": "Fiji",
+            "image": "./assets/images/1-indexImg/fijiHero.jpg",
+            "flag": "./assets/Flags/fiji_Icon_by_Xinh_Studioa.png",
+            "description": "Turquoise waters, coral reefs, and palm-lined beaches perfect for tropical escapes.",
+            "url": "widget-country.html?country=Fiji"
+          },
+          {
+            "name": "New Zealand",
+            "image": "./assets/images/1-indexImg/newZealandHero.jpg",
+            "flag": "./assets/Flags/new_Zeland_Icon_by_amoghdesigna.png",
+            "description": "Dramatic landscapes of mountains, fjords, and forests made for adventure and exploration.",
+            "url": "widget-country.html?country=NewZealand"
+          },
+          {
+            "name": "Papua N-Guinea",
+            "image": "./assets/images/1-indexImg/papuaHero.jpg",
+            "flag": "./assets/Flags/papuaNG_Icon_by_verluka.png",
+            "description": "Remote rainforests, rich tribal culture, and incredible biodiversity await discovery.",
+            "url": "widget-country.html?country=PapuaNewGuinea"
+          },
+          {
+            "name": "Solomon Islands",
+            "image": "./assets/images/1-indexImg/salomonIslandsHero.jpg",
+            "flag": "./assets/Flags/solomon-island_by_GeekClicka.png",
+            "description": "Untouched beaches, dense jungles, and vibrant coral reefs in a peaceful island paradise.",
+            "url": "widget-country.html?country=SolomonIslands"
+          }
+        ]
+      },
+      {
+        "code": "An",
+        "name": "ANTARTICA",
+        "countries": [
+          {
+            "name": "Lemaire Channel",
+            "image": "./assets/images/1-indexImg/lemaireChannelHero.jpg",
+            "flag": "./assets/Flags/LemaireChannelFlagbyFreepik.png",
+            "description": "Lemaire Channt stretches for about d is a must-see destination for any expedition to the White Continent.",
+            "url": "widget-eachPlace.html?place=AntarticaLemairechannel"
+          },
+          {
+            "name": "Dry Valleys",
+            "image": "./assets/images/1-indexImg/deathValleyHero.jpg",
+            "flag": "./assets/Flags/DryValleysFlagbyFreepik.png",
+            "description": "therworldly landscapes. These valleys are among tDry rch and exploration.",
+            "url": "widget-eachPlace.html?place=AntarticaDryvalleys"
+          },
+          {
+            "name": "Ross Ice Shelf",
+            "image": "./assets/images/1-indexImg/rossiceshelfHero.jpg",
+            "flag": "./assets/Flags/RossIceShelfFlagbyFreepik.png",
+            "description": "Rosly 487,000 square kilometers. It is a massive glerving as a critical part of the Antarctic ecosystem.",
+            "url": "widget-eachPlace.html?place=AntarticaRossiceshelf"
+          },
+          {
+            "name": "Mount Erebus",
+            "image": "./assets/images/1-indexImg/mounterebusHero.jpg",
+            "flag": "./assets/Flags/MountErebusFlagbyFreepik.png",
+            "description": "ters, it is red glow that lights up the icy landscape.",
+            "url": "widget-eachPlace.html?place=AntarticaMounterebus"
+          },
+          {
+            "name": "Deception Island",
+            "image": "./assets/images/Antartica/DeceptionIsland/mynaturvista_DeceptionIsland-W.Bulach–CCBY-SA4.0.jpg",
+            "flag": "./assets/Flags/deceptionIslandFlagFlagbyFreepik.png",
+            "description": "Volcanic island with steaming beaches and Antarctic wildlife sanctuary.",
+            "url": "widget-eachPlace.html?place=AntarcticaDeceptionIsland"
+          }
+        ]
+      }
+    ]
+  }

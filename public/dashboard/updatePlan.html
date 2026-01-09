@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Update Plan - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+/* ===== MODERN SIDEBAR 2025 ===== */
+:root {
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 80px;
+  --sidebar-bg: linear-gradient(180deg, #326359 0%, #326359 100%);
+  --sidebar-text: #e4e6eb;
+  --sidebar-hover: rgba(102, 126, 234, 0.15);
+  --sidebar-active: linear-gradient(100deg, #ff6b6b 0%, #326359 85%);
+  --transition-speed: 0.3s;
+  --header-height: 70px;
+  --primary-color: #ff3d5d;
+  --secondary-color: #00a085;
+  --starter-color: #10b981;
+  --business-color: #f59e0b;
+  --enterprise-color: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   SIDEBAR CONTAINER
+======================================== */
+.modern-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-speed) ease, width var(--transition-speed) ease;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modern-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+@media (max-width: 768px) {
+  .modern-sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .modern-sidebar.mobile-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+}
+
+/* ========================================
+   LOGO SECTION
+======================================== */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  padding: 20px 24px;
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 15px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon {
+  min-width: 40px;
+  height: 40px;
+  background: var(--sidebar-active);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: transform var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.logo-icon:hover {
+  transform: scale(1.1);
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .logo-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   NAVIGATION MENU
+======================================== */
+.sidebar-nav {
+  height: calc(100vh - var(--header-height) - 80px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 0;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.nav-section {
+  margin-bottom: 30px;
+}
+
+.nav-section-title {
+  padding: 0 24px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-section-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  gap: 15px;
+  margin: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: #ff6b6b60;
+  transform: translateX(5px);
+  color: var(--sidebar-text);
+}
+
+.nav-link.active {
+  background: var(--sidebar-active);
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.nav-icon {
+  min-width: 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-speed) ease;
+  margin-left: -10px;
+}
+
+.nav-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .nav-text {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================================
+   SIDEBAR FOOTER
+======================================== */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  transition: background var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-profile:hover {
+  background: #ff6b6b63;
+}
+
+.user-avatar {
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--sidebar-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.user-info {
+  flex: 1;
+  opacity: 1;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.collapsed .user-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.user-name {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.user-plan {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   USER DROPDOWN MENU
+======================================== */
+.user-dropdown-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 12px;
+  right: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #2d3748;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #f7f8fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+  color: #667eea;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 4px 0;
+}
+
+/* ========================================
+   MODERN HEADER
+======================================== */
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  z-index: 999;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .modern-header {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .modern-header {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #4a5568;
+}
+
+.header-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-2px);
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f7f8fa;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.user-dropdown:hover {
+  background: #e2e8f0;
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.header-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+.main-content {
+  margin-left: 0;
+  margin-top: var(--header-height);
+  padding: 30px;
+  min-height: calc(100vh - var(--header-height));
+  background: #f8f9fa;
+  transition: none;
+}
+
+@media (min-width: 769px) {
+  .main-content {
+    padding-left: calc(var(--sidebar-width) + 30px);
+  }
+  
+  .modern-sidebar.collapsed ~ .main-content {
+    padding-left: calc(var(--sidebar-collapsed-width) + 30px);
+  }
+}
+
+/* ========================================
+   OVERLAY Y MOBILE
+======================================== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .modern-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+  }
+}
+
+/* ========================================
+   UPDATE PLAN SPECIFIC STYLES
+======================================== */
+.current-subscription-card {
+  background: linear-gradient(180deg, #326359 0%, #326359 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  color: white;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.current-subscription-card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.current-plan-display {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.current-plan-name {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.current-plan-price {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.btn-manage {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-manage:hover {
+  background: white;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+.btn-cancel {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.btn-cancel:hover {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header-custom {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.card-header-custom h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.card-body-custom {
+  padding: 2.5rem;
+}
+
+.plan-option {
+  margin-bottom: 1.5rem;
+}
+
+.plan-card {
+  border: 3px solid transparent;
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.plan-card.current-plan {
+  border-color: #667eea;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  cursor: not-allowed;
+}
+
+.plan-card.current-plan::before {
+  content: "Your Current Plan";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.plan-card:not(.current-plan):hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.plan-card.selected {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(255, 61, 93, 0.1), rgba(241, 104, 58, 0.1));
+}
+
+.plan-card.starter {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.plan-card.business {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.plan-card.enterprise {
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.plan-card.starter.selected {
+  border-color: var(--starter-color);
+}
+
+.plan-card.business.selected {
+  border-color: var(--business-color);
+}
+
+.plan-card.enterprise.selected {
+  border-color: var(--enterprise-color);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.badge-starter {
+  background: var(--starter-color);
+}
+
+.badge-business {
+  background: var(--business-color);
+}
+
+.badge-enterprise {
+  background: var(--enterprise-color);
+}
+
+.badge-popular {
+  background: #ef4444;
+}
+
+.plan-name {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plan-price {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.price-period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.plan-features li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plan-features li i {
+  color: var(--secondary-color);
+}
+
+.feature-highlight {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.upgrade-badge,
+.downgrade-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.upgrade-badge {
+  background: #10b981;
+  color: white;
+}
+
+.downgrade-badge {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-custom {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(255, 61, 93, 0.3);
+}
+
+.btn-custom:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.security-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.renewal-info {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.renewal-info p {
+  margin: 0;
+  color: #1e40af;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Modal Styles */
+.modal-custom {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content-custom {
+  background: white;
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header-custom {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header-custom h3 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 1.5rem;
+}
+
+.modal-body-custom p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-modal {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-modal-cancel {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.btn-modal-cancel:hover {
+  background: #d1d5db;
+}
+
+.btn-modal-confirm {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-modal-confirm:hover {
+  background: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .plan-name {
+    font-size: 1.2rem;
+  }
+  .plan-price {
+    font-size: 1.6rem;
+  }
+}
+    </style>
+</head>
+<body data-page="updatePlan">
+    <!-- ========================================
+         MODERN SIDEBAR
+    ======================================== -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Statistics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Widget Admin</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Available Buttons">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Edit Buttons">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Places">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link active" data-tooltip="Update Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Add Domain">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing History">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Reference">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Reference</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Security">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Security</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Best Practices">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Best Practices</span>
+                </a>
+            </div>
+
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Admin Panel">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+            
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========================================
+         MODERN HEADER
+    ======================================== -->
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <h1 class="header-title">Update Plan</h1>
+        
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+                
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================
+         MAIN CONTENT
+    ======================================== -->
+    <div class="main-content">
+        <div class="container-fluid px-4">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-11">
+                    
+                    <!-- PLANS SELECTION -->
+                    <div class="payment-card">
+                        <div class="card-header-custom">
+                            <h2><i class="fas fa-star"></i> Choose Your Plan</h2>
+                            <p class="subtitle" style="margin: 0.5rem 0 0 0; opacity: 0.9;">Upgrade or change your subscription</p>
+                        </div>
+
+                        <div class="card-body-custom">
+                            
+                                               <!-- CURRENT SUBSCRIPTION INFO -->
+                    <div class="card mb-4" style="border-radius: 16px; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                        <div class="card-header" style="background: #00b894;color: white; border: none; border-radius: 16px 16px 0 0;">
+                            <h5 class="mb-0"><i class="fas fa-star"></i> Current Plan</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="currentPlan">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-1">Plan: <span id="currentPlanName" class="text-primary">-</span></h6>
+                                        <p class="mb-0 text-muted">Estado: <span id="currentPlanStatus">-</span></p>
+                                    </div>
+                                    <div class="text-end">
+                                        <p class="mb-0"><strong id="currentPlanPrice">-</strong></p>
+                                        <small class="text-muted">Vence: <span id="currentPlanExpiry">-</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                            <div class="renewal-info">
+                                <p>
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Plan changes:</strong> Upgrades are applied immediately. Downgrades will be applied on your next billing date.
+                                </p>
+                            </div>
+
+                            <form id="planForm">
+                                <!-- STARTER PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card starter" id="plan-card-starter" onclick="selectPlan('starter', 19, 'monthly')">
+                                        <span class="plan-badge badge-starter">🟢 STARTER</span>
+                                        <input type="radio" name="plan" value="starter-monthly" id="plan-starter" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-seedling"></i> Starter
+                                            <span class="upgrade-badge" id="badge-starter" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €19 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For personal projects or small websites
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 authorized domain/subdomain</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 3,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> Full natural places catalog access</li>
+                                            <li><i class="fas fa-check-circle"></i> Dashboard with real-time statistics</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Email support</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- BUSINESS PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card business" id="plan-card-business" onclick="selectPlan('business', 49, 'monthly')">
+                                        <span class="plan-badge badge-business" style="left: 130px;">🟡 BUSINESS</span>
+                                        <input type="radio" name="plan" value="business-monthly" id="plan-business" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-briefcase"></i> Business
+                                            <span class="upgrade-badge" id="badge-business" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €49 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For agencies or brands with medium traffic
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 domain/subdomain + €10 per additional</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 20,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">Up to 100 custom locations</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Advanced analytics dashboard</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Priority support (<24h)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- ENTERPRISE PLAN -->
+                                <div class="plan-option">
+                                    <div class="plan-card enterprise" id="plan-card-enterprise" onclick="selectPlan('enterprise', 149, 'monthly')">
+                                        <span class="plan-badge badge-enterprise">🔵 ENTERPRISE</span>
+                                        <input type="radio" name="plan" value="enterprise-monthly" id="plan-enterprise" style="display: none;">
+                                        <div class="plan-name">
+                                            <i class="fas fa-crown"></i> Enterprise
+                                            <span class="upgrade-badge" id="badge-enterprise" style="display: none;"></span>
+                                        </div>
+                                        <div class="plan-price">
+                                            €149 <span class="price-period">/month</span>
+                                        </div>
+                                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">
+                                            For large platforms and tourism destinations
+                                        </p>
+                                        <ul class="plan-features">
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">1 domain/subdomain + €15 per additional</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Up to 150,000 widget openings/month</li>
+                                            <li><i class="fas fa-check-circle"></i> <span class="feature-highlight">Unlimited custom locations</span></li>
+                                            <li><i class="fas fa-check-circle"></i> Advanced analytics & custom reports</li>
+                                            <li><i class="fas fa-check-circle"></i> Full GDPR compliance</li>
+                                            <li><i class="fas fa-check-circle"></i> Premium support with dedicated account manager</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-custom" id="submitBtn" disabled>
+                                    <i class="fas fa-lock"></i> Select a plan to continue
+                                </button>
+                                
+                                <div class="security-indicator">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Secure payment with Stripe
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                <div>
+                    <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                    &middot;
+                    <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                    &middot;
+                    <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+                    </div>
+                </footer>
+    </div>
+
+    <!-- CANCEL SUBSCRIPTION MODAL -->
+    <div id="cancelModal" class="modal-custom">
+        <div class="modal-content-custom">
+            <div class="modal-header-custom">
+                <i class="fas fa-exclamation-triangle" style="color: #ef4444; font-size: 2rem;"></i>
+                <h3>Cancel Subscription?</h3>
+            </div>
+            <div class="modal-body-custom">
+                <p>
+                    <strong>Are you sure you want to cancel your subscription?</strong>
+                </p>
+                <p>
+                    Your subscription will remain active until the end of your current billing period 
+                    (<strong id="modalEndDate">-</strong>). After that date, you will lose access to:
+                </p>
+                <ul style="color: #6b7280; line-height: 1.8;">
+                    <li>Real-time analytics dashboard</li>
+                    <li>Custom widgets</li>
+                    <li>Priority technical support</li>
+                    <li>Custom locations (if applicable)</li>
+                </ul>
+                <p style="margin-top: 1rem;">
+                    You can reactivate your subscription at any time before the current period ends.
+                </p>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-modal btn-modal-cancel" onclick="closeCancelModal()">
+                    <i class="fas fa-arrow-left"></i> No, keep subscription
+                </button>
+                <button class="btn-modal btn-modal-confirm" onclick="confirmCancellation()">
+                    <i class="fas fa-times-circle"></i> Yes, cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script type="module" src="js/main.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+        <script>
+        const stripe = Stripe('pk_test_51Rd69MC00sMmjhy0ELz9ZATySMAuRoDzY4xtNblIN66aDsSmI3CIYV1QZDcXRFOtkQuKr5j0ncPxEds6yr0EG9tJ00vY8eFryw');
+        
+        let selectedPlan = null;
+        let currentUser = null;
+
+        // Obtener usuario del token JWT
+        async function getCurrentUser() {
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            
+            if (!token) {
+                return null;
+            }
+
+            try {
+                const tokenParts = token.split('.');
+                if (tokenParts.length !== 3) {
+                    return null;
+                }
+
+                const payload = JSON.parse(atob(tokenParts[1]));
+
+                if (payload.exp && payload.exp * 1000 < Date.now()) {
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('token');
+                    return null;
+                }
+
+                return {
+                    id: payload.id,
+                    email: payload.email,
+                    is_subscribed: payload.is_subscribed
+                };
+
+            } catch (error) {
+                console.error('Error al obtener usuario:', error);
+                return null;
+            }
+        }
+
+        // Seleccionar plan
+        function selectPlan(type, price, billing) {
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            event.currentTarget.classList.add('selected');
+            
+            const radio = event.currentTarget.querySelector('input[type="radio"]');
+            if (radio) {
+                radio.checked = true;
+            }
+            
+            const planNames = {
+                'starter': 'Starter',
+                'business': 'Business',
+                'enterprise': 'Enterprise'
+            };
+            
+            selectedPlan = {
+                type: type,
+                price: parseFloat(price),
+                billing: billing,
+                name: planNames[type] || type,
+                id: radio ? radio.value : `${type}-${billing}`
+            };
+            
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fas fa-arrow-right"></i> Continuar con ${selectedPlan.name} - €${price}/mes`;
+            }
+        }
+
+        // Enviar formulario
+        document.getElementById('planForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!selectedPlan) {
+                alert('Por favor selecciona un plan para continuar.');
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+            
+            if (!currentUser) {
+                currentUser = await getCurrentUser();
+            }
+            
+            const requestData = {
+                plan: selectedPlan,
+                user_email: currentUser?.email
+            };
+            
+            const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
+            try {
+                const response = await fetch('/api/stripe/create-checkout-session', {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(requestData)
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Error ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.id) {
+                    const result = await stripe.redirectToCheckout({ sessionId: data.id });
+                    if (result.error) {
+                        throw new Error(result.error.message);
+                    }
+                } else {
+                    throw new Error('No se recibió ID de sesión');
+                }
+            } catch (err) {
+                console.error('Error en el proceso de pago:', err);
+                alert('Error al procesar el pago: ' + err.message);
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Continuar con el pago';
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+                } else {
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            }
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', async function() {
+            currentUser = await getCurrentUser();
+            
+            if (currentUser) {
+            }
+        });
+    </script>
+</body>
+</html>

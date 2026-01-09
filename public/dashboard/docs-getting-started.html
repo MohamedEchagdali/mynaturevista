@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Getting Started Guide - myNaturevista SaaS Platform" />
+    <meta name="author" content="myNaturevista" />
+    <title>Getting Started - myNaturevista</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link href="css/stylesDashboard.css" rel="stylesheet" />
+    <link href="css/docs.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body data-page="docs-getting-started">
+    <!-- MODERN SIDEBAR -->
+    <aside class="modern-sidebar" id="modernSidebar">
+        <div class="sidebar-logo" id="sidebarToggle">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <span class="logo-text">MyNaturevista</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <!-- Principal -->
+            <div class="nav-section">
+                <div class="nav-section-title">Principal</div>
+                <a href="dashboard.html" class="nav-link" data-tooltip="Dashboard">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <a href="charts.html" class="nav-link" data-tooltip="Analytics">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="nav-text">Analytics</span>
+                </a>
+            </div>
+
+            <!-- Admin Widget -->
+            <div class="nav-section">
+                <div class="nav-section-title">Admin Widget</div>
+                <a href="widgetSettings.html" class="nav-link" data-tooltip="Integration Guide">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span class="nav-text">Integration Guide</span>
+                </a>
+                <a href="apiAccess.html" class="nav-link" data-tooltip="API Access">
+                    <span class="nav-icon"><i class="fas fa-key"></i></span>
+                    <span class="nav-text">API Access</span>
+                </a>
+                <a href="buttons.html" class="nav-link" data-tooltip="Buttons">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Buttons</span>
+                </a>
+                <a href="buttonsEditor.html" class="nav-link" data-tooltip="Edit Buttons">
+                    <span class="nav-icon"><i class="fas fa-edit"></i></span>
+                    <span class="nav-text">Edit Buttons</span>
+                </a>
+                <a href="customPlaces.html" class="nav-link" data-tooltip="Custom Locations">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Custom Locations</span>
+                </a>
+            </div>
+
+            <!-- Account -->
+            <div class="nav-section">
+                <div class="nav-section-title">Account</div>
+                <a href="accountSettings.html" class="nav-link" data-tooltip="Account Settings">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span class="nav-text">Account Settings</span>
+                </a>
+                <a href="updatePlan.html" class="nav-link" data-tooltip="Upgrade Plan">
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
+                    <span class="nav-text">Upgrade Plan</span>
+                </a>
+                <a href="addDomain.html" class="nav-link" data-tooltip="Add Domain">
+                    <span class="nav-icon"><i class="fas fa-plus-circle"></i></span>
+                    <span class="nav-text">Add Domain</span>
+                </a>
+                <a href="billing.html" class="nav-link" data-tooltip="Billing">
+                    <span class="nav-icon"><i class="fas fa-file-invoice-dollar"></i></span>
+                    <span class="nav-text">Billing</span>
+                </a>
+            </div>
+
+            <!-- Documentation -->
+            <div class="nav-section">
+                <div class="nav-section-title">Documentation</div>
+                <a href="docs-overview.html" class="nav-link" data-tooltip="Overview">
+                    <span class="nav-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="nav-text">Overview</span>
+                </a>
+                <a href="docs-getting-started.html" class="nav-link active" data-tooltip="Getting Started">
+                    <span class="nav-icon"><i class="fas fa-rocket"></i></span>
+                    <span class="nav-text">Getting Started</span>
+                </a>
+                <a href="docs-widget-setup.html" class="nav-link" data-tooltip="Widget Setup">
+                    <span class="nav-icon"><i class="fas fa-code"></i></span>
+                    <span class="nav-text">Widget Setup</span>
+                </a>
+                <a href="docs-api-reference.html" class="nav-link" data-tooltip="API Keys & Domains">
+                    <span class="nav-icon"><i class="fas fa-plug"></i></span>
+                    <span class="nav-text">API Keys & Domains</span>
+                </a>
+                <a href="docs-security.html" class="nav-link" data-tooltip="Account & Privacy">
+                    <span class="nav-icon"><i class="fas fa-lock"></i></span>
+                    <span class="nav-text">Account & Privacy</span>
+                </a>
+                <a href="docs-best-practices.html" class="nav-link" data-tooltip="Tips & Recommendations">
+                    <span class="nav-icon"><i class="fas fa-star"></i></span>
+                    <span class="nav-text">Tips & Recommendations</span>
+                </a>
+            </div>
+
+            <!-- Admin -->
+            <div class="nav-section" id="adminSection" style="display: none;">
+                <div class="nav-section-title">Admin</div>
+                <a href="admin-panel.html" class="nav-link" data-tooltip="Admin Panel">
+                    <span class="nav-icon"><i class="fas fa-shield-alt"></i></span>
+                    <span class="nav-text">Admin Panel</span>
+                    <span class="nav-badge">Admin</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Footer -->
+        <div class="sidebar-footer">
+            <div class="user-profile" id="userProfileToggle">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebarUserName">User</div>
+                    <div class="user-plan" id="sidebarUserPlan">Free Plan</div>
+                </div>
+                <i class="fas fa-ellipsis-v" style="color: rgba(255,255,255,0.6);"></i>
+            </div>
+
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    Support
+                </a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Log Out
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MODERN HEADER -->
+    <header class="modern-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <h1 class="header-title">Getting Started</h1>
+
+        <div class="header-actions">
+            <div class="user-dropdown" id="headerUserDropdown">
+                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="fas fa-user"></i>
+                </div>
+                <i class="fas fa-chevron-down" style="font-size: 0.8rem; color: #718096;"></i>
+
+                <!-- Dropdown Menu -->
+                <div class="header-dropdown-menu" id="headerDropdownMenu">
+                    <a href="accountSettings.html" class="dropdown-item">
+                        <i class="fas fa-user-circle"></i>
+                        Account
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <i class="fas fa-envelope"></i>
+                        Support
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item" id="headerLogoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Log Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="docs-container">
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="docs-overview.html">Documentation</a>
+                <i class="fas fa-chevron-right"></i>
+                <span>Getting Started</span>
+            </div>
+
+            <!-- Hero Section -->
+            <div class="docs-hero">
+                <div class="docs-hero-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h1 class="docs-hero-title">Getting Started</h1>
+                <p class="docs-hero-subtitle">Welcome! This guide will help you add the widget to your website in just a few minutes</p>
+            </div>
+
+            <!-- Step 1: Sign Up -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-user-plus"></i>
+                    Step 1: Sign Up
+                </h2>
+                <div class="docs-content">
+                    <p>Create your MyNaturevista account to get started.</p>
+
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Go to the signup page</h3>
+                                <p>Visit our signup page and create your account.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Enter your email and password</h3>
+                                <p>Use a strong password to keep your account secure.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+    <div class="step-number">3</div>
+    <div class="step-content">
+        <h3>Check your subscription email</h3>
+        <p>You have received an email with the details of your subscription. Please check your inbox.</p>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Choose Your Plan -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-crown"></i>
+                    Step 2: Choose Your Plan
+                </h2>
+                <div class="docs-content">
+                    <p>Select a subscription plan that fits your needs. You can upgrade or downgrade anytime.</p>
+
+                    <table class="docs-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Starter</th>
+                                <th>Business</th>
+                                <th>Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Price</strong></td>
+                                <td>19 EUR/month</td>
+                                <td>49 EUR/month</td>
+                                <td>149 EUR/month</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Monthly Openings</strong></td>
+                                <td>3,000</td>
+                                <td>20,000</td>
+                                <td>150,000</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Included Domains</strong></td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custom Places</strong></td>
+                                <td>0</td>
+                                <td>100</td>
+                                <td>Unlimited</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Extra Domain Cost</strong></td>
+                                <td>N/A</td>
+                                <td>10 EUR each</td>
+                                <td>15 EUR each</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <div class="info-box info-warning">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>What is an "Opening"?</strong>
+                            <p>An opening is counted each time someone clicks to open your widget. Simply loading the widget on your page doesn't count - only when visitors actually interact with it.</p>
+                        </div>
+                    </div>-->
+
+                    <p style="margin-top: 1.5rem;">Go to <a href="updatePlan.html">Upgrade Plan</a> in the sidebar to choose and pay for your subscription.</p>
+                </div>
+            </div>
+
+            <!-- Step 3: Create Your First API Key -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-key"></i>
+                    Step 3: Create Your First API Key
+                </h2>
+                <div class="docs-content">
+                    <p>An API key connects the widget to your account and controls which websites can use it.</p>
+
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Go to "API Access" in sidebar</h3>
+                                <p>Find it under the "Admin Widget" section.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Click "Generate Api Key"</h3>
+                                <p>You'll see a form to set up your key.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Give it a name</h3>
+                                <p>Use something descriptive like "My Website" or "Main Site".</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Click Generate</h3>
+                                <p>Your API key will be generated and displayed. Copy it for the next step.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Copy Your Widget Code -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-code"></i>
+                    Step 4: Copy Your Widget Code
+                </h2>
+                <div class="docs-content">
+                    <p>Now you'll get the code to add to your website.</p>
+
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Go to "Integration Guide" in sidebar</h3>
+                                <p>You'll find it under "Admin Widget" section.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Copy the script code</h3>
+                                <p>You'll see a code snippet with your API key already included. Click the copy button.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Paste it before the closing &lt;/body&gt; tag</h3>
+                                <p>Add this code at the bottom of your website's HTML, just before &lt;/body&gt;.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Add a Button -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-mouse-pointer"></i>
+                    Step 5: Add a Button
+                </h2>
+                <div class="docs-content">
+                    <p>Add a button to your website so visitors can open the widget.</p>
+
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Copy button code from Integration Guide</h3>
+                                <p>You'll find example button code on the Integration Guide page.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Paste it where you want the button</h3>
+                                <p>Add the button code to any page where you want visitors to access the widget.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Customize button text and style</h3>
+                                <p>You can change the button text to match your brand. See <a href="buttonsEditor.html">Edit Buttons</a> for styling options.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-primary">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Pre-made Buttons Available</strong>
+                            <p>Check out our <a href="buttons.html">Buttons</a> gallery for ready-to-use button designs you can copy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Test It! -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-vial"></i>
+                    Step 6: Test It!
+                </h2>
+                <div class="docs-content">
+                    <p>Make sure everything is working correctly.</p>
+
+                    <div class="step-container">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Visit your website</h3>
+                                <p>Open your website in a web browser.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Click the button</h3>
+                                <p>Try clicking the button you added.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>The widget should open</h3>
+                                <p>You should see the widget appear with a list of destinations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Troubleshooting</h3>
+                    <div class="info-box info-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Widget not showing?</strong>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Check that your API key is correct</li>
+                                <li>Make sure your domain is added to the allowed list in API Access</li>
+                                <li>Contact <a href="contact.html">support</a> if you need help</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="info-box info-warning">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <div>
+                            <strong>Button not working?</strong>
+                            <ul style="margin: 0.5rem 0 0 1.5rem;">
+                                <li>Check that the widget script is loaded on the page</li>
+                                <li>Make sure the button calls openNatureWidget() function</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What's Next -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-forward"></i>
+                    What's Next?
+                </h2>
+                <div class="docs-content">
+                    <p>Now that your widget is working, here are some things you can do:</p>
+
+                    <div class="docs-nav-grid">
+                        <a href="docs-widget-setup.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3>Customize Colors</h3>
+                            <p>Match the widget to your brand colors and style</p>
+                        </a>
+
+                        <a href="customPlaces.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Add Custom Places</h3>
+                            <p>Create your own destinations and tours</p>
+                        </a>
+
+                        <a href="dashboard.html" class="docs-nav-card">
+                            <div class="docs-nav-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>View Analytics</h3>
+                            <p>See how many people are using your widget</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="docs-section">
+                <h2 class="docs-section-title">
+                    <i class="fas fa-life-ring"></i>
+                    Need Help?
+                </h2>
+                <div class="docs-content">
+                    <div class="info-box info-primary">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Contact Support</strong>
+                            <p>If you have any questions or run into issues, visit our <a href="contact.html">Contact page</a> to get in touch with our support team.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; myNaturevista 2026</div>
+                    <div>
+                        <a target="_blank" href="../privacy-policy.html">Privacy Policy</a>
+                        &middot;
+                        <a target="_blank" href="../terms-of-service.html">Terms &amp; Conditions</a>
+                        &middot;
+                        <a target="_blank" href="../cookie-policy.html">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script type="module">
+        import { SidebarManager } from './js/components/SidebarManager.js';
+        import { SubscriptionChecker } from './js/components/SubscriptionChecker.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            SidebarManager.init();
+            SubscriptionChecker.check();
+        });
+    </script>
+</body>
+</html>

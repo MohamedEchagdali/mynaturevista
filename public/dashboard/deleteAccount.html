@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>myNaturevista - Account Deletion Feedback</title>
+  <link rel="icon" href="data:,">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+ 
+<style>
+  :root {
+    --primary-color: #ff3d5d;
+    --secondary-color: #f1683a;
+    --accent-color: #8a172a;
+    --dark-color: #2c1810;
+    --light-bg: #fff7f6;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --gradient-primary: linear-gradient(135deg, #ff3d5d, #f1683a);
+    --gradient-dark: linear-gradient(135deg, #2c1810, #8a172a);
+    --shadow-light: 0 4px 15px rgba(255, 61, 93, 0.1);
+    --shadow-medium: 0 8px 30px rgba(255, 61, 93, 0.15);
+    --shadow-heavy: 0 15px 50px rgba(0, 0, 0, 0.1);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff6b6b 0%, #00b894 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    padding-top: 80px; /* Compensate for fixed navbar */
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.05"/><circle cx="90" cy="40" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Header Styles */
+  .navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  .navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #00b894 0%, #ff6b6b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+
+  .navbar-nav .nav-link {
+    color: var(--dark-color) !important;
+    font-weight: 500;
+    margin: 0 8px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Responsive container */
+  .containerDeletAcc {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #71e961, #3f704e);
+    color: white;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .header p {
+    opacity: 0.9;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  }
+
+  .form-container {
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .progress-bar {
+    background: #f1f5f9;
+    border-radius: 10px;
+    height: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: linear-gradient(90deg, #2d5a27, #4a7c59);
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  .step-indicator {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #64748b;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .step {
+    display: none;
+  }
+
+  .step.active {
+    display: block;
+  }
+
+  .question-group {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+    margin-bottom: 25px;
+  }
+
+  .question-group h4 {
+    color: #2d5a27;
+    font-size: clamp(1rem, 3.5vw, 1.1em);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .reason-options {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .reason-option {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .reason-option:hover {
+    border-color: #cbd5e0;
+    background: #f8fafc;
+  }
+
+  .reason-option.selected {
+    border-color: #2d5a27;
+    background: #f0fff4;
+  }
+
+  .reason-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .reason-option label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    font-size: clamp(0.875rem, 3vw, 0.95em);
+  }
+
+  .reason-icon {
+    font-size: 1.2em;
+    color: #2d5a27;
+    min-width: 20px;
+  }
+
+  .text-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1em;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+
+  .text-input:focus {
+    outline: none;
+    border-color: #2d5a27;
+  }
+
+  textarea.text-input {
+    min-height: 100px;
+  }
+
+  .rating-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
+
+  .rating-star {
+    font-size: 1.5em;
+    color: #cbd5e0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .rating-star:hover,
+  .rating-star.active {
+    color: #fbbf24;
+  }
+
+  .improvement-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .improvement-item {
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .improvement-item:hover {
+    border-color: #cbd5e0;
+  }
+
+  .improvement-item.selected {
+    border-color: #2d5a27;
+    background: #f0fff4;
+  }
+
+  .improvement-item input[type="checkbox"] {
+    display: none;
+  }
+
+  .improvement-item i {
+    font-size: 1.5em;
+    color: #2d5a27;
+    margin-bottom: 8px;
+  }
+
+  .final-warning {
+    background: #fef2f2;
+    border: 2px solid #fecaca;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .final-warning h4 {
+    color: #dc2626;
+    font-size: clamp(1.1rem, 4vw, 1.2em);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .final-warning p {
+    color: #7f1d1d;
+    margin-bottom: 15px;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
+  }
+
+  .confirmation-input {
+    background: white;
+    border: 2px solid #dc2626;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .confirmation-input input {
+    border: none;
+    outline: none;
+    font-size: 1em;
+    flex: 1;
+    min-width: 200px;
+    width: 100%;
+  }
+
+  .confirmation-input label {
+    color: #7f1d1d;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(0.95rem, 3.5vw, 1.1em);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .btn-next {
+    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+    color: white;
+    box-shadow: 0 4px 15px rgba(45, 90, 39, 0.4);
+  }
+
+  .btn-next:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1e3a1c, #2d5a27);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45, 90, 39, 0.6);
+  }
+
+  .btn-delete {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  }
+
+  .btn-delete:hover:not(:disabled) {
+    background: linear-gradient(135deg, #b91c1c, #991b1b);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.6);
+  }
+
+  .btn-delete:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-back {
+    background: #e2e8f0;
+    color: #4a5568;
+    border: 2px solid #cbd5e0;
+  }
+
+  .btn-back:hover {
+    background: #cbd5e0;
+    transform: translateY(-2px);
+  }
+
+  .success-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #2d5a27;
+  }
+
+  .success-message i {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #22c55e;
+  }
+
+  /* === Mobile Responsiveness === */
+  @media (max-width: 768px) {
+    body {
+      padding-top: 70px;
+    }
+
+    .navbar-brand {
+      font-size: 1.4rem;
+    }
+
+    .navbar-nav .nav-link {
+      margin: 0 6px;
+      font-size: 0.85rem;
+    }
+
+    .containerDeletAcc {
+      margin: 10px;
+      border-radius: 14px;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .improvement-areas {
+      grid-template-columns: 1fr;
+    }
+
+    .confirmation-input {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .confirmation-input label {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rating-group {
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      font-size: 1rem;
+    }
+  }
+
+  /* Center form vertically and horizontally */
+  main {
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 80px);
+    align-items: flex-start;
+    padding: 20px 10px;
+  }
+</style>
+</head>
+<body data-page="deleteAccount">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="/">🌿 myNaturevista</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<main>
+  <div class="containerDeletAcc">
+    <div class="header">
+      <h1><i class="fas fa-comments"></i> Help Us Improve myNaturevista</h1>
+      <p>Your feedback helps us create a better experience for showcasing natural places</p>
+    </div>
+
+    <div class="form-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="step-indicator" id="stepIndicator">Step 1 of 2 - Feedback Questionnaire</div>
+
+      <!-- STEP 1: Feedback Questionnaire -->
+      <div class="step active" id="step1">
+        
+        <!-- Main reason for leaving the service -->
+        <div class="question-group">
+          <h4><i class="fas fa-question-circle"></i> What is the main reason you're leaving myNaturevista?</h4>
+          <div class="reason-options">
+            <div class="reason-option">
+              <input type="radio" id="not_using_widget" name="leaveReason" value="not_using_widget" required />
+              <label for="not_using_widget"><i class="fas fa-pause reason-icon"></i> I'm no longer using the widget on my website</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="too_expensive" name="leaveReason" value="too_expensive" required />
+              <label for="too_expensive"><i class="fas fa-euro-sign reason-icon"></i> The price doesn't fit my budget</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="low_traffic" name="leaveReason" value="low_traffic" required />
+              <label for="low_traffic"><i class="fas fa-chart-line reason-icon"></i> My site has low traffic and I'm not utilizing it</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="found_alternative" name="leaveReason" value="found_alternative" required />
+              <label for="found_alternative"><i class="fas fa-exchange-alt reason-icon"></i> I found a better alternative</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="technical_issues" name="leaveReason" value="technical_issues" required />
+              <label for="technical_issues"><i class="fas fa-bug reason-icon"></i> Technical or integration issues</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="missing_features" name="leaveReason" value="missing_features" required />
+              <label for="missing_features"><i class="fas fa-puzzle-piece reason-icon"></i> Missing features I need</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="poor_place_quality" name="leaveReason" value="poor_place_quality" required />
+              <label for="poor_place_quality"><i class="fas fa-map-marked-alt reason-icon"></i> Insufficient quality or quantity of places</label>
+            </div>
+            <div class="reason-option">
+              <input type="radio" id="other_reason" name="leaveReason" value="other_reason" required />
+              <label for="other_reason"><i class="fas fa-ellipsis-h reason-icon"></i> Other reason</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall experience rating -->
+        <div class="question-group">
+          <h4><i class="fas fa-star"></i> How would you rate your experience with myNaturevista?</h4>
+          <div class="rating-group">
+            <span>Poor</span>
+            <div class="rating-stars" data-rating="0">
+              <i class="fas fa-star rating-star" data-star="1"></i>
+              <i class="fas fa-star rating-star" data-star="2"></i>
+              <i class="fas fa-star rating-star" data-star="3"></i>
+              <i class="fas fa-star rating-star" data-star="4"></i>
+              <i class="fas fa-star rating-star" data-star="5"></i>
+            </div>
+            <span>Excellent</span>
+          </div>
+          <small style="color: #dc2626; display: none;" id="ratingError">⚠️ Please select a rating</small>
+        </div>
+
+        <!-- Specific widget improvement areas -->
+        <div class="question-group">
+          <h4><i class="fas fa-tools"></i> What aspects could we improve? (Select all that apply)</h4>
+          <div class="improvement-areas">
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_widget_design" name="improvements" value="widget_design" />
+              <label for="improve_widget_design"><i class="fas fa-paint-brush"></i><div>Widget Design</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_load_speed" name="improvements" value="load_speed" />
+              <label for="improve_load_speed"><i class="fas fa-tachometer-alt"></i><div>Load Speed</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_place_info" name="improvements" value="place_information" />
+              <label for="improve_place_info"><i class="fas fa-info-circle"></i><div>Place Information</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_custom_places" name="improvements" value="custom_places_feature" />
+              <label for="improve_custom_places"><i class="fas fa-map-pin"></i><div>Custom Places</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_dashboard" name="improvements" value="dashboard_ui" />
+              <label for="improve_dashboard"><i class="fas fa-chart-bar"></i><div>Dashboard</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_api" name="improvements" value="api_features" />
+              <label for="improve_api"><i class="fas fa-code"></i><div>API / Integration</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_support" name="improvements" value="customer_support" />
+              <label for="improve_support"><i class="fas fa-headset"></i><div>Customer Support</div></label>
+            </div>
+            <div class="improvement-item">
+              <input type="checkbox" id="improve_pricing" name="improvements" value="pricing_plans" />
+              <label for="improve_pricing"><i class="fas fa-tags"></i><div>Pricing / Plans</div></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Specific feedback -->
+        <div class="question-group">
+          <h4><i class="fas fa-lightbulb"></i> What feature or improvement would make you reconsider?</h4>
+          <textarea class="text-input" id="specificFeedback" placeholder="E.g.: I'd need more places in my region, Google Maps integration, better design customization..."></textarea>
+        </div>
+
+        <!-- Additional comments -->
+        <div class="question-group">
+          <h4><i class="fas fa-comment"></i> Anything else you'd like to share?</h4>
+          <textarea class="text-input" id="additionalComments" placeholder="Share any other thoughts about your experience with myNaturevista..."></textarea>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn btn-back" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <button type="button" class="btn btn-next" id="nextBtn">
+            <i class="fas fa-arrow-right"></i> Continue
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Final Confirmation -->
+      <div class="step" id="step2">
+        <div class="final-warning">
+          <h4><i class="fas fa-exclamation-triangle"></i> Final Confirmation</h4>
+          <p>To proceed with account deletion, please type <strong>"DELETE ACCOUNT"</strong> below:</p>
+          <div class="confirmation-input">
+            <label for="confirmText">Type:</label>
+            <input type="text" id="confirmText" placeholder="DELETE ACCOUNT" autocomplete="off" />
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9em;">
+            <i class="fas fa-info-circle"></i> The following will be permanently deleted:
+          </p>
+          <ul style="text-align: left; color: #7f1d1d; font-size: 0.9em;">
+            <li>Your widget will stop working immediately</li>
+            <li>All your custom places</li>
+            <li>Statistics and usage data</li>
+            <li>Generated API keys</li>
+          </ul>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn btn-back" id="backToStep1">
+            <i class="fas fa-arrow-left"></i> Back
+          </button>
+          <button type="button" class="btn btn-delete" id="finalDeleteBtn" disabled>
+            <i class="fas fa-trash-alt"></i> Delete Account
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+      <div class="step" id="successStep">
+        <div class="success-message">
+          <i class="fas fa-check-circle"></i>
+          <h2>Thank you for your feedback!</h2>
+          <p>Your account has been successfully deleted. We appreciate the time you spent with myNaturevista and hope to see you again in the future.</p>
+          <p style="margin-top: 20px; color: #6c757d;">You will be redirected to the homepage in a few seconds...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  class AccountDeletionForm {
+    constructor() {
+      this.currentStep = 1;
+      this.totalSteps = 2;
+      this.feedbackData = {};
+      this.rating = 0;
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+      this.updateProgress();
+    }
+
+    setupEventListeners() {
+      // Radio selection logic
+      document.querySelectorAll('input[name="leaveReason"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          document.querySelectorAll('.reason-option').forEach(opt => opt.classList.remove('selected'));
+          e.target.closest('.reason-option').classList.add('selected');
+        });
+      });
+
+      // ✅ STAR RATING LOGIC CON DELEGACIÓN DE EVENTOS
+      const starsContainer = document.querySelector('.rating-stars');
+      
+      starsContainer.addEventListener('click', (e) => {
+        // Buscar el elemento .rating-star más cercano (puede ser el i o el svg)
+        const starElement = e.target.closest('.rating-star');
+        
+        if (!starElement) return;
+        
+        const rating = parseInt(starElement.dataset.star);
+        this.rating = rating;
+        
+        starsContainer.dataset.rating = rating;
+        
+        // Actualizar visualmente todas las estrellas
+        const allStars = starsContainer.querySelectorAll('.rating-star');
+        allStars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('active');
+          } else {
+            star.classList.remove('active');
+          }
+        });
+
+        // Ocultar mensaje de error
+        document.getElementById('ratingError').style.display = 'none';
+        
+        console.log('✅ Rating seleccionado:', rating);
+      });
+
+      // ✅ MEJORAR EL HOVER PARA QUE TAMBIÉN FUNCIONE CON SVG
+      starsContainer.addEventListener('mouseover', (e) => {
+        const starElement = e.target.closest('.rating-star');
+        if (!starElement) return;
+        
+        const rating = parseInt(starElement.dataset.star);
+        const allStars = starsContainer.querySelectorAll('.rating-star');
+        
+        allStars.forEach((star, index) => {
+          if (index < rating) {
+            star.style.color = '#fbbf24';
+          } else {
+            star.style.color = '';
+          }
+        });
+      });
+
+      starsContainer.addEventListener('mouseout', () => {
+        const allStars = starsContainer.querySelectorAll('.rating-star');
+        allStars.forEach((star, index) => {
+          if (index < this.rating) {
+            star.style.color = '#fbbf24';
+          } else {
+            star.style.color = '';
+          }
+        });
+      });
+
+      // Improvement area selection
+      document.querySelectorAll('.improvement-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          checkbox.checked = !checkbox.checked;
+          item.classList.toggle('selected', checkbox.checked);
+        });
+      });
+
+      // Next button with validation
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (this.validateStep1()) {
+          this.collectFeedbackData();
+          this.nextStep();
+        }
+      });
+
+      // Back to step 1
+      document.getElementById('backToStep1').addEventListener('click', () => {
+        this.previousStep();
+      });
+
+      // Confirmation input logic
+      const confirmInput = document.getElementById('confirmText');
+      const deleteBtn = document.getElementById('finalDeleteBtn');
+      confirmInput.addEventListener('input', () => {
+        deleteBtn.disabled = confirmInput.value.trim().toUpperCase() !== 'DELETE ACCOUNT';
+      });
+
+      // Final delete button
+      deleteBtn.addEventListener('click', () => {
+        this.deleteAccount();
+      });
+    }
+
+    validateStep1() {
+      const selectedReason = document.querySelector('input[name="leaveReason"]:checked');
+      if (!selectedReason) {
+        alert('Please select a main reason for leaving myNaturevista.');
+        return false;
+      }
+
+      if (this.rating === 0) {
+        document.getElementById('ratingError').style.display = 'block';
+        alert('Please rate your experience with myNaturevista.');
+        return false;
+      }
+
+      return true;
+    }
+
+    collectFeedbackData() {
+      const formData = {};
+
+      const selectedReason = document.querySelector('input[name="leaveReason"]:checked');
+      formData.leaveReason = selectedReason ? selectedReason.value : null;
+
+      formData.rating = this.rating;
+
+      const selectedImprovements = [];
+      document.querySelectorAll('input[name="improvements"]:checked').forEach(checkbox => {
+        selectedImprovements.push(checkbox.value);
+      });
+      formData.improvements = selectedImprovements;
+
+      formData.specificFeedback = document.getElementById('specificFeedback').value.trim();
+      formData.additionalComments = document.getElementById('additionalComments').value.trim();
+
+      this.feedbackData = formData;
+      console.log('📋 Feedback collected:', this.feedbackData);
+    }
+
+    nextStep() {
+      if (this.currentStep < this.totalSteps) {
+        document.getElementById(`step${this.currentStep}`).classList.remove('active');
+        this.currentStep++;
+        document.getElementById(`step${this.currentStep}`).classList.add('active');
+        this.updateProgress();
+      }
+    }
+
+    previousStep() {
+      if (this.currentStep > 1) {
+        document.getElementById(`step${this.currentStep}`).classList.remove('active');
+        this.currentStep--;
+        document.getElementById(`step${this.currentStep}`).classList.add('active');
+        this.updateProgress();
+      }
+    }
+
+    updateProgress() {
+      const progressFill = document.getElementById('progressFill');
+      const stepIndicator = document.getElementById('stepIndicator');
+      
+      const progressPercentage = (this.currentStep / this.totalSteps) * 100;
+      progressFill.style.width = `${progressPercentage}%`;
+      
+      if (this.currentStep === 1) {
+        stepIndicator.textContent = 'Step 1 of 2 - Feedback Questionnaire';
+      } else if (this.currentStep === 2) {
+        stepIndicator.textContent = 'Step 2 of 2 - Final Confirmation';
+      }
+    }
+
+    async deleteAccount() {
+      try {
+        const dataToSend = {
+          feedback: this.feedbackData,
+          timestamp: new Date().toISOString(),
+          confirmationText: document.getElementById('confirmText').value
+        };
+
+        console.log('📤 Sending data to server:', dataToSend);
+
+        const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+        console.log('🔑 Token found:', token ? 'YES' : 'NO');
+
+        const response = await fetch('/api/delete-account', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token && { Authorization: `Bearer ${token}` })
+          },
+          body: JSON.stringify(dataToSend)
+        });
+
+        console.log('📡 Response status:', response.status);
+
+        const result = await response.json();
+        console.log('📡 Response data:', result);
+
+        if (response.ok) {
+          document.getElementById('step2').classList.remove('active');
+          document.getElementById('successStep').classList.add('active');
+          document.getElementById('progressFill').style.width = '100%';
+          document.getElementById('stepIndicator').textContent = 'Account Successfully Deleted';
+
+          localStorage.removeItem('token');
+          sessionStorage.removeItem('token');
+
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 4000);
+
+        } else {
+          alert(result.error || 'Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        console.error('❌ Error deleting account:', error);
+        alert('Network error. Please check your connection and try again.');
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new AccountDeletionForm();
+  });
+</script>
+</body>
+</html>
+

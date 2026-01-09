@@ -1,0 +1,1071 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    /* Colores base */
+    --theme-primary: #ff2b4f;
+    --theme-secondary: #f1683a;
+    --theme-primary-light: #ff4d6d;
+    --theme-primary-dark: #cc223f;
+    --theme-secondary-light: #f37a4f;
+    --theme-secondary-dark: #c1542e;
+   
+    /* Colores de texto accesibles */
+    --text-on-primary: #ffffff;
+    --text-on-secondary: #ffffff;
+   
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, #ff2b4f, #cc223f);
+    --gradient-secondary: linear-gradient(135deg, #f1683a, #c1542e);
+    --gradient-mixed: linear-gradient(135deg, #f1683a, #ff2b4f);
+   
+    /* Estados interactivos */
+    --primary-hover: #cc223f;
+    --secondary-hover: #c1542e;
+   
+    /* Sombras y efectos */
+    --shadow-primary: 0 4px 15px rgba(255, 43, 79, 0.3);
+    --shadow-secondary: 0 4px 15px rgba(241, 104, 58, 0.3);
+    --glow-primary: 0 0 20px rgba(255, 43, 79, 0.3);
+    --glow-secondary: 0 0 20px rgba(241, 104, 58, 0.3);
+   
+    /* Overlays - CORREGIDO: Usando colores personalizados en lugar de verdes */
+    --overlay-primary: rgba(255, 43, 79, 0.8);
+    --overlay-secondary: rgba(241, 104, 58, 0.8);
+   
+    /* Compatibilidad con variables existentes - CORREGIDO */
+    --hero-color: #ff2b4f;
+    --fourth-color: rgba(255, 43, 79, 0.565);  /* Era verde, ahora rojo */
+    --gradient-start: #f1683a;
+    --gradient-end: #ff2b4f;
+    --third-color: rgba(255, 43, 79, 0.843);  /* Era verde, ahora rojo */
+    --continentSection-color: #f1683a;
+    --continentSection-opacity-color: rgba(241, 104, 58, 0.396);  /* Era verde, ahora naranja */
+    --wrap-continent-color: rgba(255, 43, 79, 0.449);  /* Era verde, ahora rojo */
+   
+    /* Colores principales */
+    --main-black: #000000;
+    --main-black-transparent: rgba(0, 0, 0, 0.514);
+    --main-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+    position: fixed;
+    /* 🔥 Border radius para el iframe completo */
+    border-radius: 15px !important;
+}
+
+/* 🔥 Clip-path para recortar TODO el contenido */
+html {
+    clip-path: inset(0 round 15px) !important;
+    -webkit-clip-path: inset(0 round 15px) !important;
+    isolation: isolate;
+}
+
+/* 🔥 Borde visual decorativo */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 15px;
+    border: 2px solid var(--hero-color, #ff2b4f);
+    pointer-events: none;
+    z-index: 99998;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    border-radius:10px;
+    box-shadow: 0 2px 50px var(--main-black);
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    backdrop-filter: blur(7px);
+    z-index: 900;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -90%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--theme-primary-light), transparent);
+    transition: .5s;
+}
+
+header:hover::after {
+    left: 95%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    font-size: 2rem;
+    color: var(--gradient-start);
+    font-weight: 700;
+    gap: 10px;
+}
+
+#customName {
+    color: var(--gradient-end);
+    font-size: clamp(1rem, 5vw, 1rem);
+    white-space: nowrap;
+    margin: 4px 0 0 -10px;
+}
+
+.logo svg {
+    height: 80%;
+    width: 130%;
+    color: var(--gradient-start);
+    border-radius: 10px;
+    margin: 7px;
+}
+
+.logo svg:hover {
+    border: 1px solid var(--theme-secondary);
+    color: var(--main-white);
+    transition: 100ms;
+}
+
+header .nav {
+    padding: 7px;
+    margin: 0;
+    display: flex;
+    gap: 35px;
+    font-weight: 500;
+}
+
+.span1 {
+    width: 20%;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.mapBtn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    height: 35px;
+    width: 35px;
+    z-index: 300;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+@media (hover: hover) {
+    .mapBtn:hover {
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+.mapBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.mapBtn:hover img {
+  filter: drop-shadow(0 0 12px var(--theme-primary, #00a085))
+          drop-shadow(0 0 24px rgba(0, 0, 0, 0.3));
+}
+
+/* ========== MAPA MEJORADO - Z-INDEX CORREGIDO ========== */
+/* ========== MAPA MEJORADO - Z-INDEX CORREGIDO ========== */
+#map {
+    width: 90%;
+    max-width: 1200px;
+    height: 60vh;
+    min-height: 400px;
+    margin: 2rem auto;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--theme-primary);
+    
+    /* 🔥 ESTADO INICIAL COMPLETAMENTE OCULTO */
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    display: block; /* Cambiado de none a block */
+    
+    /* 🔥 TRANSICIONES SINCRONIZADAS */
+    transition: 
+        transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        opacity 1s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        visibility 0s linear 1s;
+    
+    position: relative;
+    z-index: 1000;
+}
+
+#map.show {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+    
+    /* 🔥 SIN DELAY AL ABRIR */
+    transition: 
+        transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        opacity 1s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        visibility 0s linear 0s;
+}
+
+/* ========== PLACES - POSICIÓN AJUSTADA ========== */
+.container {
+    position: absolute;
+    left: 11%;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 100px 50px;
+    padding: 50px 0px;
+    width: 80%;
+    z-index: 100;
+    
+    /* 🔥 TRANSICIÓN SINCRONIZADA CON EL MAPA */
+    transition: top 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.container.moved {
+    top: 102%;
+    transition: top 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Leaflet controls customization */
+.leaflet-control-zoom {
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-zoom a {
+    background: var(--main-white) !important;
+    color: var(--theme-primary) !important;
+    border: none !important;
+    font-weight: bold;
+    font-size: 1.5em !important;
+    transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background: var(--theme-primary) !important;
+    color: var(--main-white) !important;
+    transform: scale(1.1);
+}
+
+/* ========== HERO CONTENT MEJORADO ========== */
+.wrapAllInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 90px;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1; /* 🔥 Bajo, por debajo del mapa */
+}
+
+.hero-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    backdrop-filter: blur(3px);
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 43, 79, 0.3);
+    animation: fadeInScale 1s ease-out;
+    position: relative;
+    z-index: 10; /* 🔥 Por debajo del mapa */
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.titleCountry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.wrapFlagName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.titleCountry img {
+    width: auto;
+    height: 100px;
+    max-width: 150px;
+    object-fit: contain;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.titleCountry h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    color: var(--main-white);
+    text-align: center;
+    text-shadow: 
+        0 0 20px rgba(255, 43, 79, 0.8),
+        0 0 40px rgba(241, 104, 58, 0.6),
+        2px 2px 8px rgba(0, 0, 0, 0.9);
+    animation: slideInRight 1s ease-out;
+    letter-spacing: 2px;
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.descriptionsHead {
+    color: var(--main-white);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    padding: 1.5rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow:
+    1px 1px 2px var(--main-black),
+    0 0 1em var(--main-white),
+    0 0 0.2em var(--main-white);
+
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== PLACES - POSICIÓN AJUSTADA ========== */
+
+
+/* 🔥 OPCIONAL: Ocultar temporalmente las cards mientras el mapa se abre */
+#map.show ~ .wrapAllInfo .container {
+    opacity: 1; /* Mantener visible pero más abajo */
+}
+
+.container .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 350px;
+    height: 300px;
+    background: var(--main-white-transparent);
+    border-radius: 25px;
+    box-shadow: 0 35px 80px var(--main-black-transparent);
+    transition: 0.6s;
+}
+
+.container .card:hover {
+    height: 400px;
+}
+
+.container .card .imgBx {
+    position: absolute;
+    top: 20px;
+    width: 300px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 100;
+    box-shadow: 15px 0 30px var(--main-black-transparent);
+}
+
+.container .card:hover .imgBx {
+    top: -100px;
+    scale: 0.75;
+    box-shadow: 0 35px 80px var(--main-black);
+}
+
+.container .card .imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container .card .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    top: 235px;
+    width: 100%;
+    height: 30px;
+    padding: 0 30px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.6s;
+    background: var(--gradient-mixed);
+    box-shadow: 0 35px 80px var(--main-black);
+    margin: 20px;
+    border-radius: 0 0 25px 25px;
+    border: 1px solid var(--gradient-end);
+}
+
+.container .card:hover .content {
+    top: 112px;
+    height: 330px;
+    padding-top: 17px;
+}
+
+.card .content h2 {
+    font-size: 100%;
+}
+
+.card .content p {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.descriptionPlace {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.seeMorePlace {
+    background: var(--gradient-mixed);
+    color: var(--main-white);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border-radius: 20px 20px 20px 0;
+    box-shadow: 0 2px 5px var(--main-black-transparent);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    letter-spacing: 3px;
+    text-decoration: none;
+    margin: 20px;
+}
+
+.seeMorePlace:hover {
+    font-size: 1rem;
+    box-shadow: 0 6px 15px var(--main-black-transparent);
+    transition: 400ms;
+}
+
+.seeMorePlace:active {
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px var(--main-black-transparent);
+}
+/* video earth */
+/* 🌍 Botón flotante del planeta */
+.earth-button {
+  position: fixed;
+  bottom: 2%;
+  right: 88vw;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: all 0.3s ease-out;
+}
+
+/* 🪐 Imagen del planeta */
+.earth-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: rotatePlanet 25s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+/* ✨ Hover más brillante */
+.earth-button:hover {
+  transform: scale(1.1);
+}
+
+.earth-button:hover .earth-icon {
+  filter: drop-shadow(0 0 12px var(--theme-primary, #00a085))
+          drop-shadow(0 0 24px rgba(0, 0, 0, 0.3));
+}
+
+
+/* 🌍 Rotación suave y continua del planeta */
+@keyframes rotatePlanet {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Responsive 
+@media (max-width: 768px) {
+    .video-container {
+        width: 8%;
+        height: 8%;
+        bottom: 3%;
+    }
+}*/
+
+/* Contenedor del video de fondo */
+.video-background-container {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* El video en sí */
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimización para diferentes aspect ratios */
+@media (min-aspect-ratio: 16/9) {
+  #background-video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  #background-video {
+    width: auto;
+    height: 100%;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  #background-video {
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+/* Móviles en vertical */
+@media (max-width: 768px) and (orientation: portrait) {
+  #background-video {
+    width: auto;
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+/* Móviles en horizontal */
+@media (max-width: 768px) and (orientation: landscape) {
+  #background-video {
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+  #background-video {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+}
+
+/* Opcional: Overlay sutil para mejorar legibilidad del contenido */
+.video-background-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 0.2) 0%, 
+    rgba(0, 0, 0, 0.05) 50%, 
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pause-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--main-white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 500;
+    transition: background 0.3s;
+}
+
+.toggle-cont {
+    position: fixed;
+    bottom: 45px;
+    right: 30px;
+    width: 60px;
+    height: 35px;
+    border-radius: 50px;
+    z-index: 999;
+}
+
+.toggle-cont h4 {
+    text-shadow:
+    1px 1px 2px var(--main-black),
+    0 0 1em var(--main-white),
+    0 0 0.2em var(--main-white);
+    color: var(--main-white);
+    padding-left: 10px;
+}
+
+.toggle-cont .toggle-input {
+    display: none;
+}
+
+.toggle-cont .toggle-label {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    padding: 6px;
+    width: 100%;
+    height: 100%;
+    background: var(--main-black-transparent);
+    border-radius: 9999px;
+    box-sizing: content-box;
+    box-shadow: 0px 0px 16px -8px var(--main-white);
+}
+
+.toggle-cont .toggle-label .cont-label-play {
+    position: relative;
+    width: 35px;
+    aspect-ratio: 1 / 1;
+    background: var(--main-grey);
+    border-radius: 50px;
+    transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+}
+
+.toggle-cont .toggle-input:checked + .toggle-label .cont-label-play {
+    background: var(--gradient-start);
+    transform: translateX(25px);
+}
+
+.toggle-cont .toggle-label .label-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    width: 24px;
+    aspect-ratio: 1 / 1;
+    background: var(--main-white);
+    border-radius: 4px;
+    clip-path: polygon(25% 0, 75% 50%, 25% 100%, 25% 51%);
+    transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+}
+
+.toggle-cont .toggle-input:checked + .toggle-label .label-play {
+    width: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+/* ========================================
+   LEAFLET POPUP - RESPONSIVE MOBILE
+======================================== */
+
+/* Base popup adjustments */
+.leaflet-popup {
+    max-width: 90vw !important;
+}
+
+.leaflet-popup-content-wrapper {
+    max-width: 85vw !important;
+}
+
+.leaflet-popup-content {
+    max-width: 100% !important;
+    margin: 10px 12px !important;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .leaflet-popup {
+        max-width: 85vw !important;
+    }
+    
+    .leaflet-popup-content-wrapper {
+        padding: 8px 10px !important;
+        border-radius: 10px !important;
+        max-width: 280px !important;
+    }
+    
+    .leaflet-popup-content {
+        margin: 6px 8px !important;
+        min-width: 200px !important;
+        max-width: 260px !important;
+        font-size: 13px !important;
+    }
+    
+    /* Image inside popup */
+    .leaflet-popup-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 120px !important;
+        object-fit: cover !important;
+    }
+    
+    /* Title inside popup */
+    .leaflet-popup-content h3 {
+        font-size: 14px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* Description inside popup */
+    .leaflet-popup-content p {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 8px !important;
+        -webkit-line-clamp: 2 !important;
+    }
+    
+    /* Button inside popup */
+    .leaflet-popup-content .seeMorePlace {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        margin: 10px 0 !important;
+    }
+    
+    /* Close button */
+    .leaflet-popup-close-button {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 18px !important;
+        top: 4px !important;
+        right: 4px !important;
+    }
+    
+    /* Coordinates box */
+    .leaflet-popup-content div[style*="background: #f3f4f6"],
+    .leaflet-popup-content div[style*="background: #fff3cd"] {
+        padding: 4px 8px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .leaflet-popup-content div[style*="background: #f3f4f6"] span,
+    .leaflet-popup-content div[style*="background: #fff3cd"] span {
+        font-size: 10px !important;
+    }
+    
+    /* Country badge in popup */
+    .leaflet-popup-content div[style*="position: absolute"][style*="top: 10px"] {
+        padding: 3px 6px !important;
+        top: 5px !important;
+        right: 5px !important;
+    }
+    
+    .leaflet-popup-content div[style*="position: absolute"][style*="top: 10px"] img {
+        width: 14px !important;
+        height: 14px !important;
+    }
+    
+    .leaflet-popup-content div[style*="position: absolute"][style*="top: 10px"] span {
+        font-size: 9px !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .leaflet-popup-content-wrapper {
+        padding: 6px 8px !important;
+        max-width: 240px !important;
+    }
+    
+    .leaflet-popup-content {
+        margin: 4px 6px !important;
+        min-width: 180px !important;
+        max-width: 220px !important;
+    }
+    
+    .leaflet-popup-content img {
+        max-height: 100px !important;
+        left: -8px;
+        position: relative;
+    }
+    
+    .leaflet-popup-content h3 {
+        font-size: 13px !important;
+    }
+    
+    .leaflet-popup-content p {
+        font-size: 11px !important;
+        -webkit-line-clamp: 2 !important;
+    }
+    
+    .leaflet-popup-content .seeMorePlace {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* Custom place popup (gold border) */
+@media (max-width: 768px) {
+    .custom-place-popup .leaflet-popup-content-wrapper {
+        border-width: 2px !important;
+        max-width: 260px !important;
+    }
+    
+    .custom-place-popup .leaflet-popup-content {
+        max-width: 240px !important;
+    }
+}
+
+/* Ensure popup is centered and visible */
+.leaflet-popup-pane {
+    z-index: 700 !important;
+}
+/*========== Media queries ==========*/
+@media (min-height: 800px) {
+    
+}
+
+@media (min-width: 180px) and (max-width: 400px) {
+    .mapBtn {
+        height: 28px !important;
+        width: 28px !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 30px;
+        width: 30px;
+        margin: 10px;
+    }
+    .span1 {
+        display: none;
+    }
+    .descriptionsHead {
+        display: none !important;
+    }
+    .container .card .imgBx {
+        width: 90%;
+    }
+    .card .content p {
+        font-size: 70%;
+    }
+    .earth-button {
+        left: 5px;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 585px) {
+    .mapBtn {
+        height: 30px !important;
+        width: 30px !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 32px;
+        width: 32px;
+        margin: 5px;
+    }
+    .span1 {
+        display: none;
+    }
+    .descriptionsHead {
+        display: none !important;
+    }
+    .video-container {
+        left: 1%;
+    }
+    
+}
+
+@media (min-width: 585px) and (max-width: 767px) {
+    .mapBtn {
+        height: 32px !important;
+        width: 32px !important;
+        right: 12px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 35px;
+        width: 35px;
+        margin: 5px;
+    }
+    .span1 {
+        font-size: 60%;
+        position: relative;
+        top: 15px;
+        left: 5px;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 991px) {
+    .mapBtn {
+        height: 35px !important;
+        width: 35px !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 38px;
+        width: 38px;
+        margin: 5px;
+    }
+    .span1 {
+        font-size: 65%;
+        position: relative;
+        top: 12px;
+        left: 5px;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+    .mapBtn {
+        height: 38px !important;
+        width: 38px !important;
+        right: 15px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 40px;
+        width: 40px;
+        margin: 5px;
+    }
+    .span1 {
+        font-size: 70%;
+        position: relative;
+        top: 10px;
+        left: 5px;
+    }
+}
+
+@media (min-width: 1199px) {
+    .mapBtn {
+        height: 40px !important;
+        width: 40px !important;
+        right: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+    .logo svg {
+        height: 42px;
+        width: 42px;
+        margin: 5px;
+    }
+    .span1 {
+        font-size: 75%;
+        position: relative;
+        top: 8px;
+        left: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: landscape) and (pointer: coarse) {
+    .descriptionsHead {
+        display: none !important;
+    }
+    .mapBtn {
+        height: 28px !important;
+        width: 28px !important;
+    }
+}
